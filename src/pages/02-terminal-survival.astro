@@ -1,0 +1,288 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+import BeginnerNote from '../components/BeginnerNote.astro';
+---
+
+<MainLayout title="Terminal Survival Kit" subtitle="Just the commands you'll actually use" module={2}>
+
+  <!-- Intro -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">You don't need to become a terminal expert</h2>
+
+    <p class="beginner-only mt-3 text-sm text-text-secondary">
+      There are thousands of terminal commands. You need about six of them. These six cover 95% of everything you'll do when working with Claude Code. We'll go through each one with plain-English explanations and Finder analogies so they feel familiar.
+    </p>
+
+    <p class="moderate-only mt-3 text-sm text-text-secondary">
+      Quick reference for the six commands you'll actually use. Scroll down for the table, or read through each one below.
+    </p>
+  </section>
+
+  <!-- The Finder <-> Terminal mental model -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">The Finder &#x2194; Terminal mental model</h2>
+
+    <BeginnerNote>
+      <p>The terminal and Finder are looking at the <strong>same thing</strong>. Finder shows your files and folders visually — with icons you can click. The terminal shows the exact same files and folders as text. If you create a folder in the terminal, it appears in Finder. If you drag a file into a Finder folder, it shows up in the terminal. They're two views of the same stuff.</p>
+    </BeginnerNote>
+
+    <div class="beginner-only mt-4 overflow-hidden rounded-xl border border-border">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-border bg-background-alt">
+            <th class="px-4 py-2.5 text-left font-semibold text-text">In Finder, you...</th>
+            <th class="px-4 py-2.5 text-left font-semibold text-text">In Terminal, you type...</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border">
+          <tr>
+            <td class="px-4 py-2.5 text-text-secondary">Look at the address bar</td>
+            <td class="px-4 py-2.5"><code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">pwd</code></td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2.5 text-text-secondary">See files in the window</td>
+            <td class="px-4 py-2.5"><code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">ls</code></td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2.5 text-text-secondary">Double-click a folder</td>
+            <td class="px-4 py-2.5"><code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">cd folder-name</code></td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2.5 text-text-secondary">Click the back arrow</td>
+            <td class="px-4 py-2.5"><code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">cd ..</code></td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2.5 text-text-secondary">Right-click &rarr; New Folder</td>
+            <td class="px-4 py-2.5"><code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">mkdir folder-name</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Command 1: pwd -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">
+      <code class="text-purple">pwd</code> — Print Working Directory
+    </h2>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      Shows where you are right now. Think of it like looking at the address bar in a Finder window.
+    </p>
+
+    <CopyBlock
+      command="pwd"
+      breakdown={[
+        { segment: "pwd", explanation: "Print Working Directory — outputs the full path of the folder you're currently in" }
+      ]}
+    />
+
+    <BeginnerNote>
+      <p>If you ever feel lost in the terminal, <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">pwd</code> is your "where am I?" button. It will print something like <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">/Users/yourname/Desktop/my-project</code> so you know exactly which folder you're in.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Command 2: ls -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">
+      <code class="text-purple">ls</code> — List files
+    </h2>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      Lists all the files and folders in your current location. Like seeing the files in an open Finder window.
+    </p>
+
+    <CopyBlock
+      command="ls"
+      breakdown={[
+        { segment: "ls", explanation: "List — shows every file and folder in your current directory" }
+      ]}
+    />
+
+    <BeginnerNote>
+      <p>Folders will usually appear in a different color (often blue). If you see nothing, the folder is empty. This is the command you use to check "what's in here?" before doing anything else.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Command 3: cd -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">
+      <code class="text-purple">cd</code> — Change Directory
+    </h2>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      Moves you into a different folder. Like double-clicking a folder in Finder.
+    </p>
+
+    <CopyBlock
+      command="cd Documents"
+      breakdown={[
+        { segment: "cd", explanation: "Change Directory — move into a folder" },
+        { segment: "Documents", explanation: "the name of the folder you want to open" }
+      ]}
+    />
+
+    <p class="mt-4 text-sm font-semibold text-text">Go up one level (like clicking the back arrow):</p>
+
+    <CopyBlock
+      command="cd .."
+      breakdown={[
+        { segment: "cd", explanation: "Change Directory" },
+        { segment: "..", explanation: "special shorthand meaning 'the parent folder' — one level up" }
+      ]}
+    />
+
+    <p class="mt-4 text-sm font-semibold text-text">Jump straight to a specific location:</p>
+
+    <CopyBlock
+      command="cd ~/Desktop"
+      breakdown={[
+        { segment: "cd", explanation: "Change Directory" },
+        { segment: "~/Desktop", explanation: "~ means your home folder, so this goes to your Desktop no matter where you are" }
+      ]}
+    />
+
+    <BeginnerNote>
+      <p>You can also drag a folder from Finder directly into the terminal window after typing <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">cd </code> (with a space after it). The terminal will fill in the path for you. Handy if the folder name is long or hard to spell.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Command 4: mkdir -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">
+      <code class="text-purple">mkdir</code> — Make Directory
+    </h2>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      Creates a new folder. Just like right-clicking in Finder and choosing "New Folder."
+    </p>
+
+    <CopyBlock
+      command="mkdir my-project"
+      breakdown={[
+        { segment: "mkdir", explanation: "Make Directory — create a new folder" },
+        { segment: "my-project", explanation: "the name you want to give the new folder" }
+      ]}
+    />
+
+    <BeginnerNote>
+      <p>After creating the folder, you'll usually want to move into it: type <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">cd my-project</code> to go inside the folder you just made.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Command 5: open . -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">
+      <code class="text-purple">open .</code> — Open in Finder
+    </h2>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      Opens the current folder in Finder. This is your escape hatch — if you're ever lost or confused, this shows you exactly where you are in a familiar visual window.
+    </p>
+
+    <CopyBlock
+      command="open ."
+      breakdown={[
+        { segment: "open", explanation: "macOS command that opens files or folders" },
+        { segment: ".", explanation: "a dot means 'the current folder' — right here, where I am now" }
+      ]}
+    />
+
+    <BeginnerNote>
+      <p>This is probably the most reassuring command to know. Feeling disoriented? Type <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">open .</code> and a Finder window pops up showing you the exact folder you're working in. You can see the files, double-click things, drag stuff around — whatever makes you comfortable.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Command 6: clear -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">
+      <code class="text-purple">clear</code> — Clean up the screen
+    </h2>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      Clears all the text from your terminal window. Doesn't delete any files or undo anything — it just gives you a fresh, clean screen.
+    </p>
+
+    <CopyBlock
+      command="clear"
+      breakdown={[
+        { segment: "clear", explanation: "wipes the visible terminal screen — purely cosmetic, nothing is deleted" }
+      ]}
+    />
+
+    <BeginnerNote>
+      <p>Think of this like erasing a whiteboard. All your work is still saved on the computer — you're just clearing the visual clutter so you can focus. Use it whenever the screen feels overwhelming.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Quick reference table (moderate-only) -->
+  <section class="moderate-only rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Quick reference</h2>
+
+    <div class="mt-4 overflow-hidden rounded-xl border border-border">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-border bg-background-alt">
+            <th class="px-4 py-2.5 text-left font-semibold text-text">Command</th>
+            <th class="px-4 py-2.5 text-left font-semibold text-text">What it does</th>
+            <th class="px-4 py-2.5 text-left font-semibold text-text">Example</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border">
+          <tr>
+            <td class="px-4 py-2.5"><code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">pwd</code></td>
+            <td class="px-4 py-2.5 text-text-secondary">Print current directory</td>
+            <td class="px-4 py-2.5"><code class="text-xs font-mono text-text-muted">pwd</code></td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2.5"><code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">ls</code></td>
+            <td class="px-4 py-2.5 text-text-secondary">List files and folders</td>
+            <td class="px-4 py-2.5"><code class="text-xs font-mono text-text-muted">ls</code></td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2.5"><code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">cd</code></td>
+            <td class="px-4 py-2.5 text-text-secondary">Move into a folder</td>
+            <td class="px-4 py-2.5"><code class="text-xs font-mono text-text-muted">cd my-project</code></td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2.5"><code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">cd ..</code></td>
+            <td class="px-4 py-2.5 text-text-secondary">Go up one level</td>
+            <td class="px-4 py-2.5"><code class="text-xs font-mono text-text-muted">cd ..</code></td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2.5"><code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">mkdir</code></td>
+            <td class="px-4 py-2.5 text-text-secondary">Create a new folder</td>
+            <td class="px-4 py-2.5"><code class="text-xs font-mono text-text-muted">mkdir new-folder</code></td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2.5"><code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">open .</code></td>
+            <td class="px-4 py-2.5 text-text-secondary">Open current folder in Finder</td>
+            <td class="px-4 py-2.5"><code class="text-xs font-mono text-text-muted">open .</code></td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2.5"><code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">clear</code></td>
+            <td class="px-4 py-2.5 text-text-secondary">Clear the terminal screen</td>
+            <td class="px-4 py-2.5"><code class="text-xs font-mono text-text-muted">clear</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Up next -->
+  <section class="rounded-xl border border-purple/20 bg-purple-50 p-6 md:p-8">
+    <p class="text-sm font-semibold text-purple">Up next</p>
+    <h2 class="mt-1 text-xl font-bold text-text">Module 3: Your First Claude Conversation</h2>
+    <p class="mt-2 text-sm text-text-secondary">
+      You can navigate the terminal. Time to actually talk to Claude — run it, ask it something, and understand what happens.
+    </p>
+    <a
+      href="/03-first-conversation"
+      class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-purple hover:underline"
+    >
+      Continue to Module 3 &rarr;
+    </a>
+  </section>
+
+</MainLayout>

@@ -1,0 +1,203 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+import BeginnerNote from '../components/BeginnerNote.astro';
+---
+
+<MainLayout title="Getting Set Up" subtitle="From zero to Claude Code in 5 minutes" module={1}>
+
+  <!-- Section 1: What is a terminal? -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">What is a terminal?</h2>
+
+    <BeginnerNote>
+      <p>A terminal is just a text-based way to talk to your computer. Instead of clicking buttons and dragging files, you type short commands. It looks intimidating at first, but you only need a handful of commands to be productive — and we'll teach you exactly which ones.</p>
+    </BeginnerNote>
+
+    <p class="moderate-only mt-3 text-sm text-text-secondary">
+      We'll be working in macOS Terminal (or any shell). If you already have a preferred terminal emulator, use that.
+    </p>
+  </section>
+
+  <!-- Section 2: Opening Terminal the smart way -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Opening Terminal the smart way</h2>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      The fastest way to open a terminal already pointed at the right folder:
+    </p>
+
+    <div class="mt-4 rounded-xl border border-border bg-background-alt p-5">
+      <p class="text-sm font-semibold text-text">macOS: Right-click a folder in Finder</p>
+      <ol class="mt-2 list-decimal list-inside space-y-1.5 text-sm text-text-secondary">
+        <li>Open <strong>Finder</strong> and navigate to the folder you want to work in.</li>
+        <li>Right-click (or Control-click) the folder.</li>
+        <li>Look for <strong>"New Terminal at Folder"</strong> — it may be under the <strong>Services</strong> submenu.</li>
+        <li>Click it. A terminal window opens, already inside that folder.</li>
+      </ol>
+      <p class="mt-3 text-xs text-text-muted">
+        Tip: You can also find this under the Finder menu bar &rarr; <strong>Services</strong> &rarr; <strong>New Terminal at Folder</strong>.
+      </p>
+    </div>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      <strong>Why this is better than navigating manually:</strong> When you open Terminal from a folder, you skip the step of typing out the folder path. You're already exactly where you need to be. This matters because Claude Code works best when you run it from inside your project folder.
+    </p>
+
+    <BeginnerNote title="What's a folder path?">
+      <p>Every folder on your computer has an "address" — like <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">/Users/yourname/Desktop/my-project</code>. That's its <strong>path</strong>. When you open Terminal from a folder, the terminal automatically knows this address so you don't have to type it yourself.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 3: What you're looking at -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">What you're looking at</h2>
+
+    <div class="beginner-only mt-3 space-y-3 text-sm text-text-secondary">
+      <p>When you open a terminal, you'll see something like this:</p>
+
+      <div class="rounded-xl border border-border bg-text p-4">
+        <code class="text-sm font-mono text-surface">aiden@MacBook-Pro ~/Desktop/my-project %</code>
+      </div>
+
+      <p>Here's what each piece means:</p>
+      <ul class="list-disc list-inside space-y-1.5">
+        <li><strong>aiden@MacBook-Pro</strong> — your username and computer name.</li>
+        <li><strong>~/Desktop/my-project</strong> — the folder you're currently in. The <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">~</code> is shorthand for your home folder.</li>
+        <li><strong>%</strong> — the prompt. This is where you type. It just means "ready for input."</li>
+      </ul>
+
+      <p>The blinking cursor after the <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">%</code> is where your commands go. Type something, press Enter, and the terminal runs it.</p>
+    </div>
+
+    <p class="moderate-only mt-3 text-sm text-text-secondary">
+      Standard zsh prompt: <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">user@host path %</code>. The path shown is your current working directory. <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">~</code> = home directory.
+    </p>
+  </section>
+
+  <!-- Section 4: Installing Node.js -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Installing Node.js</h2>
+
+    <BeginnerNote title="What is Node.js?">
+      <p>Node.js is a program that lets you run JavaScript-based tools on your computer. Claude Code is built with it, so you need Node.js installed before Claude Code will work. You only install it once.</p>
+    </BeginnerNote>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      First, check if you already have it installed:
+    </p>
+
+    <CopyBlock
+      command="node --version"
+      breakdown={[
+        { segment: "node", explanation: "the Node.js program" },
+        { segment: "--version", explanation: "ask it to print its version number instead of running" }
+      ]}
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      If you see a version number like <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">v20.11.0</code>, you're good — skip ahead. If you see "command not found," you need to install it:
+    </p>
+
+    <ol class="mt-3 list-decimal list-inside space-y-1.5 text-sm text-text-secondary">
+      <li>Go to <a href="https://nodejs.org" target="_blank" rel="noopener" class="font-medium text-purple underline decoration-purple/30 hover:decoration-purple">nodejs.org</a></li>
+      <li>Download the <strong>LTS</strong> version (the one that says "Recommended for Most Users").</li>
+      <li>Run the installer and follow the prompts — defaults are fine.</li>
+      <li>Close and reopen your terminal, then run <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">node --version</code> again to confirm.</li>
+    </ol>
+  </section>
+
+  <!-- Section 5: Installing Claude Code -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Installing Claude Code</h2>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      With Node.js installed, you can now install Claude Code with a single command:
+    </p>
+
+    <CopyBlock
+      command="npm install -g @anthropic-ai/claude-code"
+      breakdown={[
+        { segment: "npm", explanation: "Node Package Manager — a tool that downloads and installs JavaScript packages" },
+        { segment: "install", explanation: "tells npm to download and set up a package" },
+        { segment: "-g", explanation: "install globally — makes it available everywhere, not just one folder" },
+        { segment: "@anthropic-ai/claude-code", explanation: "the name of the package (Claude Code, made by Anthropic)" }
+      ]}
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      This takes a minute or two. When it finishes, verify it worked:
+    </p>
+
+    <CopyBlock
+      command="claude --version"
+      breakdown={[
+        { segment: "claude", explanation: "the Claude Code CLI tool you just installed" },
+        { segment: "--version", explanation: "print the version number to confirm it's working" }
+      ]}
+    />
+
+    <BeginnerNote>
+      <p>If you see a version number, you're set. If you see "command not found," try closing and reopening your terminal first. If it still doesn't work, the install may need admin permissions — try running the install command with <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">sudo</code> in front of it (it will ask for your Mac password).</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 6: Your API key -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Your API key</h2>
+
+    <BeginnerNote title="What's an API key?">
+      <p>An API key is like a password that identifies you to Claude's servers. It tells Anthropic who is making requests so they can track usage and billing. You keep it secret the same way you'd keep a password secret.</p>
+    </BeginnerNote>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      To use Claude Code, you need an API key from Anthropic:
+    </p>
+
+    <ol class="mt-3 list-decimal list-inside space-y-1.5 text-sm text-text-secondary">
+      <li>Go to <a href="https://console.anthropic.com" target="_blank" rel="noopener" class="font-medium text-purple underline decoration-purple/30 hover:decoration-purple">console.anthropic.com</a> and create an account (or sign in).</li>
+      <li>Navigate to <strong>API Keys</strong> in the dashboard.</li>
+      <li>Click <strong>Create Key</strong>, give it a name (e.g. "Claude Code"), and copy the key.</li>
+    </ol>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      The first time you run <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">claude</code> in your terminal, it will ask for your API key. Paste it in and press Enter. Claude Code stores it securely on your machine — you won't need to enter it again.
+    </p>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      Alternatively, you can set it as an environment variable:
+    </p>
+
+    <CopyBlock
+      command="export ANTHROPIC_API_KEY=sk-ant-xxxxx"
+      breakdown={[
+        { segment: "export", explanation: "make this variable available to programs you run" },
+        { segment: "ANTHROPIC_API_KEY", explanation: "the variable name Claude Code looks for" },
+        { segment: "sk-ant-xxxxx", explanation: "replace this with your actual key" }
+      ]}
+    />
+
+    <div class="mt-4 rounded-xl border border-warning/30 bg-warning-light p-4">
+      <p class="text-xs font-semibold uppercase tracking-wide text-warning">Important</p>
+      <p class="mt-1 text-sm text-text-secondary">
+        Never share your API key. Don't paste it into chat messages, commit it to code, or put it in files that others can see. If you think a key has been exposed, revoke it immediately at <a href="https://console.anthropic.com" target="_blank" rel="noopener" class="font-medium text-purple underline decoration-purple/30 hover:decoration-purple">console.anthropic.com</a> and create a new one.
+      </p>
+    </div>
+  </section>
+
+  <!-- Up next -->
+  <section class="rounded-xl border border-purple/20 bg-purple-50 p-6 md:p-8">
+    <p class="text-sm font-semibold text-purple">Up next</p>
+    <h2 class="mt-1 text-xl font-bold text-text">Module 2: Terminal Survival Kit</h2>
+    <p class="mt-2 text-sm text-text-secondary">
+      You have Claude Code installed. Before we use it, let's learn the 6 terminal commands that cover 95% of what you'll ever need.
+    </p>
+    <a
+      href="/02-terminal-survival"
+      class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-purple hover:underline"
+    >
+      Continue to Module 2 &rarr;
+    </a>
+  </section>
+
+</MainLayout>

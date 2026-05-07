@@ -1,0 +1,90 @@
+---
+import SkillToggle from '../components/SkillToggle';
+import ModuleNav from '../components/ModuleNav';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  module?: number;
+}
+
+const { title, subtitle, module } = Astro.props;
+const pageTitle = module ? `Module ${module}: ${title}` : title;
+---
+
+<!doctype html>
+<html lang="en" data-skill="beginner">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle} | Claude Code University</title>
+    <link rel="icon" type="image/svg+xml" href="/logos/rr-secondary-logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script is:inline>
+      (function() {
+        var level = localStorage.getItem('skillLevel');
+        if (level) document.documentElement.setAttribute('data-skill', level);
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen bg-background pb-16">
+    <!-- Header -->
+    <header class="sticky top-0 z-40 border-b border-border bg-surface/90 backdrop-blur-sm">
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-5 py-3 md:px-10 lg:px-16">
+        <a href="/" class="flex items-center gap-3">
+          <img
+            src="/logos/rebuild-logo-horizontal-black.svg"
+            alt="Rebuild Relief"
+            class="h-8"
+          />
+          <div class="hidden sm:block">
+            <p class="text-sm font-bold leading-tight text-text">Claude Code University</p>
+            <p class="text-[10px] text-text-muted">by Aidxn Design</p>
+          </div>
+        </a>
+        <SkillToggle client:load />
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="mx-auto max-w-5xl px-5 py-10 md:px-10 lg:px-16">
+      <div class="mb-10">
+        {module && (
+          <p class="mb-2 text-sm font-semibold uppercase tracking-wide text-purple">
+            Module {module}
+          </p>
+        )}
+        <h1 class="text-3xl font-extrabold tracking-tight text-text md:text-4xl lg:text-5xl">
+          {title}
+        </h1>
+        {subtitle && (
+          <p class="mt-3 text-lg text-text-secondary">{subtitle}</p>
+        )}
+      </div>
+
+      <div class="space-y-8">
+        <slot />
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-border bg-surface mt-16">
+      <div class="mx-auto max-w-5xl px-5 py-6 md:px-10 lg:px-16">
+        <div class="flex flex-col items-center justify-between gap-3 sm:flex-row">
+          <p class="text-xs text-text-muted">
+            Rebuild Relief Claude Code University — Built by Aidxn Design
+          </p>
+          <p class="text-xs text-text-muted">
+            Training material for internal use
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Navigation (arrow keys + progress bar) -->
+    <ModuleNav client:load />
+  </body>
+</html>

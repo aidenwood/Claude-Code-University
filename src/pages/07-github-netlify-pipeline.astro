@@ -1,0 +1,302 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+import BeginnerNote from '../components/BeginnerNote.astro';
+---
+
+<MainLayout title="The GitHub → Netlify Pipeline" subtitle="Push code, see it live in 60 seconds" module={7}>
+
+  <!-- 1. What is Git? -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">What is Git?</h2>
+
+    <BeginnerNote>
+      Git is a save-point system for your project. Every time you "commit," you create a snapshot you can always go back to. GitHub is where those save points live online — so your code is backed up and shareable.
+    </BeginnerNote>
+
+    <p class="moderate-only mt-3 text-text-secondary">
+      Git is version control. GitHub is the remote host. You know the drill.
+    </p>
+
+    <p class="mt-3 text-text-secondary">
+      Together, Git and GitHub give you a complete history of every change you've ever made — and the ability to undo any of them. When paired with Netlify, pushing code to GitHub automatically publishes your site.
+    </p>
+  </section>
+
+  <!-- 2. Setting up Git -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Setting up Git</h2>
+    <p class="mt-3 text-text-secondary">
+      Before you can use Git, you need to tell it who you are. These two commands set your name and email globally — they get attached to every commit you make.
+    </p>
+
+    <CopyBlock
+      command='git config --global user.name "Your Name"'
+      breakdown={[
+        { segment: 'git config', explanation: 'Change a Git setting' },
+        { segment: '--global', explanation: 'Apply this to all projects on your computer, not just one' },
+        { segment: 'user.name', explanation: "The setting you're changing — your display name" },
+        { segment: '"Your Name"', explanation: 'Replace this with your actual name' },
+      ]}
+    />
+
+    <CopyBlock
+      command='git config --global user.email "you@email.com"'
+      breakdown={[
+        { segment: 'git config', explanation: 'Change a Git setting' },
+        { segment: '--global', explanation: 'Apply this everywhere' },
+        { segment: 'user.email', explanation: "The setting you're changing — your email address" },
+        { segment: '"you@email.com"', explanation: 'Replace with the email you used for GitHub' },
+      ]}
+    />
+
+    <BeginnerNote>
+      You only do this once, ever. Git remembers these settings across all your projects.
+    </BeginnerNote>
+  </section>
+
+  <!-- 3. Creating a GitHub repo -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Creating a GitHub repo</h2>
+    <p class="mt-3 text-text-secondary">
+      A repository (repo) is where your project lives on GitHub. Here's how to create one and connect your local project to it:
+    </p>
+
+    <div class="mt-4 space-y-3">
+      <div class="flex items-start gap-3">
+        <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple/10 text-xs font-bold text-purple">1</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Go to <a href="https://github.com/new" target="_blank" rel="noopener noreferrer" class="text-purple hover:underline">github.com/new</a></p>
+          <p class="text-sm text-text-secondary">Name your repo (e.g. "my-astro-site"), choose public or private, and <strong>don't</strong> check "Add a README file" — we already have files locally.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple/10 text-xs font-bold text-purple">2</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Initialize Git in your project folder</p>
+        </div>
+      </div>
+    </div>
+
+    <CopyBlock
+      command="git init"
+      breakdown={[
+        { segment: 'git init', explanation: 'Initialize Git tracking in this folder — creates a hidden .git directory' },
+      ]}
+    />
+
+    <CopyBlock
+      command="git add ."
+      breakdown={[
+        { segment: 'git add', explanation: 'Stage files for the next commit (save point)' },
+        { segment: '.', explanation: 'The dot means "all files in this directory"' },
+      ]}
+    />
+
+    <CopyBlock
+      command='git commit -m "Initial commit"'
+      breakdown={[
+        { segment: 'git commit', explanation: 'Create a save point (snapshot) of your staged files' },
+        { segment: '-m', explanation: 'Attach a message describing what changed' },
+        { segment: '"Initial commit"', explanation: 'The message — this is the first snapshot of your project' },
+      ]}
+    />
+
+    <CopyBlock
+      command="git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git"
+      breakdown={[
+        { segment: 'git remote add', explanation: 'Tell Git about a remote server to sync with' },
+        { segment: 'origin', explanation: 'The nickname for this remote — "origin" is the standard name' },
+        { segment: 'https://github.com/...', explanation: 'The URL of your GitHub repo — copy this from the GitHub page after creating it' },
+      ]}
+    />
+
+    <CopyBlock
+      command="git push -u origin main"
+      breakdown={[
+        { segment: 'git push', explanation: 'Upload your commits to the remote server' },
+        { segment: '-u', explanation: 'Set this as the default remote — so next time you can just type "git push"' },
+        { segment: 'origin', explanation: 'Push to the remote called "origin" (GitHub)' },
+        { segment: 'main', explanation: 'Push the "main" branch — the primary version of your code' },
+      ]}
+    />
+
+    <BeginnerNote>
+      After running these commands, refresh your GitHub repo page — you should see all your project files there. That's your code, backed up in the cloud.
+    </BeginnerNote>
+  </section>
+
+  <!-- 4. The daily workflow -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">The daily workflow</h2>
+    <p class="mt-3 text-text-secondary">
+      Once your repo is set up, the daily rhythm is just three commands. Every time you finish a chunk of work:
+    </p>
+
+    <CopyBlock
+      command="git add ."
+      breakdown={[
+        { segment: 'git add .', explanation: 'Stage all changed files' },
+      ]}
+    />
+
+    <CopyBlock
+      command='git commit -m "Add hero section"'
+      breakdown={[
+        { segment: 'git commit -m', explanation: 'Save a snapshot with a message' },
+        { segment: '"Add hero section"', explanation: 'Describe what you did — keep it short and specific' },
+      ]}
+    />
+
+    <CopyBlock
+      command="git push"
+      breakdown={[
+        { segment: 'git push', explanation: 'Upload to GitHub (since we set -u earlier, it knows where to push)' },
+      ]}
+    />
+
+    <BeginnerNote>
+      This three-step rhythm is your daily workflow. Add, commit, push. That's it. Do it every time you finish a meaningful piece of work — a new section, a bug fix, a style change. Small, frequent commits are better than one giant commit at the end of the day.
+    </BeginnerNote>
+
+    <div class="mt-5 rounded-lg border border-border bg-background p-4">
+      <p class="text-sm font-semibold text-text">Good commit messages</p>
+      <p class="mt-1 text-sm text-text-secondary">
+        Write commit messages that describe <em>what</em> you did, not <em>how</em>. Good: "Add contact form to homepage." Bad: "Updated stuff." Your future self will thank you when you're trying to find when something changed.
+      </p>
+    </div>
+  </section>
+
+  <!-- 5. Connecting to Netlify -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Connecting to Netlify</h2>
+    <p class="mt-3 text-text-secondary">
+      Netlify turns your GitHub repo into a live website. Every time you push code, Netlify automatically rebuilds and deploys your site. Here's how to set it up:
+    </p>
+
+    <div class="mt-4 space-y-3">
+      <div class="flex items-start gap-3">
+        <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple/10 text-xs font-bold text-purple">1</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Sign up at <a href="https://netlify.com" target="_blank" rel="noopener noreferrer" class="text-purple hover:underline">netlify.com</a></p>
+          <p class="text-sm text-text-secondary">Use your GitHub account to sign up — it makes connecting repos easier.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple/10 text-xs font-bold text-purple">2</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Click "Add new site" then "Import an existing project"</p>
+          <p class="text-sm text-text-secondary">This tells Netlify you already have code on GitHub.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple/10 text-xs font-bold text-purple">3</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Connect your GitHub account</p>
+          <p class="text-sm text-text-secondary">Netlify will ask for permission to read your repositories. Approve it.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple/10 text-xs font-bold text-purple">4</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Select your repository</p>
+          <p class="text-sm text-text-secondary">Find and click the repo you just pushed to GitHub.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple/10 text-xs font-bold text-purple">5</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Configure build settings</p>
+          <p class="text-sm text-text-secondary">For an Astro project, set these values:</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-3 space-y-2">
+      <div class="rounded-lg border border-border bg-background p-4">
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-semibold text-text">Build command</span>
+          <code class="rounded bg-text px-2 py-1 text-xs font-mono text-surface">npm run build</code>
+        </div>
+      </div>
+      <div class="rounded-lg border border-border bg-background p-4">
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-semibold text-text">Publish directory</span>
+          <code class="rounded bg-text px-2 py-1 text-xs font-mono text-surface">dist</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 flex items-start gap-3">
+      <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple/10 text-xs font-bold text-purple">6</span>
+      <div>
+        <p class="text-sm font-semibold text-text">Click Deploy</p>
+        <p class="text-sm text-text-secondary">Netlify will build your site and give you a live URL (something like <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">your-site-name.netlify.app</code>).</p>
+      </div>
+    </div>
+
+    <BeginnerNote>
+      From now on, every time you push to GitHub, Netlify automatically builds and publishes your site. That's CI/CD — Continuous Integration / Continuous Deployment. You push code, Netlify does the rest. No manual uploading, no FTP, no dragging files around.
+    </BeginnerNote>
+  </section>
+
+  <!-- 6. When a deploy fails -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">When a deploy fails</h2>
+    <p class="mt-3 text-text-secondary">
+      Deploys fail sometimes — it's normal. When it happens, Netlify shows a red "Failed" badge. Here's how to fix it:
+    </p>
+
+    <div class="mt-4 space-y-3">
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Check the deploy logs</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          In the Netlify dashboard, click on the failed deploy to see the build logs. The error message is usually near the bottom — scroll down and look for red text.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Common issue: missing dependencies</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          If you installed a package locally but forgot to commit the updated <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">package.json</code>, Netlify won't have it. Run <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">npm install</code> locally, then push the updated files.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Common issue: build errors</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          A typo, a missing import, or a broken component. Read the error message, fix the issue in your code, and push again.
+        </p>
+      </div>
+    </div>
+
+    <p class="mt-4 text-sm font-semibold text-text">The fix-and-push cycle:</p>
+    <CopyBlock
+      command='git add . && git commit -m "Fix build error" && git push'
+      breakdown={[
+        { segment: 'git add .', explanation: 'Stage the fix' },
+        { segment: '&&', explanation: 'Run the next command only if the previous one succeeded' },
+        { segment: 'git commit -m "Fix build error"', explanation: 'Save the fix' },
+        { segment: 'git push', explanation: 'Push to GitHub — Netlify will automatically try again' },
+      ]}
+    />
+  </section>
+
+  <!-- 7. Custom domains -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Custom domains</h2>
+    <p class="mt-3 text-text-secondary">
+      Your Netlify site comes with a free <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">*.netlify.app</code> URL, but you can connect your own domain too. In the Netlify dashboard, go to <strong>Site Settings</strong> then <strong>Domain management</strong> and follow the steps to add your custom domain.
+    </p>
+
+    <BeginnerNote>
+      This is completely optional. The free <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">*.netlify.app</code> URL works perfectly for learning and testing. You can add a custom domain later when you're ready.
+    </BeginnerNote>
+  </section>
+
+</MainLayout>

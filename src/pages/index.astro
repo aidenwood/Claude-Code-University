@@ -1,0 +1,46 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const modules = [
+  { num: 1, title: 'Getting Set Up', desc: 'Install Claude Code and learn to open a terminal the easy way', href: '/01-getting-set-up', icon: '01' },
+  { num: 2, title: 'Terminal Survival Kit', desc: 'The 6 commands you actually need — nothing more', href: '/02-terminal-survival', icon: '02' },
+  { num: 3, title: 'Your First Claude Conversation', desc: 'Run Claude, ask it something, understand what it does', href: '/03-first-conversation', icon: '03' },
+  { num: 4, title: 'Working With Projects', desc: 'How Claude reads your code and how to give it context', href: '/04-working-with-projects', icon: '04' },
+  { num: 5, title: 'Think Like a Developer', desc: 'This vs Not That — prompting patterns that actually work', href: '/05-think-like-a-developer', icon: '05' },
+  { num: 6, title: 'Scaffolding a Project', desc: 'Choosing a stack that sets yourself up for success', href: '/06-scaffolding-a-project', icon: '06' },
+  { num: 7, title: 'The GitHub → Netlify Pipeline', desc: 'Push code, see it live in 60 seconds', href: '/07-github-netlify-pipeline', icon: '07' },
+  { num: 8, title: 'Claude Power Features', desc: 'Memory, agents, skills, and multi-agent workflows', href: '/08-claude-power-features', icon: '08' },
+  { num: 9, title: 'Security & Privacy', desc: 'Keeping business data safe when using AI tools', href: '/09-security-privacy', icon: '09' },
+  { num: 10, title: 'Uses Beyond Code', desc: 'CAD, presentations, data wrangling, and more', href: '/10-beyond-code', icon: '10' },
+];
+---
+
+<MainLayout title="Rebuild Relief Claude Code University" subtitle="Learn to use Claude Code like a developer — from zero to shipping.">
+  <div class="beginner-only rounded-xl border border-purple-200 bg-purple-50 p-5 mb-2">
+    <p class="text-sm font-semibold text-purple mb-1">First time here?</p>
+    <p class="text-sm text-text-secondary">
+      This course takes you from "what's a terminal?" to building and deploying real projects with Claude Code.
+      Use the <strong>Beginner / Moderate</strong> toggle in the top-right corner to control how much detail you see.
+      You can also use arrow keys (or a presentation clicker) to navigate between modules.
+    </p>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    {modules.map((m) => (
+      <a
+        href={m.href}
+        class="group flex gap-4 rounded-xl border border-border bg-surface p-5 transition-all hover:border-purple/40 hover:shadow-md"
+      >
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-purple/10 text-sm font-bold text-purple transition-colors group-hover:bg-purple group-hover:text-white">
+          {m.icon}
+        </div>
+        <div>
+          <h2 class="font-bold text-text group-hover:text-purple transition-colors">
+            {m.title}
+          </h2>
+          <p class="mt-1 text-sm text-text-secondary">{m.desc}</p>
+        </div>
+      </a>
+    ))}
+  </div>
+</MainLayout>

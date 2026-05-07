@@ -1,0 +1,190 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+import BeginnerNote from '../components/BeginnerNote.astro';
+---
+
+<MainLayout title="Working With Projects" subtitle="How Claude understands your codebase" module={4}>
+
+  <!-- 1. How Claude reads your project -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">How Claude reads your project</h2>
+    <p class="mt-3 text-text-secondary">
+      When you start Claude inside a project folder, it doesn't just sit there waiting. It actively explores your files — reading code, checking folder structure, and building an understanding of how everything fits together.
+    </p>
+
+    <BeginnerNote>
+      When you start Claude in a folder, it can see and read all the files there — just like you opening files in an editor. It looks at filenames, reads the code inside, and figures out what the project does. You don't need to explain every file — Claude explores on its own.
+    </BeginnerNote>
+
+    <p class="mt-3 text-text-secondary">
+      This means you can ask high-level questions right away:
+    </p>
+
+    <div class="mt-2 space-y-2">
+      <CopyBlock command="What does this project do?" />
+      <CopyBlock command="What's the folder structure here?" />
+      <CopyBlock command="Are there any bugs or issues you can spot?" />
+    </div>
+
+    <p class="mt-3 text-text-secondary">
+      Claude will read whatever files it needs to answer your question. You'll see the file paths flash by as it explores — that's Claude doing its homework.
+    </p>
+  </section>
+
+  <!-- 2. CLAUDE.md -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">CLAUDE.md — Your project's instruction manual</h2>
+    <p class="mt-3 text-text-secondary">
+      A <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">CLAUDE.md</code> file is a special markdown file you put in the root of your project. Claude reads it automatically at the start of every conversation. It's where you write down:
+    </p>
+
+    <ul class="mt-3 space-y-1.5 text-text-secondary">
+      <li class="flex items-start gap-2 text-sm">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <span><strong>Tech stack</strong> — what frameworks and tools the project uses</span>
+      </li>
+      <li class="flex items-start gap-2 text-sm">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <span><strong>Patterns</strong> — how the codebase is structured and why</span>
+      </li>
+      <li class="flex items-start gap-2 text-sm">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <span><strong>Preferences</strong> — your coding style, naming conventions, Tailwind vs CSS, etc.</span>
+      </li>
+      <li class="flex items-start gap-2 text-sm">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <span><strong>Hard rules</strong> — things Claude should never do (or always do)</span>
+      </li>
+    </ul>
+
+    <p class="mt-4 text-sm font-semibold text-text">Example CLAUDE.md:</p>
+    <CopyBlock
+      command={`# My Project\n\n## Tech Stack\n- Astro 5 with TypeScript\n- Tailwind CSS 4\n- Supabase for backend\n\n## Patterns\n- Components go in src/components/\n- Pages go in src/pages/\n- Use .astro files for static content, .tsx for interactive\n\n## Hard Rules\n- Never change fonts or colors without asking\n- Always use Tailwind classes, never inline styles\n- Keep components small and composable`}
+      breakdown={[
+        { segment: '# My Project', explanation: 'Project name at the top' },
+        { segment: '## Tech Stack', explanation: 'What frameworks and tools are used' },
+        { segment: '## Patterns', explanation: 'How files and code are organized' },
+        { segment: '## Hard Rules', explanation: 'Non-negotiable rules Claude must follow' },
+      ]}
+    />
+
+    <BeginnerNote>
+      Think of CLAUDE.md like a sticky note on the front of a folder telling anyone who opens it what the rules are. Claude reads it every time, so you only need to write these instructions once. As your project grows, you add to it.
+    </BeginnerNote>
+  </section>
+
+  <!-- 3. Pointing Claude at specific files -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Pointing Claude at specific files</h2>
+    <p class="mt-3 text-text-secondary">
+      You can let Claude explore on its own, or you can point it directly at the files you care about. Being specific is almost always better — it saves time and gets more accurate results.
+    </p>
+
+    <p class="mt-4 text-sm font-semibold text-text">Tell Claude exactly what to look at:</p>
+    <CopyBlock command="Read src/components/Hero.astro and explain what it does" />
+
+    <p class="mt-4 text-sm font-semibold text-text">Point it at a bug:</p>
+    <CopyBlock command="Fix the bug in src/utils/formatDate.ts — it's returning the wrong month" />
+
+    <p class="mt-4 text-sm font-semibold text-text">Reference one file to guide another:</p>
+    <CopyBlock command="Create a new Footer component that matches the style of src/components/Header.astro" />
+
+    <div class="mt-5 space-y-3">
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Being specific</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Giving Claude exact file paths means it reads that file first and focuses on it. This is faster and more accurate. Use this when you know where the problem is or what file needs changing.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Letting Claude explore</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Asking broad questions like "find all the components that use the API" lets Claude search the project itself. This is useful when you don't know where something lives, or when you want a bird's-eye view.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. The edit → review → approve cycle -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">The edit, review, approve cycle</h2>
+    <p class="mt-3 text-text-secondary">
+      This is the core workflow you'll use with Claude Code every day. It goes like this:
+    </p>
+
+    <div class="mt-4 space-y-3">
+      <div class="flex items-start gap-3">
+        <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple/10 text-xs font-bold text-purple">1</span>
+        <div>
+          <p class="text-sm font-semibold text-text">You ask Claude to make a change</p>
+          <p class="text-sm text-text-secondary">"Add a dark mode toggle to the header" or "Fix the broken link on the contact page."</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple/10 text-xs font-bold text-purple">2</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Claude proposes changes as a diff</p>
+          <p class="text-sm text-text-secondary">You see exactly what lines are being added, removed, or modified — nothing is hidden.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple/10 text-xs font-bold text-purple">3</span>
+        <div>
+          <p class="text-sm font-semibold text-text">You approve or reject</p>
+          <p class="text-sm text-text-secondary">If it looks right, approve it. If not, deny it and give Claude more direction. Repeat until it's right.</p>
+        </div>
+      </div>
+    </div>
+
+    <BeginnerNote title="What's a diff?">
+      A diff is a before/after comparison of changes to a file. Lines in <span class="font-semibold text-danger">red</span> are being removed, and lines in <span class="font-semibold text-success">green</span> are being added. It's how developers have reviewed changes for decades — and it's how you'll review what Claude proposes.
+    </BeginnerNote>
+
+    <p class="mt-4 text-text-secondary">
+      This cycle keeps you in full control. You never have to accept changes blindly. Over time, you'll get faster at reading diffs and approving changes — but there's no rush. Review carefully until you're comfortable.
+    </p>
+  </section>
+
+  <!-- 5. When Claude goes wrong -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">When Claude goes wrong</h2>
+    <p class="mt-3 text-text-secondary">
+      Claude is powerful but not perfect. Sometimes it misunderstands what you want, over-engineers a solution, or changes files you didn't ask about. Here's how to get things back on track:
+    </p>
+
+    <div class="mt-4 space-y-3">
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Be more specific about what you want</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Instead of "fix the styling," say "change the header padding from 8px to 16px in src/components/Header.astro." Precision prevents wandering.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Reference existing files as examples</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          "Make the new card look like the existing ProductCard component" gives Claude a concrete target to match, instead of guessing what you mean by "good."
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Break the task down smaller</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          If you asked Claude to "build a full dashboard" and it went sideways, try breaking it into pieces: "First, create the sidebar navigation." Then "Add the main content area." Small steps, better results.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-5 rounded-lg border border-purple-200 bg-purple-50 p-4">
+      <p class="text-sm font-semibold text-purple">The guardrails principle</p>
+      <p class="mt-1 text-sm text-text-secondary">
+        Don't let Claude wander — give it guardrails. Point it at specific files, tell it what <em>not</em> to touch, and describe exactly what "done" looks like. The more constraints you give, the better the output.
+      </p>
+    </div>
+  </section>
+
+</MainLayout>

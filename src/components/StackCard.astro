@@ -1,0 +1,59 @@
+---
+interface Props {
+  name: string;
+  recommended?: boolean;
+  warning?: boolean;
+  description: string;
+  useWhen: string;
+  avoidWhen: string;
+  complexity: 'Low' | 'Medium' | 'High';
+}
+
+const { name, recommended, warning, description, useWhen, avoidWhen, complexity } = Astro.props;
+
+const complexityColor = {
+  Low: 'bg-success/10 text-success',
+  Medium: 'bg-warning/10 text-warning',
+  High: 'bg-danger/10 text-danger',
+}[complexity];
+
+const borderColor = warning
+  ? 'border-danger/40'
+  : recommended
+    ? 'border-purple/40'
+    : 'border-border';
+---
+
+<div class={`rounded-xl border-2 ${borderColor} bg-surface p-5 transition-shadow hover:shadow-md`}>
+  <div class="mb-3 flex items-center justify-between">
+    <h3 class="text-lg font-bold text-text">{name}</h3>
+    <div class="flex items-center gap-2">
+      {recommended && (
+        <span class="rounded-full bg-purple/10 px-2.5 py-0.5 text-xs font-semibold text-purple">
+          Recommended
+        </span>
+      )}
+      {warning && (
+        <span class="rounded-full bg-danger/10 px-2.5 py-0.5 text-xs font-semibold text-danger">
+          Not Recommended
+        </span>
+      )}
+      <span class={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${complexityColor}`}>
+        {complexity}
+      </span>
+    </div>
+  </div>
+
+  <p class="text-sm text-text-secondary">{description}</p>
+
+  <div class="mt-4 grid gap-3 md:grid-cols-2">
+    <div>
+      <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-success">Use when</p>
+      <p class="text-xs text-text-secondary">{useWhen}</p>
+    </div>
+    <div>
+      <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-danger">Avoid when</p>
+      <p class="text-xs text-text-secondary">{avoidWhen}</p>
+    </div>
+  </div>
+</div>

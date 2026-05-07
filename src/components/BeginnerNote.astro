@@ -1,0 +1,14 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = "In plain English" } = Astro.props;
+---
+
+<div class="beginner-only my-4 rounded-xl border border-purple-200 bg-purple-50 p-4">
+  <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-purple">{title}</p>
+  <div class="text-sm text-text-secondary leading-relaxed">
+    <slot />
+  </div>
+</div>

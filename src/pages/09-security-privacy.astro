@@ -1,0 +1,305 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+import BeginnerNote from '../components/BeginnerNote.astro';
+---
+
+<MainLayout title="Security & Privacy for Business" subtitle="Keeping your data safe when using AI tools" module={9}>
+
+  <!-- 1. Intro -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">This module is not optional</h2>
+    <p class="mt-3 text-text-secondary">
+      AI tools are powerful, but with power comes responsibility. This module covers what you need to know to use Claude Code safely in a business context. This isn't optional — this is essential.
+    </p>
+    <p class="mt-3 text-text-secondary">
+      Whether you're working with customer data, internal tools, or client projects, the habits you build here will protect you, your company, and the people whose data you handle.
+    </p>
+  </section>
+
+  <!-- 2. What goes where: Local vs API -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">What goes where: Local vs API</h2>
+    <p class="mt-3 text-text-secondary">
+      Understanding what stays on your machine and what leaves it is the foundation of using Claude Code safely.
+    </p>
+
+    <div class="mt-5 space-y-4">
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-purple"></span>
+        <p class="text-sm text-text-secondary">
+          <strong>When you type to Claude Code,</strong> your messages go to Anthropic's API servers for processing. This is how Claude "thinks" — it happens in the cloud, not on your machine.
+        </p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-purple"></span>
+        <p class="text-sm text-text-secondary">
+          <strong>Your files are read locally</strong> — Claude Code reads them on your machine and sends relevant content as context with your messages.
+        </p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-purple"></span>
+        <p class="text-sm text-text-secondary">
+          <strong>Generated code appears locally</strong> on your machine. Claude writes files directly to your project folder.
+        </p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-purple"></span>
+        <p class="text-sm text-text-secondary">
+          <strong>Anthropic's data retention policy:</strong> on the paid API, your messages are not used for training. They are processed and discarded, not stored for model improvement.
+        </p>
+      </div>
+    </div>
+
+    <BeginnerNote>
+      Think of it like a phone call with an expert. You tell them about your project, they give advice, but they don't keep a recording of the call.
+    </BeginnerNote>
+  </section>
+
+  <!-- 3. What NOT to paste into Claude -->
+  <section class="rounded-xl border border-danger/30 bg-danger-light p-6 md:p-8">
+    <div class="flex items-center gap-2">
+      <span class="text-lg">&#9888;</span>
+      <h2 class="text-xl font-bold text-danger">What NOT to paste into Claude</h2>
+    </div>
+    <p class="mt-3 text-text-secondary">
+      Even though Anthropic doesn't use your data for training, you should still treat any AI tool as an external service. Never send anything you wouldn't want in a data breach.
+    </p>
+
+    <div class="mt-5 space-y-3">
+      <div class="flex items-start gap-3 rounded-lg border border-danger/20 bg-surface p-3">
+        <span class="mt-0.5 text-danger font-bold text-sm shrink-0">&#10005;</span>
+        <div>
+          <p class="text-sm font-semibold text-text">API keys and secrets</p>
+          <p class="text-xs text-text-muted mt-0.5">e.g., <code class="rounded bg-danger-light px-1.5 py-0.5 text-xs font-mono text-danger">ANTHROPIC_API_KEY=sk-ant-...</code></p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 rounded-lg border border-danger/20 bg-surface p-3">
+        <span class="mt-0.5 text-danger font-bold text-sm shrink-0">&#10005;</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Database passwords and connection strings</p>
+          <p class="text-xs text-text-muted mt-0.5">e.g., <code class="rounded bg-danger-light px-1.5 py-0.5 text-xs font-mono text-danger">postgres://user:password@host:5432/db</code></p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 rounded-lg border border-danger/20 bg-surface p-3">
+        <span class="mt-0.5 text-danger font-bold text-sm shrink-0">&#10005;</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Customer personal information</p>
+          <p class="text-xs text-text-muted mt-0.5">Names, emails, phone numbers, addresses</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 rounded-lg border border-danger/20 bg-surface p-3">
+        <span class="mt-0.5 text-danger font-bold text-sm shrink-0">&#10005;</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Internal business credentials</p>
+          <p class="text-xs text-text-muted mt-0.5">Pipedrive keys, Google API keys, Stripe secrets</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 rounded-lg border border-danger/20 bg-surface p-3">
+        <span class="mt-0.5 text-danger font-bold text-sm shrink-0">&#10005;</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Financial data</p>
+          <p class="text-xs text-text-muted mt-0.5">Credit card numbers, bank details, account numbers</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 rounded-lg border border-danger/20 bg-surface p-3">
+        <span class="mt-0.5 text-danger font-bold text-sm shrink-0">&#10005;</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Employee personal information</p>
+          <p class="text-xs text-text-muted mt-0.5">TFNs, payroll data, private HR records</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5 rounded-lg border border-danger/30 bg-surface p-4">
+      <p class="text-sm font-semibold text-danger">The golden rule:</p>
+      <p class="mt-1 text-sm text-text-secondary">
+        If it would be bad in a data breach, don't paste it into any AI tool.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4. .claudeignore — Your safety net -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text"><code class="rounded bg-purple-100 px-2 py-0.5 font-mono text-purple">.claudeignore</code> — Your safety net</h2>
+    <p class="mt-3 text-text-secondary">
+      A <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">.claudeignore</code> file tells Claude Code to never read certain files or folders. Even if you accidentally ask Claude to look at a sensitive file, it will skip anything listed in this file.
+    </p>
+    <p class="mt-2 text-text-secondary">
+      Create this file in the root of your project:
+    </p>
+
+    <CopyBlock
+      command={`.env\n.env.*\n*.pem\n*.key\ncredentials/\nsecrets/\nnode_modules/`}
+      breakdown={[
+        { segment: ".env", explanation: "your main environment variables file (API keys, passwords)" },
+        { segment: ".env.*", explanation: "any variant env files (.env.local, .env.production, etc.)" },
+        { segment: "*.pem", explanation: "SSL/TLS certificate files" },
+        { segment: "*.key", explanation: "private key files" },
+        { segment: "credentials/", explanation: "any folder named credentials and everything inside it" },
+        { segment: "secrets/", explanation: "any folder named secrets and everything inside it" },
+        { segment: "node_modules/", explanation: "third-party packages — not sensitive, but massive and unnecessary" }
+      ]}
+    />
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Save this as <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">.claudeignore</code> in your project root (same level as <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">package.json</code>). Claude Code checks this file automatically before reading anything.
+    </p>
+
+    <BeginnerNote>
+      This is like putting a "DO NOT OPEN" label on sensitive folders. Claude will skip them entirely — it won't even peek inside.
+    </BeginnerNote>
+  </section>
+
+  <!-- 5. WhisperFlow vs GhostPepper -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">WhisperFlow vs GhostPepper — Local vs Cloud Transcription</h2>
+    <p class="mt-3 text-text-secondary">
+      If you use voice-to-text to talk to Claude Code, where your audio goes matters. Not all transcription tools are equal when it comes to privacy.
+    </p>
+
+    <div class="mt-5 grid gap-4 md:grid-cols-2">
+      <!-- WhisperFlow - success themed -->
+      <div class="rounded-xl border border-success/30 bg-success-light p-5">
+        <div class="flex items-center gap-2">
+          <span class="text-success font-bold">&#10003;</span>
+          <p class="text-sm font-bold text-success">WhisperFlow (Recommended)</p>
+        </div>
+        <div class="mt-3 space-y-2">
+          <p class="text-sm text-text-secondary">Runs transcription <strong>locally on your machine</strong>.</p>
+          <p class="text-sm text-text-secondary">Audio never leaves your device.</p>
+          <p class="text-sm text-text-secondary">Your conversations stay private.</p>
+          <p class="text-sm text-text-secondary">No third-party servers involved.</p>
+        </div>
+      </div>
+
+      <!-- GhostPepper - danger themed -->
+      <div class="rounded-xl border border-danger/30 bg-danger-light p-5">
+        <div class="flex items-center gap-2">
+          <span class="text-danger font-bold">&#10005;</span>
+          <p class="text-sm font-bold text-danger">GhostPepper (NOT Recommended)</p>
+        </div>
+        <div class="mt-3 space-y-2">
+          <p class="text-sm text-text-secondary">Sends audio to <strong>external cloud services</strong>.</p>
+          <p class="text-sm text-text-secondary">Your voice data travels through third-party servers.</p>
+          <p class="text-sm text-text-secondary">You lose control of that data.</p>
+          <p class="text-sm text-text-secondary">Not suitable for business conversations.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-5 text-sm font-semibold text-text-secondary">
+      For any business use, always choose tools that keep data local. WhisperFlow over GhostPepper, every time.
+    </p>
+  </section>
+
+  <!-- 6. Environment variables -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Environment variables</h2>
+    <p class="mt-3 text-text-secondary">
+      Environment variables are secrets stored in a <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">.env</code> file that your code reads at runtime. They never get committed to git — they stay on your machine (or your server).
+    </p>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      Here's what a typical <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">.env</code> file looks like:
+    </p>
+
+    <CopyBlock
+      command={`SUPABASE_URL=https://your-project.supabase.co\nSUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\nSTRIPE_SECRET_KEY=sk_live_...\nPIPEDRIVE_API_KEY=abc123...`}
+      breakdown={[
+        { segment: "SUPABASE_URL", explanation: "the address of your Supabase project" },
+        { segment: "SUPABASE_ANON_KEY", explanation: "public-safe key for client-side Supabase access" },
+        { segment: "STRIPE_SECRET_KEY", explanation: "Stripe payment processing key — server-only" },
+        { segment: "PIPEDRIVE_API_KEY", explanation: "CRM integration key" }
+      ]}
+    />
+
+    <p class="mt-4 text-sm text-text-secondary">
+      The critical step: make sure <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">.env</code> is in your <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">.gitignore</code> so it never gets pushed to GitHub:
+    </p>
+
+    <CopyBlock
+      command={`echo ".env" >> .gitignore`}
+      breakdown={[
+        { segment: "echo", explanation: "print text" },
+        { segment: '".env"', explanation: "the text to add — the filename to ignore" },
+        { segment: ">>", explanation: "append to the end of a file (>> adds, > overwrites)" },
+        { segment: ".gitignore", explanation: "the file that tells git what NOT to track" }
+      ]}
+    />
+
+    <BeginnerNote>
+      Environment variables are like writing a password on a sticky note under your keyboard — your app knows where to look, but the password is not written in the code itself. Anyone reading your code won't see the actual values.
+    </BeginnerNote>
+  </section>
+
+  <!-- 7. Company policy recommendations -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Company policy recommendations</h2>
+    <p class="mt-3 text-text-secondary">
+      If you're using Claude Code in a team or business setting, here are the policies that should be non-negotiable:
+    </p>
+
+    <div class="mt-5 space-y-3">
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <p class="text-sm text-text-secondary">
+          <strong>Always use <code class="rounded bg-purple-100 px-1 py-0.5 text-xs font-mono text-purple">.claudeignore</code></strong> for sensitive directories — credentials, secrets, private keys.
+        </p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <p class="text-sm text-text-secondary">
+          <strong>Never commit <code class="rounded bg-purple-100 px-1 py-0.5 text-xs font-mono text-purple">.env</code> files</strong> — add them to <code class="rounded bg-purple-100 px-1 py-0.5 text-xs font-mono text-purple">.gitignore</code> on day one.
+        </p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <p class="text-sm text-text-secondary">
+          <strong>Review all Claude-generated code</strong> before deploying to production. Claude is good, but it's not infallible.
+        </p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <p class="text-sm text-text-secondary">
+          <strong>Keep customer data out</strong> of AI tool conversations. Use dummy data or anonymized samples when testing.
+        </p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <p class="text-sm text-text-secondary">
+          <strong>Use local-first tools</strong> (WhisperFlow) over cloud-based alternatives (GhostPepper) for voice transcription.
+        </p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <p class="text-sm text-text-secondary">
+          <strong>Maintain an audit trail:</strong> who used Claude, on what project, when. This is basic accountability.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-lg border border-purple-200 bg-purple-50 p-5">
+      <p class="text-lg font-bold text-purple">When in doubt, keep it out.</p>
+      <p class="mt-2 text-sm text-text-secondary">
+        If you're not sure whether something is safe to share with an AI tool, the answer is don't. Use placeholder values, anonymized data, or describe the structure without including real values. It takes five extra seconds and eliminates the risk entirely.
+      </p>
+    </div>
+  </section>
+
+  <!-- Up next -->
+  <section class="rounded-xl border border-purple/20 bg-purple-50 p-6 md:p-8">
+    <p class="text-sm font-semibold text-purple">Up next</p>
+    <h2 class="mt-1 text-xl font-bold text-text">Module 10: Uses Beyond Code</h2>
+    <p class="mt-2 text-sm text-text-secondary">
+      Claude Code isn't just for developers. In the final module, we'll show you all the non-coding things it can do — from data wrangling to presentations to browser automation.
+    </p>
+    <a
+      href="/10-beyond-code"
+      class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-purple hover:underline"
+    >
+      Continue to Module 10 &rarr;
+    </a>
+  </section>
+
+</MainLayout>

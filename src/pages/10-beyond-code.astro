@@ -1,0 +1,253 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+import BeginnerNote from '../components/BeginnerNote.astro';
+---
+
+<MainLayout title="Uses Beyond Code" subtitle="Claude Code isn't just for developers" module={10}>
+
+  <!-- 1. Intro -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">You're probably sleeping on these</h2>
+    <p class="mt-3 text-text-secondary">
+      Most people think Claude Code is just for writing software. It's not. It's a general-purpose tool that can read, write, analyze, transform, and create almost anything that lives on your computer. Here are the use cases you're probably sleeping on.
+    </p>
+
+    <BeginnerNote>
+      Everything in this module works the same way you've been using Claude Code in previous modules — you type a message, Claude does the work. The only difference is the <em>kind</em> of work you're asking for.
+    </BeginnerNote>
+  </section>
+
+  <!-- 2. CAD & Technical Drawing -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">CAD & Technical Drawing</h2>
+    <p class="mt-3 text-text-secondary">
+      Claude can read and modify SVG files, generate parametric designs, and even work with DXF formats. If your drawing is vector-based, Claude can understand and edit it.
+    </p>
+
+    <CopyBlock
+      command="Read floor-plan.svg and add a 3m x 4m room to the east wall with a door opening facing north"
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      <strong>What Claude does:</strong> reads the SVG, understands the spatial structure, adds the new room geometry with correct dimensions, places the door opening, and saves the updated file.
+    </p>
+
+    <BeginnerNote>
+      SVG files are images made of mathematical shapes instead of pixels. Because they're described in code, Claude can read and edit them like any other text file — adding walls, moving elements, changing dimensions.
+    </BeginnerNote>
+  </section>
+
+  <!-- 3. Presentations & Slide Decks -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Presentations & Slide Decks</h2>
+    <p class="mt-3 text-text-secondary">
+      Generate HTML-based presentations or modify existing slide content. Better than fighting PowerPoint — and the results are shareable as a single file.
+    </p>
+
+    <CopyBlock
+      command="Create a 10-slide presentation about our Q2 results. Use the data from quarterly-report.csv. Make it clean with our brand colors."
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      <strong>What Claude does:</strong> reads the CSV to extract the data, generates a complete slide deck (HTML or Markdown-based), applies styling and brand colors, and outputs a presentation you can open in any browser.
+    </p>
+  </section>
+
+  <!-- 4. CMS Data Wrangling & Cleanup -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">CMS Data Wrangling & Cleanup</h2>
+    <p class="mt-3 text-text-secondary">
+      Clean up messy CMS exports, deduplicate entries, standardize formatting, and prepare data for import into a new system. No more manual spreadsheet surgery.
+    </p>
+
+    <CopyBlock
+      command="Read cms-export.csv — standardize all phone numbers to +61 format, remove duplicate entries based on email, and flag any rows with missing required fields"
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      <strong>What Claude does:</strong> reads the CSV, applies phone number formatting rules, identifies and removes duplicates by email, flags incomplete rows, and outputs a clean version ready for import.
+    </p>
+
+    <BeginnerNote>
+      This is the kind of task that takes hours in Excel. Claude does it in seconds and doesn't miss any rows. It's especially useful after migrating between CMS platforms.
+    </BeginnerNote>
+  </section>
+
+  <!-- 5. CSV & Data Pipeline Work -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">CSV & Data Pipeline Work</h2>
+    <p class="mt-3 text-text-secondary">
+      Parse, transform, merge, and analyze data files without opening Excel or writing Python scripts. Just describe what you want and Claude handles the rest.
+    </p>
+
+    <CopyBlock
+      command="Merge sales-2024.csv and sales-2025.csv, add a 'year' column, remove rows where revenue is 0, and sort by date descending"
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      <strong>What Claude does:</strong> reads both files, merges them into a single dataset, adds the year column, filters out zero-revenue rows, sorts by date, and saves the result as a new CSV.
+    </p>
+  </section>
+
+  <!-- 6. PDF Analysis -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">PDF Analysis</h2>
+    <p class="mt-3 text-text-secondary">
+      Read contracts, extract key terms from invoices, summarize long documents. Claude can process PDFs and pull out exactly the information you need.
+    </p>
+
+    <CopyBlock
+      command="Read contract.pdf and extract: parties involved, contract value, start date, end date, termination clause, and any penalty clauses"
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      <strong>What Claude does:</strong> reads the PDF, identifies the relevant sections, extracts the structured data you asked for, and presents it in a clear summary — no more reading 40-page contracts line by line.
+    </p>
+
+    <BeginnerNote>
+      This works with any PDF — contracts, invoices, reports, manuals. If you can read it, Claude can read it and pull out the parts you care about.
+    </BeginnerNote>
+  </section>
+
+  <!-- 7. Browser Automation -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Browser Automation</h2>
+    <p class="mt-3 text-text-secondary">
+      With the Chrome MCP tools, Claude can navigate websites, fill forms, scrape data, and test user flows — all from your terminal.
+    </p>
+
+    <CopyBlock
+      command="Go to our staging site, fill out the contact form with test data, submit it, and verify the success message appears"
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      <strong>What Claude does:</strong> opens Chrome, navigates to the URL, identifies form fields, fills them with test data, clicks the submit button, waits for the response, and confirms whether the success message appeared.
+    </p>
+
+    <BeginnerNote>
+      This is like having someone sit at your computer and click through a website for you — except they never get bored and they can do it a hundred times in a row.
+    </BeginnerNote>
+  </section>
+
+  <!-- 8. Image & Screenshot Analysis -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Image & Screenshot Analysis</h2>
+    <p class="mt-3 text-text-secondary">
+      Show Claude a screenshot and ask what's wrong, what to improve, or how to replicate it. Claude can see images and reason about their content.
+    </p>
+
+    <CopyBlock
+      command="Look at screenshot.png — the layout is broken on mobile. What CSS is causing the overflow and how do I fix it?"
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      <strong>What Claude does:</strong> analyzes the image, identifies the visual issue (e.g., an element overflowing the viewport), traces it to likely CSS causes, and suggests specific fixes with code.
+    </p>
+  </section>
+
+  <!-- 9. File Batch Operations -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">File Batch Operations</h2>
+    <p class="mt-3 text-text-secondary">
+      Rename hundreds of files, reorganize folder structures, convert between formats. Tasks that would take an hour of clicking take Claude seconds.
+    </p>
+
+    <CopyBlock
+      command="Rename all photos in the events/ folder from IMG_XXXX.jpg to 2024-event-001.jpg format, numbered sequentially by date modified"
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      <strong>What Claude does:</strong> reads the directory listing, sorts files by modification date, renames each file with the new naming convention, and confirms the results.
+    </p>
+
+    <BeginnerNote>
+      Think about every time you've manually renamed files one by one. Now imagine describing the pattern you want and having it done instantly. That's this.
+    </BeginnerNote>
+  </section>
+
+  <!-- 10. Writing & Content -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Writing & Content</h2>
+    <p class="mt-3 text-text-secondary">
+      Draft blog posts, compliance documents, email templates — in your voice and style. Claude can read your existing content and match the tone.
+    </p>
+
+    <CopyBlock
+      command="Write a blog post about hail damage prevention for homeowners. Match the tone of our existing blog at content/blog/. Keep it under 800 words with practical tips."
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      <strong>What Claude does:</strong> reads your existing blog posts to learn the voice and style, writes a new post matching that tone, stays within the word count, and saves it in the right format for your CMS.
+    </p>
+  </section>
+
+  <!-- 11. Spreadsheet Transformations -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Spreadsheet Transformations</h2>
+    <p class="mt-3 text-text-secondary">
+      Transform Excel and CSV data without opening Excel. Pivot, filter, aggregate — describe the output you want and Claude builds it.
+    </p>
+
+    <CopyBlock
+      command="Read timesheet.xlsx — create a summary showing total hours per employee per week, and flag anyone over 40 hours"
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      <strong>What Claude does:</strong> reads the spreadsheet, groups data by employee and week, calculates total hours, flags any entries over 40 hours, and outputs a clean summary table.
+    </p>
+  </section>
+
+  <!-- 12. API Debugging & Testing -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">API Debugging & Testing</h2>
+    <p class="mt-3 text-text-secondary">
+      Hit API endpoints, inspect responses, test webhooks — without Postman. Claude can construct requests, send them, and verify the results end-to-end.
+    </p>
+
+    <CopyBlock
+      command="Test the POST endpoint at /api/bookings with sample booking data, show me the response, and check if the record appears in Supabase"
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      <strong>What Claude does:</strong> constructs a properly formatted request with sample data, sends it to the endpoint, shows the response status and body, then queries Supabase to verify the record was created.
+    </p>
+
+    <BeginnerNote>
+      An API endpoint is just a URL that your app listens on. When you "test" it, you're sending it fake data to make sure it processes it correctly. Claude handles all the technical details of making the request.
+    </BeginnerNote>
+  </section>
+
+  <!-- 13. Summary card -->
+  <section class="rounded-xl border border-purple/20 bg-purple-50 p-6 md:p-8">
+    <div class="rounded-lg border border-purple-200 bg-surface p-5">
+      <p class="text-lg font-bold text-purple">The bottom line</p>
+      <p class="mt-2 text-text-secondary">
+        Claude Code reads files, writes files, runs commands, and browses the web. If a task involves any combination of those four things, Claude can probably help — whether it's code or not.
+      </p>
+      <div class="mt-4 grid gap-3 sm:grid-cols-2">
+        <div class="flex items-start gap-2 text-sm text-text-secondary">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><strong>Read</strong> — PDFs, CSVs, images, spreadsheets, any file</span>
+        </div>
+        <div class="flex items-start gap-2 text-sm text-text-secondary">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><strong>Write</strong> — documents, presentations, data files, code</span>
+        </div>
+        <div class="flex items-start gap-2 text-sm text-text-secondary">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><strong>Run</strong> — scripts, batch operations, API calls, tests</span>
+        </div>
+        <div class="flex items-start gap-2 text-sm text-text-secondary">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><strong>Browse</strong> — navigate sites, fill forms, scrape data</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-5 text-sm text-text-secondary">
+      You've completed Claude Code University. Go build something.
+    </p>
+  </section>
+
+</MainLayout>

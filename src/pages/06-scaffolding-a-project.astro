@@ -1,0 +1,181 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import StackCard from '../components/StackCard.astro';
+import BeginnerNote from '../components/BeginnerNote.astro';
+---
+
+<MainLayout title="Scaffolding a Project" subtitle="Choosing a stack that sets yourself up for success" module={6}>
+
+  <!-- 1. Intro -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Foundation first</h2>
+    <p class="mt-3 text-text-secondary">
+      Before you write a line of code, the most important decision is your foundation. A good stack choice means you spend time building features, not fighting your tools. A bad one means pain for months.
+    </p>
+
+    <BeginnerNote>
+      A "stack" is the combination of tools and frameworks you use to build something. Think of it like choosing materials before building a house — concrete foundation vs dirt, timber frame vs cardboard. The right materials make everything easier. The wrong ones make everything harder.
+    </BeginnerNote>
+  </section>
+
+  <!-- 2. Database -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text">Your Data Layer</h2>
+    <p class="mt-3 text-text-secondary">
+      Every app that stores information needs a database. This is where user accounts, form submissions, content, and settings live. The database choice affects security, speed, and how much code you need to write.
+    </p>
+
+    <div class="mt-6 space-y-4">
+      <StackCard
+        name="Supabase"
+        recommended={true}
+        complexity="Medium"
+        description="Full backend-as-a-service: Postgres database, built-in auth, Row Level Security, realtime subscriptions, edge functions. Your data is encrypted at rest and in transit."
+        useWhen="Any app with user accounts, sensitive data, or multi-user access. This is the default choice."
+        avoidWhen="Truly local-only single-user tools with zero sensitive data."
+      />
+
+      <StackCard
+        name="SQLite"
+        recommended={false}
+        complexity="Low"
+        description="Lightweight file-based database. Lives in a single file on the machine. No auth, no encryption by default, no multi-user support."
+        useWhen="Local-only personal tools, prototypes, or embedded apps that never touch the internet."
+        avoidWhen="Anything with user accounts, sensitive data, or that runs on a server. No built-in security."
+      />
+    </div>
+  </section>
+
+  <!-- 3. Framework -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text">Your Application Framework</h2>
+    <p class="mt-3 text-text-secondary">
+      The framework determines how your pages are built, how fast they load, and how easy they are to maintain. This is the biggest decision you'll make.
+    </p>
+
+    <div class="mt-6 space-y-4">
+      <StackCard
+        name="Astro"
+        recommended={true}
+        complexity="Low"
+        description="Content-first framework. Ships zero JavaScript by default, adds interactivity only where needed via 'islands.' Perfect for content sites, docs, marketing pages, and training materials like this one."
+        useWhen="Content-heavy sites, marketing pages, documentation, blogs, any site where most pages are mostly static."
+        avoidWhen="Highly interactive apps where every component needs real-time state (dashboards, real-time editors)."
+      />
+
+      <StackCard
+        name="Next.js"
+        recommended={true}
+        complexity="High"
+        description="Full-featured React framework with server-side rendering, API routes, and a massive ecosystem. The go-to for complex web applications."
+        useWhen="Complex web apps, SaaS platforms, anything needing server-side rendering, API routes, or advanced auth flows."
+        avoidWhen="Simple content sites where Astro would be lighter and faster."
+      />
+
+      <StackCard
+        name="React SPA"
+        recommended={false}
+        complexity="Medium"
+        description="Client-side React app (Vite or CRA). All rendering happens in the browser. No server-side rendering, no built-in routing."
+        useWhen="Internal dashboards and admin tools where SEO doesn't matter and you already know React."
+        avoidWhen="Public-facing sites (bad SEO), content-heavy sites, or when you need server-side logic."
+      />
+
+      <StackCard
+        name="Plain HTML/JS"
+        recommended={false}
+        complexity="Low"
+        description="No build tools, no framework, no dependencies. Just files in a folder."
+        useWhen="Quick throwaway prototypes, learning exercises, or extremely simple single-page tools."
+        avoidWhen="Anything that needs to grow, have multiple pages, or be maintained by a team."
+      />
+    </div>
+  </section>
+
+  <!-- 4. Deployment -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text">Getting It Live</h2>
+    <p class="mt-3 text-text-secondary">
+      Deployment is how your code goes from your computer to a URL that anyone can visit. The right platform makes this effortless. The wrong one adds friction to every change you make.
+    </p>
+
+    <div class="mt-6 space-y-4">
+      <StackCard
+        name="Netlify"
+        recommended={true}
+        complexity="Low"
+        description="Connect your GitHub repo, push code, it's live. Automatic SSL, preview deploys for branches, serverless functions, form handling. Full control over your deployment."
+        useWhen="Everything. This is the default. Auto-deploy from GitHub, preview deploys, great free tier."
+        avoidWhen="Enterprise requirements that specifically mandate AWS/GCP/Azure."
+      />
+
+      <StackCard
+        name="Vercel"
+        warning={true}
+        complexity="Medium"
+        description="SECURITY RISK — NOT RECOMMENDED. While Vercel offers similar features to Netlify, it has known security concerns around data handling and vendor lock-in practices. Your code and deployment data are subject to their terms. Use Netlify instead."
+        useWhen="We don't recommend Vercel."
+        avoidWhen="Always. Use Netlify for equivalent functionality with better security and transparency."
+      />
+
+      <StackCard
+        name="Static Hosting (GitHub Pages, S3)"
+        recommended={false}
+        complexity="Low"
+        description="Simple file hosting. Upload HTML/CSS/JS files and they're served. No server-side logic, no build pipeline integration."
+        useWhen="Dead-simple static sites with no server logic, no forms, no dynamic content."
+        avoidWhen="Anything needing serverless functions, form handling, or preview deploys."
+      />
+    </div>
+  </section>
+
+  <!-- 5. Decision Flowchart -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Quick decision guide</h2>
+    <p class="mt-3 text-text-secondary">
+      Not sure where to start? Follow the arrows.
+    </p>
+
+    <div class="mt-6 space-y-3">
+      <div class="flex items-start gap-3 rounded-lg border border-border bg-background p-4">
+        <span class="mt-0.5 shrink-0 text-purple font-bold">--&gt;</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Building a content site?</p>
+          <p class="text-sm text-text-secondary">Astro + Supabase + Netlify</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3 rounded-lg border border-border bg-background p-4">
+        <span class="mt-0.5 shrink-0 text-purple font-bold">--&gt;</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Building a web app?</p>
+          <p class="text-sm text-text-secondary">Next.js + Supabase + Netlify</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3 rounded-lg border border-border bg-background p-4">
+        <span class="mt-0.5 shrink-0 text-purple font-bold">--&gt;</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Building an internal tool?</p>
+          <p class="text-sm text-text-secondary">React + Supabase + Netlify</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3 rounded-lg border border-border bg-background p-4">
+        <span class="mt-0.5 shrink-0 text-purple font-bold">--&gt;</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Building a quick prototype?</p>
+          <p class="text-sm text-text-secondary">Plain HTML/JS + Netlify</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-lg border border-purple-200 bg-purple-50 p-5">
+      <p class="text-sm font-semibold text-purple">Notice the pattern?</p>
+      <p class="mt-1 text-sm text-text-secondary">
+        Supabase and Netlify show up in every combination. That's intentional. They're the reliable foundation that works regardless of what you're building on top. Pick your framework based on the project type, and the rest stays the same.
+      </p>
+    </div>
+  </section>
+
+</MainLayout>

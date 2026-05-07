@@ -1,0 +1,193 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+import BeginnerNote from '../components/BeginnerNote.astro';
+---
+
+<MainLayout title="Your First Claude Conversation" subtitle="Run Claude, ask it something, see what happens" module={3}>
+
+  <!-- 1. Starting Claude -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Starting Claude</h2>
+    <p class="mt-3 text-text-secondary">
+      Open your terminal, navigate to any project folder (or even an empty one), and type:
+    </p>
+
+    <CopyBlock
+      command="claude"
+      breakdown={[
+        { segment: 'claude', explanation: 'Starts an interactive conversation with Claude Code in your current directory' },
+      ]}
+    />
+
+    <BeginnerNote>
+      This starts a conversation with Claude in your current folder. Claude can see all the files here — just like opening a folder in your file browser. If there are project files, Claude can read them. If the folder is empty, Claude knows that too.
+    </BeginnerNote>
+
+    <p class="mt-3 text-text-secondary">
+      After a moment, you'll see a prompt waiting for your input. That's it — you're in a conversation with Claude.
+    </p>
+  </section>
+
+  <!-- 2. Asking your first question -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Asking your first question</h2>
+    <p class="mt-3 text-text-secondary">
+      Once Claude is running, you can type anything. Here are three great starter prompts to try:
+    </p>
+
+    <div class="mt-2">
+      <p class="mt-4 text-sm font-semibold text-text">Ask Claude what's in the folder:</p>
+      <CopyBlock command="What files are in this project?" />
+
+      <p class="mt-4 text-sm font-semibold text-text">Ask Claude to explain what it sees:</p>
+      <CopyBlock command="Explain what this project does" />
+
+      <p class="mt-4 text-sm font-semibold text-text">Ask Claude to create something:</p>
+      <CopyBlock command="Create a simple HTML file with a hello world message" />
+    </div>
+
+    <BeginnerNote>
+      You're just typing in plain English — no code, no special syntax. Claude figures out what to do based on what you say. The more specific you are, the better the result.
+    </BeginnerNote>
+  </section>
+
+  <!-- 3. Understanding the output -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Understanding the output</h2>
+    <p class="mt-3 text-text-secondary">
+      When Claude responds, you'll see different types of activity. Here's what each one means:
+    </p>
+
+    <div class="mt-4 space-y-4">
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-purple">When Claude reads files</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          You'll see file paths appear (like <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">src/index.html</code>). This means Claude is exploring your project to understand its structure. It reads files just like you would — opening them and looking at the contents.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-purple">When Claude wants to edit a file</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          You'll see a <strong>diff</strong> — a before/after comparison showing exactly what Claude wants to change. Lines being removed appear in red, lines being added appear in green. Nothing changes until you approve it.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-purple">When Claude runs a command</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          You'll see the command it wants to run (like <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">npm install</code>) and then the output from that command. Again, Claude asks before running anything.
+        </p>
+      </div>
+    </div>
+
+    <BeginnerNote>
+      Think of it like watching someone work on your computer, but they pause and show you everything before they actually do it. You're always seeing what Claude <em>wants</em> to do before it happens.
+    </BeginnerNote>
+  </section>
+
+  <!-- 4. The permission system -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">The permission system</h2>
+    <p class="mt-3 text-text-secondary">
+      When Claude wants to make a change or run a command, it asks for your permission first. You'll see options like <strong>Allow</strong> and <strong>Deny</strong>.
+    </p>
+
+    <BeginnerNote>
+      Claude is asking permission before making changes. You're always in control. If something doesn't look right, just deny it and tell Claude what you want instead.
+    </BeginnerNote>
+
+    <div class="mt-4 space-y-3">
+      <div class="flex items-start gap-3">
+        <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success/10 text-xs font-bold text-success">Y</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Allow</p>
+          <p class="text-sm text-text-secondary">Let Claude proceed with this specific action.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success/10 text-xs font-bold text-success">A</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Allow always</p>
+          <p class="text-sm text-text-secondary">Allow this type of action for the rest of the session so Claude doesn't keep asking.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-danger/10 text-xs font-bold text-danger">N</span>
+        <div>
+          <p class="text-sm font-semibold text-text">Deny</p>
+          <p class="text-sm text-text-secondary">Reject the action. Claude will try a different approach or ask you for guidance.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      The permission system exists so that Claude never changes your files or runs commands without your knowledge. As you get more comfortable, you can allow actions more freely. When you're starting out, take the time to read each action before approving it.
+    </p>
+  </section>
+
+  <!-- 5. Course-correcting -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Course-correcting</h2>
+    <p class="mt-3 text-text-secondary">
+      Sometimes Claude goes in a direction you didn't intend. That's completely normal — it happens to everyone. Here's what to do:
+    </p>
+
+    <div class="mt-4 space-y-3">
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Be more specific</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Instead of "make it look better," try "increase the font size to 18px and add more spacing between the sections." The more detail you give, the closer the result will be to what you want.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Tell it to stop</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Press <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">Escape</code> to interrupt Claude mid-response if it's going down the wrong path. Then redirect it.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Undo changes</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          If Claude made changes you don't like, you can undo them with <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">Ctrl+Z</code> in your editor, or use git to revert changes. We'll cover git in a later module.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-5 rounded-lg border border-purple-200 bg-purple-50 p-4">
+      <p class="text-sm font-semibold text-purple">The golden rule</p>
+      <p class="mt-1 text-sm text-text-secondary">
+        You're the architect, Claude is the builder. You decide what gets built and how — Claude does the heavy lifting. If the builder starts putting the door in the wrong place, you don't let them finish the wall. You speak up.
+      </p>
+    </div>
+  </section>
+
+  <!-- 6. Ending a session -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Ending a session</h2>
+    <p class="mt-3 text-text-secondary">
+      When you're done talking to Claude, you can end the session in two ways:
+    </p>
+
+    <CopyBlock
+      command="/exit"
+      breakdown={[
+        { segment: '/exit', explanation: 'Cleanly ends the Claude conversation' },
+      ]}
+    />
+
+    <p class="mt-2 text-text-secondary">
+      Or simply press <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">Ctrl+C</code> to force-quit at any time. Both are perfectly fine — your files are already saved, and nothing is lost.
+    </p>
+
+    <BeginnerNote>
+      Ending a session doesn't delete anything Claude created. All the files and changes from your conversation are still there in your project folder. You can start a new conversation any time by running <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">claude</code> again.
+    </BeginnerNote>
+  </section>
+
+</MainLayout>

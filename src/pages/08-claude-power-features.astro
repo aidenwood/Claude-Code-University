@@ -1,0 +1,273 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+import BeginnerNote from '../components/BeginnerNote.astro';
+---
+
+<MainLayout title="Claude Power Features" subtitle="Memory, agents, skills, and the tools that make Claude truly powerful" module={8}>
+
+  <!-- 1. Memory & CLAUDE.md -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Memory & CLAUDE.md</h2>
+    <p class="mt-3 text-text-secondary">
+      Claude Code doesn't remember previous conversations by default. Every time you start a new session, it starts fresh. But there's a way to give it persistent memory: <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">CLAUDE.md</code>.
+    </p>
+
+    <p class="mt-3 text-text-secondary">
+      A <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">CLAUDE.md</code> file at the root of your project is read automatically every time Claude starts. It's where you write down everything Claude needs to know about your project — your tech stack, coding patterns, hard rules, and context.
+    </p>
+
+    <p class="mt-4 text-sm font-semibold text-text">What to put in CLAUDE.md:</p>
+    <ul class="mt-2 space-y-1.5 text-text-secondary">
+      <li class="flex items-start gap-2 text-sm">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <span><strong>Tech stack</strong> — frameworks, languages, tools the project uses</span>
+      </li>
+      <li class="flex items-start gap-2 text-sm">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <span><strong>Coding patterns</strong> — how files are structured, naming conventions, component style</span>
+      </li>
+      <li class="flex items-start gap-2 text-sm">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <span><strong>Hard rules</strong> — things Claude must always or never do</span>
+      </li>
+      <li class="flex items-start gap-2 text-sm">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <span><strong>Project context</strong> — what the project does, who it's for, business logic</span>
+      </li>
+    </ul>
+
+    <p class="mt-4 text-sm font-semibold text-text">Example CLAUDE.md:</p>
+    <CopyBlock
+      command={`# My Project\n\n## Tech Stack\n- Astro 5 with React islands\n- Tailwind CSS 4\n- Supabase for auth and database\n\n## Rules\n- Use TypeScript strict mode\n- Use Tailwind for all styling, no CSS modules\n- Components in PascalCase, utilities in camelCase`}
+      breakdown={[
+        { segment: '# My Project', explanation: 'Project name — Claude uses this for context' },
+        { segment: '## Tech Stack', explanation: "What tools you're using — Claude won't suggest others" },
+        { segment: '## Rules', explanation: 'Hard constraints Claude must follow in every response' },
+      ]}
+    />
+
+    <div class="mt-5 rounded-lg border border-border bg-background p-4">
+      <p class="text-sm font-semibold text-text">Global memory: ~/.claude/</p>
+      <p class="mt-1 text-sm text-text-secondary">
+        The <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">~/.claude/</code> directory holds preferences that apply to <em>all</em> projects — your default coding style, preferred tools, and personal rules. Project-level <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">CLAUDE.md</code> overrides global settings when they conflict.
+      </p>
+    </div>
+
+    <BeginnerNote>
+      CLAUDE.md is like an instruction manual for Claude. Better instructions = better results. Start simple and add to it as you learn what Claude keeps getting wrong or forgetting.
+    </BeginnerNote>
+  </section>
+
+  <!-- 2. Skills: The Planning Workflow -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Skills: The Planning Workflow</h2>
+    <p class="mt-3 text-text-secondary">
+      The best results come from thinking before building. Claude Code has skills that enforce this discipline — brainstorming, planning, then building.
+    </p>
+
+    <div class="mt-5 space-y-4">
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Brainstorming (<code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">/brainstorm</code>)</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Before building anything, brainstorm the design. Claude asks clarifying questions, proposes different approaches, and presents a design for your approval. No code gets written until you agree on what's being built. <strong>Design before you build.</strong>
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Writing plans (<code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">/plan</code>)</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          After brainstorming, create a step-by-step implementation plan. Each step has clear scope and acceptance criteria — what "done" looks like. The plan becomes your roadmap.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Agentic development</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Once a plan exists, Claude breaks it into tasks and can spawn sub-agents to work on independent tasks in parallel. You go from idea to implementation with a clear trail of decisions.
+        </p>
+      </div>
+    </div>
+
+    <p class="mt-4 text-sm font-semibold text-text">Example — starting with brainstorming:</p>
+    <CopyBlock
+      command="I want to build a booking form for our website. Let's brainstorm the design before writing any code."
+      breakdown={[
+        { segment: 'I want to build...', explanation: 'State what you want at a high level' },
+        { segment: "Let's brainstorm...", explanation: 'Tell Claude to explore the design first, not jump to code' },
+      ]}
+    />
+
+    <p class="mt-2 text-sm text-text-secondary">
+      Claude will ask about fields, validation, multi-step vs single page, where the data goes, and more — then present a design for approval before writing a single line of code.
+    </p>
+  </section>
+
+  <!-- 3. Skills: Quality & Verification -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Skills: Quality & Verification</h2>
+    <p class="mt-3 text-text-secondary">
+      Writing code is easy. Writing code that <em>works</em> is harder. These skills ensure Claude doesn't just generate code that looks right — it proves it works.
+    </p>
+
+    <div class="mt-5 space-y-4">
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Test-Driven Development (TDD)</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Write tests first, then implementation. This forces you to think about what "done" means before building anything. The tests become your acceptance criteria — if they pass, the feature works.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Verification before completion</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Claude runs tests and checks before claiming work is done. No "it should work" — prove it. Claude will execute the code, run the tests, and verify the output matches expectations.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">The <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">/loop</code> command</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Tell Claude to keep iterating until tests pass or a condition is met. Claude runs, checks, fixes, and repeats — no manual babysitting.
+        </p>
+      </div>
+    </div>
+
+    <CopyBlock
+      command="/loop Fix the failing tests and keep going until all pass"
+      breakdown={[
+        { segment: '/loop', explanation: 'Tells Claude to iterate automatically' },
+        { segment: 'Fix the failing tests', explanation: 'The task to repeat' },
+        { segment: 'until all pass', explanation: 'The exit condition — Claude stops when tests are green' },
+      ]}
+    />
+
+    <BeginnerNote>
+      These skills prevent the number one AI coding mistake: accepting code that looks right but doesn't work. Always verify. Always test. Never trust "it should work."
+    </BeginnerNote>
+  </section>
+
+  <!-- 4. Skills: Efficiency -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Skills: Efficiency</h2>
+    <p class="mt-3 text-text-secondary">
+      Long sessions burn through tokens. These skills help you get more done with less overhead.
+    </p>
+
+    <div class="mt-5 space-y-4">
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Caveman Mode (<code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">/caveman</code>)</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Compressed communication mode. Claude uses approximately 75% fewer tokens while keeping full technical accuracy. Responses are terse but complete — no fluff, no filler. Good for long sessions where token usage matters.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Cavekit</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          For bigger projects — a full spec-driven development pipeline. You write specifications first, then Claude builds to spec. It includes planning, task tracking, validation gates, and peer review. Overkill for small tasks, but essential for large ones where "just build it" leads to chaos.
+        </p>
+      </div>
+    </div>
+
+    <BeginnerNote>
+      You won't need Caveman Mode or Cavekit when you're starting out. Come back to these when you're doing longer sessions or bigger projects and want to optimize your workflow.
+    </BeginnerNote>
+  </section>
+
+  <!-- 5. Agents & Multi-Agent Workflows -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Agents & Multi-Agent Workflows</h2>
+    <p class="mt-3 text-text-secondary">
+      Claude Code can spawn specialized sub-agents to work on specific tasks. Instead of doing everything sequentially, Claude can delegate independent work to run in parallel.
+    </p>
+
+    <div class="mt-5 space-y-4">
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">What are sub-agents?</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Sub-agents are specialized Claude instances spawned for specific tasks — exploring code, reviewing changes, building features. They work independently and report back to the main Claude session.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">When Claude uses them</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Complex tasks that benefit from parallel work. For example, while one agent builds a component, another can write tests for it, and a third can update documentation — all at the same time.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Worktrees</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Isolated git branches where agents can work without affecting your main code. Each agent gets its own workspace so changes don't conflict. When the work is done and verified, it gets merged back.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">When to use multi-agent</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Independent tasks that don't depend on each other. If task B needs the output of task A, they can't run in parallel. But if you need three new components that don't interact with each other, multi-agent is perfect.
+        </p>
+      </div>
+    </div>
+
+    <BeginnerNote>
+      Think of it like a lead contractor who brings in specialists. Claude is the lead, sub-agents are the specialists. You don't need to manage them directly — Claude handles the coordination. As a beginner, you'll mostly interact with the main Claude session, and it will use agents behind the scenes when it makes sense.
+    </BeginnerNote>
+  </section>
+
+  <!-- 6. UI Component Libraries -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">UI Component Libraries</h2>
+    <p class="mt-3 text-text-secondary">
+      You don't have to build every button, modal, and dropdown from scratch. Component libraries give you pre-built, accessible, and polished UI pieces. Here are the three that matter most:
+    </p>
+
+    <div class="mt-5 space-y-4">
+      <div class="rounded-lg border border-purple-200 bg-purple-50 p-4">
+        <p class="text-sm font-semibold text-purple">shadcn/ui</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Copy-paste React components you <em>own</em>. Not a dependency — the code lives directly in your project. You can customize everything because it's just files in your codebase. Buttons, forms, dialogs, tables, navigation — all built on top of Radix and styled with Tailwind.
+        </p>
+        <p class="mt-2 text-xs text-text-muted">Best for: Apps, dashboards, internal tools</p>
+      </div>
+
+      <div class="rounded-lg border border-purple-200 bg-purple-50 p-4">
+        <p class="text-sm font-semibold text-purple">Radix UI</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          The accessible primitives that power shadcn. Radix handles the hard parts — keyboard navigation, screen readers, focus management, ARIA attributes — so you don't have to. If you're building custom components from scratch and need them to be accessible, start with Radix.
+        </p>
+        <p class="mt-2 text-xs text-text-muted">Best for: Custom components where you need accessibility baked in</p>
+      </div>
+
+      <div class="rounded-lg border border-purple-200 bg-purple-50 p-4">
+        <p class="text-sm font-semibold text-purple">Aceternity UI</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Animated, visually impressive components. Hover effects, parallax cards, glowing borders, animated text reveals — the kind of polish that makes landing pages and portfolio sites stand out. Uses Framer Motion under the hood.
+        </p>
+        <p class="mt-2 text-xs text-text-muted">Best for: Marketing sites, landing pages, portfolio wow-factor</p>
+      </div>
+    </div>
+
+    <div class="mt-5 rounded-lg border border-border bg-background p-4">
+      <p class="text-sm font-semibold text-text">When to use which</p>
+      <div class="mt-2 space-y-2">
+        <p class="text-sm text-text-secondary">
+          <strong>Building an app or dashboard?</strong> Start with shadcn/ui. It gives you a complete component set that's functional, accessible, and customizable.
+        </p>
+        <p class="text-sm text-text-secondary">
+          <strong>Building a marketing site that needs to impress?</strong> Aceternity UI for the hero sections and visual flair, shadcn for the functional parts like forms and navigation.
+        </p>
+        <p class="text-sm text-text-secondary">
+          <strong>Building something completely custom?</strong> Use Radix primitives as the accessible foundation, then style everything yourself with Tailwind.
+        </p>
+      </div>
+    </div>
+
+    <BeginnerNote>
+      You don't need to learn all three at once. Start with shadcn/ui — it's the most practical and covers 90% of what you'll need. Claude knows all of these libraries and can help you install and use any of them.
+    </BeginnerNote>
+  </section>
+
+</MainLayout>

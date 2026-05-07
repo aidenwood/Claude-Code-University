@@ -1,0 +1,36 @@
+---
+interface Props {
+  notThis: string;
+  notThisDetail?: string;
+  doThis: string;
+  doThisDetail?: string;
+}
+
+const { notThis, notThisDetail, doThis, doThisDetail } = Astro.props;
+---
+
+<div class="my-6 grid gap-4 md:grid-cols-2">
+  <!-- Not That -->
+  <div class="rounded-xl border-2 border-danger/30 bg-danger-light p-5">
+    <div class="mb-2 flex items-center gap-2">
+      <span class="flex h-6 w-6 items-center justify-center rounded-full bg-danger text-white text-xs font-bold">✕</span>
+      <span class="text-sm font-bold uppercase tracking-wide text-danger">Not That</span>
+    </div>
+    <p class="font-mono text-sm text-text">{notThis}</p>
+    {notThisDetail && (
+      <p class="mt-2 text-xs text-text-secondary beginner-only">{notThisDetail}</p>
+    )}
+  </div>
+
+  <!-- This -->
+  <div class="rounded-xl border-2 border-success/30 bg-success-light p-5">
+    <div class="mb-2 flex items-center gap-2">
+      <span class="flex h-6 w-6 items-center justify-center rounded-full bg-success text-white text-xs font-bold">✓</span>
+      <span class="text-sm font-bold uppercase tracking-wide text-success">Do This</span>
+    </div>
+    <p class="font-mono text-sm text-text">{doThis}</p>
+    {doThisDetail && (
+      <p class="mt-2 text-xs text-text-secondary beginner-only">{doThisDetail}</p>
+    )}
+  </div>
+</div>

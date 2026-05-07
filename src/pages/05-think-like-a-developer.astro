@@ -1,0 +1,143 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import ThisNotThat from '../components/ThisNotThat.astro';
+import BeginnerNote from '../components/BeginnerNote.astro';
+---
+
+<MainLayout title="Think Like a Developer" subtitle="The prompting patterns that separate beginners from power users" module={5}>
+
+  <!-- 1. Intro -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">You are the architect</h2>
+    <p class="mt-3 text-text-secondary">
+      Claude is a builder, not an architect. <strong>You</strong> decide what gets built and how. Claude executes. The difference between a frustrating experience and a magical one comes down to how you communicate.
+    </p>
+
+    <BeginnerNote>
+      Think of Claude like a very skilled contractor. If you say "build me a house," they'll build <em>something</em> — but it probably won't be what you wanted. If you hand them blueprints with dimensions, materials, and a floor plan, you'll get exactly what you asked for. The rest of this module teaches you how to write better blueprints.
+    </BeginnerNote>
+  </section>
+
+  <!-- 2. Vague vs Specific Prompts -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Vague vs specific prompts</h2>
+    <p class="mt-3 text-text-secondary">
+      The single biggest improvement you can make is being specific about what you want. Vague prompts produce vague results.
+    </p>
+
+    <ThisNotThat
+      notThis="Build me a landing page"
+      notThisDetail="Claude has no idea what you want. It'll guess at colors, layout, content, and framework — and probably get it all wrong."
+      doThis="Add a hero section to src/pages/index.astro using the same Tailwind spacing pattern as src/components/About.astro. Use the existing purple accent color."
+      doThisDetail="Specific file paths, reference to existing patterns, clear scope."
+    />
+  </section>
+
+  <!-- 3. No Context vs Full Context -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">No context vs full context</h2>
+    <p class="mt-3 text-text-secondary">
+      Claude can't read your mind. The more context you give — file paths, line numbers, expected behavior — the faster it gets to the right answer.
+    </p>
+
+    <ThisNotThat
+      notThis="Fix the bug"
+      notThisDetail="Which bug? Where? What's the expected behavior? Claude will guess and probably touch the wrong thing."
+      doThis="The form at src/components/BookingForm.tsx submits but the Supabase insert at line 42 silently fails. The RLS policy might be blocking it. Check the policy and fix."
+      doThisDetail="File path, line number, what's happening, what you suspect."
+    />
+  </section>
+
+  <!-- 4. Claude Picks Stack vs You Declare Architecture -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Claude picks stack vs you declare architecture</h2>
+    <p class="mt-3 text-text-secondary">
+      Architecture decisions are yours. If you let Claude pick the stack, you'll end up maintaining something you didn't choose.
+    </p>
+
+    <ThisNotThat
+      notThis="Create a web app for managing bookings"
+      notThisDetail="Claude will pick whatever seems reasonable. You might end up with a stack you can't maintain."
+      doThis="Create a booking app using Astro 5, React components, Supabase for the database with RLS, and deploy to Netlify. Start with the data schema."
+      doThisDetail="You own the architecture decisions. Claude executes them."
+    />
+  </section>
+
+  <!-- 5. Accept First Output vs Verify the Diff -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Accept first output vs verify the diff</h2>
+    <p class="mt-3 text-text-secondary">
+      Claude's first attempt is usually close, but "close" isn't "correct." Always read what changed before accepting.
+    </p>
+
+    <ThisNotThat
+      notThis={`"Looks good" (without reading what changed)`}
+      notThisDetail="Claude may have added unused imports, changed unrelated files, or introduced patterns that don't match your codebase."
+      doThis="Read the diff. Check for orphaned imports. Verify it matches existing component patterns. Test the actual feature."
+      doThisDetail="Trust but verify. The 30 seconds you spend reading saves hours of debugging."
+    />
+  </section>
+
+  <!-- 6. One Mega-Prompt vs Focused Tasks -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">One mega-prompt vs focused tasks</h2>
+    <p class="mt-3 text-text-secondary">
+      Cramming everything into one prompt is tempting. Resist the urge. Smaller, focused tasks produce better results than one enormous request.
+    </p>
+
+    <ThisNotThat
+      notThis="Build a complete dashboard with auth, charts, user management, notifications, and deploy it"
+      notThisDetail="Too much context, too many decisions. Claude will cut corners or lose coherence halfway through."
+      doThis={`"Let's start with the auth flow. Set up Supabase auth with email/password login using the existing layout." Then follow up with the next piece after reviewing.`}
+      doThisDetail="Break it into steps. Review each one. Build on solid ground."
+    />
+  </section>
+
+  <!-- 7. "Make It Look Good" vs Reference Existing Patterns -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">"Make it look good" vs reference existing patterns</h2>
+    <p class="mt-3 text-text-secondary">
+      "Good" is subjective. Claude's idea of good design might not match yours. Always point it at something concrete to match.
+    </p>
+
+    <ThisNotThat
+      notThis={`"Make it look good" / "Improve the design"`}
+      notThisDetail="Subjective. Claude will add generic styling that probably clashes with your existing design."
+      doThis="Match the card style from src/components/ServiceCard.astro — same border-radius, padding, shadow, and font sizes."
+      doThisDetail="Reference real components. Copy what works."
+    />
+  </section>
+
+  <!-- 8. Summary -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <div class="rounded-lg border border-purple-200 bg-purple-50 p-5">
+      <p class="text-lg font-bold text-purple">The bottom line</p>
+      <p class="mt-2 text-text-secondary">
+        You are the architect. Claude is the builder. The better your blueprints, the better the building.
+      </p>
+      <div class="mt-4 space-y-2">
+        <div class="flex items-start gap-2 text-sm text-text-secondary">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><strong>Be specific</strong> — file paths, line numbers, exact behavior</span>
+        </div>
+        <div class="flex items-start gap-2 text-sm text-text-secondary">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><strong>Own the architecture</strong> — you pick the stack, Claude builds with it</span>
+        </div>
+        <div class="flex items-start gap-2 text-sm text-text-secondary">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><strong>Verify every change</strong> — read diffs, check for side effects</span>
+        </div>
+        <div class="flex items-start gap-2 text-sm text-text-secondary">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><strong>Break it down</strong> — small tasks, reviewed one at a time</span>
+        </div>
+        <div class="flex items-start gap-2 text-sm text-text-secondary">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><strong>Reference what exists</strong> — point at real files, not abstract ideas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</MainLayout>
