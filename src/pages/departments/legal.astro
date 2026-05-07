@@ -47,6 +47,14 @@ import ThisNotThat from '../../components/ThisNotThat.astro';
     </ul>
   </div>
 
+  <!-- Industry Adoption Stats -->
+  <div class="rounded-xl border border-purple/20 bg-purple-50 p-5">
+    <p class="text-xs font-semibold uppercase tracking-wide text-purple">Industry adoption</p>
+    <p class="mt-2 text-sm text-text-secondary">
+      Contract clause extraction now achieves 94%+ accuracy at enterprise scale. AI-powered compliance gap analysis reduces audit time by 50%. The California AI Transparency Act (SB 942, effective January 2026) is driving new AI contract requirements across all industries.
+    </p>
+  </div>
+
   <!-- Contract Review & Analysis -->
   <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
     <h2 class="text-2xl font-bold text-text mb-4">Contract Review & Analysis</h2>
@@ -297,6 +305,44 @@ import ThisNotThat from '../../components/ThisNotThat.astro';
 
     <BeginnerNote>
       A contract risk register saves hours every quarter. Claude maintains it automatically — just re-run it when new contracts are added.
+    </BeginnerNote>
+  </div>
+
+  <!-- Advanced: Regulatory Change Tracking -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Advanced: Regulatory Change Tracking</h2>
+    <p class="text-text-secondary mb-6">
+      Stay ahead of regulatory changes. Claude compares new legislation against your existing policies and contracts, identifies gaps, and generates compliance matrices for board reporting.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read the Insurance Contracts Amendment summary in legislation/amendment-2026.pdf — compare against our current policies in policies/ and contracts in active-contracts/. For each change: identify the requirement, our current status, gap analysis, and remediation steps with timeline. Output as a compliance matrix"
+        breakdown={[
+          { segment: "Read amendment summary", explanation: "analyzes new regulatory requirements" },
+          { segment: "compare against policies", explanation: "existing compliance framework" },
+          { segment: "compare against contracts", explanation: "checks contractual obligations" },
+          { segment: "identify requirement, status, gaps", explanation: "requirement-by-requirement audit" },
+          { segment: "remediation timeline", explanation: "prioritized action plan" },
+          { segment: "Output as compliance matrix", explanation: "board-ready format" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Analyze our 30 vendor contracts in contracts/ — extract all termination clauses, liability caps, indemnification terms, and IP ownership clauses. Create a risk register with vendor name, risk level (high/medium/low), and recommended action. Flag any contracts expiring within 60 days"
+        breakdown={[
+          { segment: "analyze vendor contracts", explanation: "processes entire portfolio" },
+          { segment: "extract termination, liability, indemnity, IP", explanation: "critical risk terms" },
+          { segment: "create risk register", explanation: "structured risk dashboard" },
+          { segment: "rate risk level", explanation: "high/medium/low classification" },
+          { segment: "flag expiring", explanation: "renewal deadline alerts" },
+          { segment: "recommended action", explanation: "next steps for each vendor" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      Claude reads PDFs and extracts structured data. But legal output always needs qualified review — Claude assists, it doesn't replace legal counsel.
     </BeginnerNote>
   </div>
 

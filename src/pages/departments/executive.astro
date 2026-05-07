@@ -30,6 +30,14 @@ import ThisNotThat from '../../components/ThisNotThat.astro';
     </BeginnerNote>
   </section>
 
+  <!-- Industry Adoption Stats -->
+  <div class="rounded-xl border border-purple/20 bg-purple-50 p-5">
+    <p class="text-xs font-semibold uppercase tracking-wide text-purple">Industry adoption</p>
+    <p class="mt-2 text-sm text-text-secondary">
+      AI-driven KPI dashboards are now standard for 70%+ of Fortune 500 boards. Scenario modeling reduces financial planning time by 60%. Board deck generation from data reduces prep time by 80%. Real-time dashboards enable executive decision-making in hours instead of days.
+    </p>
+  </div>
+
   <!-- Section 2: Board & Stakeholder Reports -->
   <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
     <h2 class="text-xl font-bold text-text">Board & Stakeholder Reports</h2>
@@ -218,7 +226,38 @@ import ThisNotThat from '../../components/ThisNotThat.astro';
     </BeginnerNote>
   </section>
 
-  <!-- Section 8: Summary -->
+  <!-- Section 8: Advanced — Competitive Intelligence -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Advanced: Competitive Intelligence</h2>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Move beyond internal dashboards. Claude synthesizes your data against the competitive landscape to show where you're winning and where you're exposed.
+    </p>
+
+    <CopyBlock
+      command={`Read our market data in market-analysis.csv, competitor pricing in competitors/pricing.csv, and our revenue by segment in revenue-segments.csv — benchmark us against the top 3 competitors on: revenue growth rate, market share, pricing per service tier, and customer acquisition cost. Identify where we're winning and where we're losing`}
+      breakdown={[
+        { segment: "Multiple sources", explanation: "your data + competitor pricing = full competitive view" },
+        { segment: "4-metric benchmark", explanation: "growth, share, pricing, CAC — standardized comparison" },
+        { segment: "Win/loss analysis", explanation: "not just raw numbers, but strategic implications" }
+      ]}
+    />
+
+    <CopyBlock
+      command={`Model three scenarios for next FY using our current run rate in financials-2026.csv: conservative (flat growth), moderate (15% growth), aggressive (30% growth). For each: project revenue, required headcount, cash runway, and break-even date. Include sensitivity analysis — what happens if our top assumption is 20% wrong?`}
+      breakdown={[
+        { segment: "3 scenarios", explanation: "base, optimistic, pessimistic — test your plans against uncertainty" },
+        { segment: "Headcount + runway", explanation: "growth requires resources and capital — what's the constraint?" },
+        { segment: "Sensitivity analysis", explanation: "if growth is 20% worse, when does cash run out?" }
+      ]}
+    />
+
+    <BeginnerNote title="Competitive intelligence at scale">
+      <p>As an executive, Claude's biggest value is synthesizing data you already have. Point it at your spreadsheets and reports, ask specific questions, and get actionable insights in minutes instead of days.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 9: Summary -->
   <section class="rounded-xl border border-purple-200 bg-purple-50 p-6 md:p-8">
     <h2 class="text-xl font-bold text-purple">The Real Value</h2>
 
@@ -226,6 +265,14 @@ import ThisNotThat from '../../components/ThisNotThat.astro';
       Claude's biggest value as a leader isn't doing work for you — <strong>it's synthesizing data you already have into actionable insights</strong>. Point it at your numbers, ask specific questions, and make faster decisions. That's the ROI of this tool: fewer hours in spreadsheets, more hours thinking about strategy.
     </p>
   </section>
+
+  <!-- The Executive Advantage -->
+  <div class="rounded-xl border border-purple/20 bg-purple-50 p-6">
+    <p class="text-lg font-bold text-purple">The real ROI for leadership</p>
+    <p class="mt-2 text-sm text-text-secondary">
+      At the executive level, Claude Code isn't about writing code — it's about making faster, better-informed decisions. Every hour your team spends manually assembling reports is an hour they're not spending on strategy. Claude reads your data sources, synthesizes across them, and delivers insights you can act on. The companies adopting AI fastest aren't the ones with the biggest tech teams — they're the ones whose leaders use it themselves.
+    </p>
+  </div>
 
   <!-- Back link -->
   <div class="mt-8 rounded-xl border border-border bg-background-alt p-5 text-center">

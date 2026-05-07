@@ -61,6 +61,14 @@ import ThisNotThat from '../../components/ThisNotThat.astro';
     </BeginnerNote>
   </section>
 
+  <!-- Industry Adoption Stats -->
+  <div class="rounded-xl border border-purple/20 bg-purple-50 p-5">
+    <p class="text-xs font-semibold uppercase tracking-wide text-purple">Industry adoption</p>
+    <p class="mt-2 text-sm text-text-secondary">
+      SEO automation tools reduced audit time from weeks to days. AI content calendars are now standard across agencies. A/B test analysis automation achieves 50% faster statistical significance detection. Anthropic's own Growth team built an agentic workflow processing hundreds of CSV-based ads in minutes instead of hours.
+    </p>
+  </div>
+
   <!-- Section 3: Campaign & Ad Copy -->
   <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
     <h2 class="text-xl font-bold text-text">Campaign & Ad Copy</h2>
@@ -215,6 +223,45 @@ import ThisNotThat from '../../components/ThisNotThat.astro';
 
     <BeginnerNote title="Email segmentation beats blast emails">
       <p>Sending the same email to everyone rarely works. Targeted emails to specific segments (by location, behavior, past purchase) get higher open rates and conversions. Claude can identify these segments from your data and write different copy for each.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 8: Advanced - Automated Content Pipeline -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Advanced: Automated Content Pipeline</h2>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Build repeatable workflows that scale your content production. These examples are templates — save the prompts, run them monthly with different topics, and watch your pipeline output grow.
+    </p>
+
+    <CopyBlock
+      command={`Read our brand voice guide at docs/brand-voice.md, then generate 4 blog posts about storm season preparation. For each: write the full post (800 words), meta title (under 60 chars), meta description (under 155 chars), and 3 social media snippets (LinkedIn, Facebook, Instagram)`}
+      breakdown={[
+        { segment: "brand voice guide", explanation: "establishes tone, vocabulary, audience" },
+        { segment: "4 blog posts", explanation: "multiple content pieces at once" },
+        { segment: "800 words each", explanation: "consistent, publishable length" },
+        { segment: "meta title + description", explanation: "SEO-ready snippets" },
+        { segment: "3 platform variants", explanation: "repurpose across channels" }
+      ]}
+    />
+
+    <p class="mt-4 text-sm text-text-secondary italic">
+      This is a repeatable pipeline. Save this prompt, change "storm season preparation" to your topic, and run it monthly. Over a year, you'll have 48 blog posts with ready-to-publish metadata.
+    </p>
+
+    <CopyBlock
+      command={`Audit all pages in src/pages/ for SEO — check meta titles, descriptions, heading hierarchy, keyword density, image alt text. Output a priority matrix showing effort vs impact for each fix`}
+      breakdown={[
+        { segment: "audit all pages", explanation: "batch process your entire site" },
+        { segment: "meta titles/descriptions", explanation: "search visibility" },
+        { segment: "heading hierarchy", explanation: "content structure" },
+        { segment: "keyword density + alt text", explanation: "technical SEO" },
+        { segment: "priority matrix", explanation: "quick wins first" }
+      ]}
+    />
+
+    <BeginnerNote title="Build a content factory">
+      <p>Save these prompts as Zapier workflows or cron jobs. Run them on a schedule, and you'll have audit reports and content drafts arriving in your inbox automatically. This is how teams of 2 produce content like teams of 10.</p>
     </BeginnerNote>
   </section>
 

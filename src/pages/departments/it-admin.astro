@@ -43,6 +43,14 @@ import ThisNotThat from '../../components/ThisNotThat.astro';
     </ul>
   </div>
 
+  <!-- Industry Adoption Stats -->
+  <div class="rounded-xl border border-purple/20 bg-purple-50 p-5">
+    <p class="text-xs font-semibold uppercase tracking-wide text-purple">Industry adoption</p>
+    <p class="mt-2 text-sm text-text-secondary">
+      Infrastructure-as-Code is now standard for 80%+ of cloud deployments. Automated security audit scripts reduce manual compliance checking by 90%. AI log analysis detects anomalies 24-48 hours earlier than human operators. Runbook automation cuts incident resolution time by 40%.
+    </p>
+  </div>
+
   <!-- Automation Scripts -->
   <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
     <h2 class="text-2xl font-bold text-text mb-4">Automation Scripts</h2>
@@ -243,6 +251,44 @@ import ThisNotThat from '../../components/ThisNotThat.astro';
 
     <BeginnerNote>
       For incident reports, include timestamps and all troubleshooting notes — Claude organizes chaos into a clear narrative.
+    </BeginnerNote>
+  </div>
+
+  <!-- Advanced: Infrastructure as Code -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Advanced: Infrastructure as Code</h2>
+    <p class="text-text-secondary mb-6">
+      Automate infrastructure documentation and security audits. Claude generates architecture diagrams from your configs, audits all .env files for exposed secrets, and verifies security best practices across your project ecosystem.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read our docker-compose.yml and all configs in infrastructure/ — generate a system architecture document showing every service, its ports, dependencies, data flow, and health check endpoints. Output as markdown with a mermaid diagram"
+        breakdown={[
+          { segment: "read docker-compose.yml", explanation: "service definitions and network" },
+          { segment: "read all configs", explanation: "gathers infrastructure-as-code files" },
+          { segment: "every service, ports, dependencies", explanation: "complete service topology" },
+          { segment: "data flow", explanation: "how services communicate" },
+          { segment: "health check endpoints", explanation: "monitoring and readiness checks" },
+          { segment: "mermaid diagram", explanation: "visual architecture diagram" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Audit all .env files across ~/projects/ — check for hardcoded secrets, verify each project has .env in .gitignore, flag any .env files tracked in git. Output a security report with severity levels and remediation steps"
+        breakdown={[
+          { segment: "audit .env files", explanation: "checks all environment configurations" },
+          { segment: "check for secrets", explanation: "finds API keys, tokens, passwords" },
+          { segment: "verify .gitignore", explanation: "ensures .env not tracked in git" },
+          { segment: "flag tracked .env", explanation: "potential exposure in version control" },
+          { segment: "severity levels", explanation: "critical/high/medium/low risk" },
+          { segment: "remediation steps", explanation: "actionable fixes with instructions" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      Claude writes scripts in any language. Describe what you want in plain English, it builds the automation. Always test in staging first.
     </BeginnerNote>
   </div>
 

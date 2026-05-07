@@ -43,6 +43,14 @@ import ThisNotThat from '../../components/ThisNotThat.astro';
     </ul>
   </div>
 
+  <!-- Industry Adoption Stats -->
+  <div class="rounded-xl border border-purple/20 bg-purple-50 p-5">
+    <p class="text-xs font-semibold uppercase tracking-wide text-purple">Industry adoption</p>
+    <p class="mt-2 text-sm text-text-secondary">
+      RevOps teams use Claude Code for CRM enrichment across Salesforce, HubSpot, and Pipedrive. Proposal automation reduces manual work by 70%. Pipeline forecasting models achieve 85%+ accuracy with AI-driven inputs. Cost per incremental PR: $37.50 vs $150 in developer time.
+    </p>
+  </div>
+
   <!-- Pipeline & CRM Analysis -->
   <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
     <h2 class="text-2xl font-bold text-text mb-4">Pipeline & CRM Analysis</h2>
@@ -329,6 +337,47 @@ import ThisNotThat from '../../components/ThisNotThat.astro';
 
     <BeginnerNote title="Pro tip">
       Store your qualification criteria once (property type, location, damage, value thresholds). Claude reuses them across all your lead scoring, so you get consistent rankings.
+    </BegingerNote>
+  </div>
+
+  <!-- Advanced: CRM Data Enrichment -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Advanced: CRM Data Enrichment</h2>
+    <p class="text-text-secondary mb-6">
+      Turn raw CRM exports into clean, enriched data. These workflows identify duplicates, standardize fields, and flag data quality issues in seconds instead of hours.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read pipedrive-export.csv (50k contacts) — detect duplicates using fuzzy match on email and company name, standardize job titles, flag missing critical fields (email, phone, company), and generate a data quality score (0-100) per record. Output cleaned_contacts.csv and a quality_summary.md"
+        breakdown={[
+          { segment: "pipedrive-export.csv", explanation: "your full contact list" },
+          { segment: "fuzzy match on email + company", explanation: "finds near-duplicates" },
+          { segment: "standardize job titles", explanation: "normalize inconsistent titles" },
+          { segment: "flag missing fields", explanation: "identify data gaps" },
+          { segment: "quality score", explanation: "0-100 rating per record for priority cleanup" },
+          { segment: "cleaned_contacts.csv + summary", explanation: "ready-to-import and reporting" }
+        ]}
+      />
+
+      <p class="text-sm text-text-secondary italic">
+        This is a reusable script. Run it monthly for data hygiene, or after each bulk import. Claude learns your standardization rules and applies them consistently.
+      </p>
+
+      <CopyBlock
+        command="Analyze our last 18 months of pipeline data in deals-history.csv — model win rates by stage, industry, rep, and deal size. Forecast Q3 revenue with 80% and 90% confidence intervals. Flag deals at risk of stalling"
+        breakdown={[
+          { segment: "deals-history.csv", explanation: "18 months of closed and open deals" },
+          { segment: "win rates by stage/industry/rep/size", explanation: "multi-dimensional performance analysis" },
+          { segment: "Q3 revenue forecast", explanation: "predict future pipeline value" },
+          { segment: "80% and 90% CI", explanation: "confidence bands for planning" },
+          { segment: "flag at-risk deals", explanation: "proactive pipeline management" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Store your enrichment rules once (duplicate threshold, job title mapping, required fields). Claude reuses them in every run, so your data stays consistent across time. This becomes your data governance layer.
     </BeginnerNote>
   </div>
 
