@@ -170,7 +170,7 @@ Each comparison card: when to use, when NOT to use, complexity level indicator.
 
 ### Module 9 — Security & Privacy for Business
 - What data goes to the Claude API vs stays local
-- **WhisperFlow vs GhostPepper** — WhisperFlow keeps transcription local, GhostPepper sends data to external services. Always prefer local.
+- **Local vs Cloud Transcription** — Always use fully local voice-to-text tools (GhostPepper, macOS Dictation, Whisper.cpp). Cloud tools like WhisperFlow and Otter.ai send audio to external servers — not acceptable for business use.
 - What NOT to paste into Claude: credentials, customer PII, API keys, internal secrets
 - `.claudeignore` — how to exclude sensitive files and directories
 - Environment variables: keep them in `.env`, never commit them

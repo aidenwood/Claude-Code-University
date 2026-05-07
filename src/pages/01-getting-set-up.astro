@@ -4,18 +4,18 @@ import CopyBlock from '../components/CopyBlock.astro';
 import BeginnerNote from '../components/BeginnerNote.astro';
 ---
 
-<MainLayout title="Getting Set Up" subtitle="From zero to Claude Code in 5 minutes" module={1}>
+<MainLayout title="Setting Up Your Developer Environment" subtitle="Everything you need installed — from zero to ready" module={1}>
 
   <!-- Section 1: What is a terminal? -->
   <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
     <h2 class="text-xl font-bold text-text">What is a terminal?</h2>
 
     <BeginnerNote>
-      <p>A terminal is just a text-based way to talk to your computer. Instead of clicking buttons and dragging files, you type short commands. It looks intimidating at first, but you only need a handful of commands to be productive — and we'll teach you exactly which ones.</p>
+      <p>A terminal is just a text-based way to talk to your computer. Instead of clicking buttons and dragging files, you type short commands. It looks intimidating at first, but you only need a handful of commands to get things done — and we'll teach you exactly which ones.</p>
     </BeginnerNote>
 
     <p class="moderate-only mt-3 text-sm text-text-secondary">
-      We'll be working in macOS Terminal (or any shell). If you already have a preferred terminal emulator, use that.
+      We'll be working in macOS Terminal (or any shell you prefer). Everything below assumes macOS — if you're on a different OS, the tools are the same but install methods may differ.
     </p>
   </section>
 
@@ -41,7 +41,7 @@ import BeginnerNote from '../components/BeginnerNote.astro';
     </div>
 
     <p class="mt-4 text-sm text-text-secondary">
-      <strong>Why this is better than navigating manually:</strong> When you open Terminal from a folder, you skip the step of typing out the folder path. You're already exactly where you need to be. This matters because Claude Code works best when you run it from inside your project folder.
+      <strong>Why this matters:</strong> When you open Terminal from a folder, you skip navigating to it manually. You're already exactly where you need to be. Claude Code works best when you run it from inside your project folder.
     </p>
 
     <BeginnerNote title="What's a folder path?">
@@ -57,130 +57,359 @@ import BeginnerNote from '../components/BeginnerNote.astro';
       <p>When you open a terminal, you'll see something like this:</p>
 
       <div class="rounded-xl border border-border bg-text p-4">
-        <code class="text-sm font-mono text-surface">aiden@MacBook-Pro ~/Desktop/my-project %</code>
+        <code class="text-sm font-mono text-surface">yourname@MacBook-Pro ~/Desktop/my-project %</code>
       </div>
 
       <p>Here's what each piece means:</p>
       <ul class="list-disc list-inside space-y-1.5">
-        <li><strong>aiden@MacBook-Pro</strong> — your username and computer name.</li>
+        <li><strong>yourname@MacBook-Pro</strong> — your username and computer name.</li>
         <li><strong>~/Desktop/my-project</strong> — the folder you're currently in. The <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">~</code> is shorthand for your home folder.</li>
-        <li><strong>%</strong> — the prompt. This is where you type. It just means "ready for input."</li>
+        <li><strong>%</strong> — the prompt. This means "ready for input." Type something and press Enter.</li>
       </ul>
-
-      <p>The blinking cursor after the <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">%</code> is where your commands go. Type something, press Enter, and the terminal runs it.</p>
     </div>
 
     <p class="moderate-only mt-3 text-sm text-text-secondary">
-      Standard zsh prompt: <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">user@host path %</code>. The path shown is your current working directory. <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">~</code> = home directory.
+      Standard zsh prompt: <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">user@host path %</code>. <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">~</code> = home directory.
     </p>
   </section>
 
-  <!-- Section 4: Installing Node.js -->
+  <!-- Section 4: Install Homebrew -->
   <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
-    <h2 class="text-xl font-bold text-text">Installing Node.js</h2>
+    <h2 class="text-xl font-bold text-text">Step 1: Install Homebrew</h2>
 
-    <BeginnerNote title="What is Node.js?">
-      <p>Node.js is a program that lets you run JavaScript-based tools on your computer. Claude Code is built with it, so you need Node.js installed before Claude Code will work. You only install it once.</p>
+    <BeginnerNote title="What is Homebrew?">
+      <p>Homebrew is a <strong>package manager</strong> for macOS — think of it as an app store for developer tools that runs in the terminal. Instead of hunting down downloads from different websites, you type one command and Homebrew installs it for you. Most developer tools on macOS are installed through Homebrew.</p>
     </BeginnerNote>
 
+    <p class="moderate-only mt-3 text-sm text-text-secondary">
+      Homebrew is the standard macOS package manager. We'll use it to install Node.js, Python, Git, and other tools.
+    </p>
+
     <p class="mt-3 text-sm text-text-secondary">
-      First, check if you already have it installed:
+      First, check if you already have it:
     </p>
 
     <CopyBlock
-      command="node --version"
+      command="brew --version"
       breakdown={[
-        { segment: "node", explanation: "the Node.js program" },
-        { segment: "--version", explanation: "ask it to print its version number instead of running" }
+        { segment: "brew", explanation: "the Homebrew command" },
+        { segment: "--version", explanation: "print its version number to check if it's installed" }
       ]}
     />
 
     <p class="mt-3 text-sm text-text-secondary">
-      If you see a version number like <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">v20.11.0</code>, you're good — skip ahead. If you see "command not found," you need to install it:
+      If you see a version number, skip ahead. If you see "command not found," install it:
     </p>
 
-    <ol class="mt-3 list-decimal list-inside space-y-1.5 text-sm text-text-secondary">
-      <li>Go to <a href="https://nodejs.org" target="_blank" rel="noopener" class="font-medium text-purple underline decoration-purple/30 hover:decoration-purple">nodejs.org</a></li>
-      <li>Download the <strong>LTS</strong> version (the one that says "Recommended for Most Users").</li>
-      <li>Run the installer and follow the prompts — defaults are fine.</li>
-      <li>Close and reopen your terminal, then run <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">node --version</code> again to confirm.</li>
-    </ol>
+    <CopyBlock
+      command='/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+      breakdown={[
+        { segment: "/bin/bash -c", explanation: "run a shell script" },
+        { segment: "curl -fsSL", explanation: "download a file from the internet silently" },
+        { segment: "https://raw.githubusercontent.com/...", explanation: "Homebrew's official install script — this is safe" }
+      ]}
+    />
+
+    <BeginnerNote>
+      <p>This will ask for your Mac password (the one you use to log in). When you type it, nothing will appear on screen — that's normal for security. Just type it and press Enter. The install takes a few minutes.</p>
+    </BeginnerNote>
+
+    <div class="mt-4 rounded-xl border border-purple/20 bg-purple-50 p-4">
+      <p class="text-xs font-semibold uppercase tracking-wide text-purple">Important: After install</p>
+      <p class="mt-1 text-sm text-text-secondary">
+        Homebrew will print instructions at the end to add it to your PATH. <strong>Follow those instructions</strong> — they'll look something like "Run these two commands in your terminal." Copy and run them, then close and reopen your terminal.
+      </p>
+    </div>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      <strong>No Xcode needed.</strong> Homebrew may prompt you to install Xcode Command Line Tools (a small download) — that's fine, say yes. But you do <strong>not</strong> need the full Xcode app (which is a massive download). If asked about full Xcode, skip it.
+    </p>
   </section>
 
-  <!-- Section 5: Installing Claude Code -->
+  <!-- Section 5: Install Node.js -->
   <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
-    <h2 class="text-xl font-bold text-text">Installing Claude Code</h2>
+    <h2 class="text-xl font-bold text-text">Step 2: Install Node.js</h2>
+
+    <BeginnerNote title="What is Node.js?">
+      <p>Node.js lets you run JavaScript-based tools on your computer. Claude Code is built with it, so you need Node.js installed before Claude Code will work. You install it once and forget about it.</p>
+    </BeginnerNote>
+
+    <CopyBlock
+      command="brew install node"
+      breakdown={[
+        { segment: "brew", explanation: "use Homebrew" },
+        { segment: "install", explanation: "download and set up" },
+        { segment: "node", explanation: "Node.js (includes npm — the Node package manager)" }
+      ]}
+    />
 
     <p class="mt-3 text-sm text-text-secondary">
-      With Node.js installed, you can now install Claude Code with a single command:
+      Verify it worked:
+    </p>
+
+    <CopyBlock
+      command="node --version && npm --version"
+      breakdown={[
+        { segment: "node --version", explanation: "check Node.js is installed" },
+        { segment: "&&", explanation: "then also run..." },
+        { segment: "npm --version", explanation: "check npm (Node's package manager) is installed too" }
+      ]}
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      You should see two version numbers. If so, you're good.
+    </p>
+  </section>
+
+  <!-- Section 6: Install Python -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Step 3: Install Python</h2>
+
+    <BeginnerNote title="Why Python?">
+      <p>Python is one of the most popular programming languages in the world. It's used for data analysis, automation, scripting, and AI/ML work. Even if you're not writing Python right now, having it installed means Claude Code can run Python scripts for you — data cleanup, CSV processing, automation tasks, and more.</p>
+    </BeginnerNote>
+
+    <p class="moderate-only mt-3 text-sm text-text-secondary">
+      Python 3 + pip3 for scripting, data work, and letting Claude run Python tools when needed.
+    </p>
+
+    <CopyBlock
+      command="brew install python"
+      breakdown={[
+        { segment: "brew", explanation: "use Homebrew" },
+        { segment: "install", explanation: "download and set up" },
+        { segment: "python", explanation: "Python 3 (also installs pip3 — Python's package manager)" }
+      ]}
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      Verify both Python and pip are working:
+    </p>
+
+    <CopyBlock
+      command="python3 --version && pip3 --version"
+      breakdown={[
+        { segment: "python3", explanation: "the Python 3 interpreter" },
+        { segment: "pip3", explanation: "Python's package installer — lets you add Python libraries" }
+      ]}
+    />
+
+    <BeginnerNote>
+      <p>macOS comes with an old version of Python, but we want the latest. Homebrew installs the modern version alongside it. Always use <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">python3</code> and <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">pip3</code> (with the 3) to make sure you're using the right version.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 7: Install Git -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Step 4: Install Git</h2>
+
+    <BeginnerNote title="What is Git?">
+      <p>Git is a save-point system for your projects. Every time you "commit," you create a snapshot of your work that you can always go back to. It's how developers track changes and collaborate. We'll cover how to use it properly in <a href="/07-github-netlify-pipeline" class="font-medium text-purple underline decoration-purple/30 hover:decoration-purple">Module 7</a>.</p>
+    </BeginnerNote>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      Git may already be installed (Xcode Command Line Tools includes it). Check:
+    </p>
+
+    <CopyBlock
+      command="git --version"
+      breakdown={[
+        { segment: "git", explanation: "the Git version control tool" },
+        { segment: "--version", explanation: "print its version number" }
+      ]}
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      If you see a version number, you're set. If not:
+    </p>
+
+    <CopyBlock
+      command="brew install git"
+      breakdown={[
+        { segment: "brew install git", explanation: "install Git via Homebrew" }
+      ]}
+    />
+  </section>
+
+  <!-- Section 8: Create GitHub Account + GitHub Desktop -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Step 5: Set up GitHub + GitHub Desktop</h2>
+
+    <BeginnerNote title="What is GitHub?">
+      <p>GitHub is where your code lives online. Think of it as Google Drive for code — but with version history, collaboration, and automatic deployment built in. Every project you build will live on GitHub, and from there it can go live automatically.</p>
+    </BeginnerNote>
+
+    <h3 class="mt-5 text-lg font-semibold text-text">Create your GitHub account</h3>
+
+    <ol class="mt-3 list-decimal list-inside space-y-2 text-sm text-text-secondary">
+      <li>Go to <a href="https://github.com/join" target="_blank" rel="noopener" class="font-medium text-purple underline decoration-purple/30 hover:decoration-purple">github.com/join</a> and create a free account.</li>
+      <li>Use a professional username — this will be visible on your projects.</li>
+      <li>Verify your email address.</li>
+    </ol>
+
+    <h3 class="mt-6 text-lg font-semibold text-text">Install GitHub Desktop</h3>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      GitHub Desktop is a visual app that makes Git easy. Instead of typing Git commands, you click buttons to save, sync, and manage your code. This is the easiest way to get started.
+    </p>
+
+    <CopyBlock
+      command="brew install --cask github"
+      breakdown={[
+        { segment: "brew install", explanation: "install via Homebrew" },
+        { segment: "--cask", explanation: "this is a desktop app (not a command-line tool)" },
+        { segment: "github", explanation: "GitHub Desktop app" }
+      ]}
+    />
+
+    <div class="beginner-only mt-4 space-y-3 text-sm text-text-secondary">
+      <p><strong>After installing, open GitHub Desktop and sign in:</strong></p>
+      <ol class="list-decimal list-inside space-y-2">
+        <li>Open <strong>GitHub Desktop</strong> from your Applications folder.</li>
+        <li>Click <strong>"Sign in to GitHub.com"</strong> — it'll open your browser.</li>
+        <li>Authorize the app with your GitHub account.</li>
+        <li>Back in GitHub Desktop, set your name and email (this is what shows on your code contributions).</li>
+      </ol>
+    </div>
+
+    <p class="moderate-only mt-3 text-sm text-text-secondary">
+      Open GitHub Desktop, sign in with your GitHub account, configure your Git identity.
+    </p>
+
+    <div class="mt-4 rounded-xl border border-purple/20 bg-purple-50 p-4">
+      <p class="text-xs font-semibold uppercase tracking-wide text-purple">Why GitHub Desktop?</p>
+      <p class="mt-1 text-sm text-text-secondary">
+        You <em>can</em> do everything with Git commands in the terminal — and we cover those in <a href="/07-github-netlify-pipeline" class="font-medium text-purple underline decoration-purple/30 hover:decoration-purple">Module 7</a>. But GitHub Desktop gives you a visual interface that makes commits, pushes, and branches much less intimidating when you're starting out. Use whichever you prefer.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 9: Other useful tools -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Step 6: Other useful tools</h2>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      These aren't required for Claude Code, but they'll save you time in future work. Install them all in one go:
+    </p>
+
+    <CopyBlock
+      command="brew install jq wget tree"
+      breakdown={[
+        { segment: "jq", explanation: "reads and formats JSON data — useful for working with APIs" },
+        { segment: "wget", explanation: "download files from the internet via terminal" },
+        { segment: "tree", explanation: "shows folder structure as a visual tree — great for understanding projects" }
+      ]}
+    />
+
+    <p class="mt-4 text-sm text-text-secondary">
+      And a code editor if you don't already have one:
+    </p>
+
+    <CopyBlock
+      command="brew install --cask visual-studio-code"
+      breakdown={[
+        { segment: "brew install --cask", explanation: "install a desktop application" },
+        { segment: "visual-studio-code", explanation: "VS Code — the most popular code editor, free from Microsoft" }
+      ]}
+    />
+
+    <BeginnerNote>
+      <p>VS Code is where you can view and manually edit your code files. Claude Code works in the terminal alongside it — Claude makes changes, and you see them appear in VS Code in real time. They work great together.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 10: Install Claude Code -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Step 7: Install Claude Code</h2>
+
+    <p class="mt-3 text-sm text-text-secondary">
+      With Node.js installed, you can now install Claude Code:
     </p>
 
     <CopyBlock
       command="npm install -g @anthropic-ai/claude-code"
       breakdown={[
-        { segment: "npm", explanation: "Node Package Manager — a tool that downloads and installs JavaScript packages" },
-        { segment: "install", explanation: "tells npm to download and set up a package" },
+        { segment: "npm", explanation: "Node Package Manager — downloads and installs JavaScript packages" },
+        { segment: "install", explanation: "download and set up a package" },
         { segment: "-g", explanation: "install globally — makes it available everywhere, not just one folder" },
-        { segment: "@anthropic-ai/claude-code", explanation: "the name of the package (Claude Code, made by Anthropic)" }
+        { segment: "@anthropic-ai/claude-code", explanation: "the Claude Code package (made by Anthropic)" }
       ]}
     />
 
     <p class="mt-3 text-sm text-text-secondary">
-      This takes a minute or two. When it finishes, verify it worked:
+      Verify it installed:
     </p>
 
     <CopyBlock
       command="claude --version"
       breakdown={[
-        { segment: "claude", explanation: "the Claude Code CLI tool you just installed" },
-        { segment: "--version", explanation: "print the version number to confirm it's working" }
+        { segment: "claude", explanation: "the Claude Code CLI" },
+        { segment: "--version", explanation: "confirm it's installed and show the version" }
       ]}
     />
 
     <BeginnerNote>
-      <p>If you see a version number, you're set. If you see "command not found," try closing and reopening your terminal first. If it still doesn't work, the install may need admin permissions — try running the install command with <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">sudo</code> in front of it (it will ask for your Mac password).</p>
+      <p>If you see "command not found," try closing and reopening your terminal first. If it still doesn't work, try running the install command with <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">sudo</code> in front (it will ask for your Mac password).</p>
     </BeginnerNote>
   </section>
 
-  <!-- Section 6: Your API key -->
+  <!-- Section 11: Connecting to Claude (OAuth + Team) -->
   <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
-    <h2 class="text-xl font-bold text-text">Your API key</h2>
+    <h2 class="text-xl font-bold text-text">Step 8: Connect to Claude</h2>
 
-    <BeginnerNote title="What's an API key?">
-      <p>An API key is like a password that identifies you to Claude's servers. It tells Anthropic who is making requests so they can track usage and billing. You keep it secret the same way you'd keep a password secret.</p>
+    <p class="mt-3 text-sm text-text-secondary">
+      We use a <strong>team account</strong> — so you don't need your own API key. You'll sign in through your browser instead.
+    </p>
+
+    <div class="mt-4 space-y-4">
+      <div class="rounded-xl border border-border bg-background-alt p-5">
+        <p class="text-sm font-semibold text-text">How to connect:</p>
+        <ol class="mt-2 list-decimal list-inside space-y-2 text-sm text-text-secondary">
+          <li>Open your terminal in any folder and type <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">claude</code></li>
+          <li>Claude Code will open a browser window asking you to sign in.</li>
+          <li>Sign in with the account that's been invited to the team.</li>
+          <li>Authorize Claude Code when prompted.</li>
+          <li>The browser will confirm success — switch back to your terminal.</li>
+          <li>You're connected. Claude is ready to use.</li>
+        </ol>
+      </div>
+    </div>
+
+    <BeginnerNote>
+      <p>This is just like signing into any web app — Google, GitHub, etc. The browser handles the login, and Claude Code remembers you. You won't need to sign in again unless you explicitly log out.</p>
     </BeginnerNote>
 
-    <p class="mt-3 text-sm text-text-secondary">
-      To use Claude Code, you need an API key from Anthropic:
-    </p>
+    <div class="mt-4 rounded-xl border border-purple/20 bg-purple-50 p-4">
+      <p class="text-xs font-semibold uppercase tracking-wide text-purple">Team account</p>
+      <p class="mt-1 text-sm text-text-secondary">
+        Because you're on a team plan, usage is managed centrally — you don't need to worry about personal billing or API keys. Just sign in and start working. If you haven't been invited to the team yet, ask your team admin for an invite.
+      </p>
+    </div>
+  </section>
 
-    <ol class="mt-3 list-decimal list-inside space-y-1.5 text-sm text-text-secondary">
-      <li>Go to <a href="https://console.anthropic.com" target="_blank" rel="noopener" class="font-medium text-purple underline decoration-purple/30 hover:decoration-purple">console.anthropic.com</a> and create an account (or sign in).</li>
-      <li>Navigate to <strong>API Keys</strong> in the dashboard.</li>
-      <li>Click <strong>Create Key</strong>, give it a name (e.g. "Claude Code"), and copy the key.</li>
-    </ol>
-
-    <p class="mt-4 text-sm text-text-secondary">
-      The first time you run <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">claude</code> in your terminal, it will ask for your API key. Paste it in and press Enter. Claude Code stores it securely on your machine — you won't need to enter it again.
-    </p>
+  <!-- Section 12: Verify everything -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Verify your setup</h2>
 
     <p class="mt-3 text-sm text-text-secondary">
-      Alternatively, you can set it as an environment variable:
+      Run this to confirm everything is installed. You should see a version number for each:
     </p>
 
     <CopyBlock
-      command="export ANTHROPIC_API_KEY=sk-ant-xxxxx"
+      command="brew --version && node --version && npm --version && python3 --version && pip3 --version && git --version && claude --version"
       breakdown={[
-        { segment: "export", explanation: "make this variable available to programs you run" },
-        { segment: "ANTHROPIC_API_KEY", explanation: "the variable name Claude Code looks for" },
-        { segment: "sk-ant-xxxxx", explanation: "replace this with your actual key" }
+        { segment: "brew", explanation: "Homebrew (package manager)" },
+        { segment: "node / npm", explanation: "Node.js + npm (JavaScript runtime + package manager)" },
+        { segment: "python3 / pip3", explanation: "Python 3 + pip (scripting + Python package manager)" },
+        { segment: "git", explanation: "Git (version control)" },
+        { segment: "claude", explanation: "Claude Code (AI assistant)" }
       ]}
     />
 
-    <div class="mt-4 rounded-xl border border-warning/30 bg-warning-light p-4">
-      <p class="text-xs font-semibold uppercase tracking-wide text-warning">Important</p>
+    <div class="mt-4 rounded-xl border border-success/30 bg-success-light p-4">
+      <p class="text-sm font-semibold text-success">If you see version numbers for all of them — you're fully set up.</p>
       <p class="mt-1 text-sm text-text-secondary">
-        Never share your API key. Don't paste it into chat messages, commit it to code, or put it in files that others can see. If you think a key has been exposed, revoke it immediately at <a href="https://console.anthropic.com" target="_blank" rel="noopener" class="font-medium text-purple underline decoration-purple/30 hover:decoration-purple">console.anthropic.com</a> and create a new one.
+        You now have a complete developer environment: a package manager (Homebrew), a JavaScript runtime (Node.js), a scripting language (Python), version control (Git), a visual Git client (GitHub Desktop), and an AI coding assistant (Claude Code).
       </p>
     </div>
   </section>
@@ -190,7 +419,7 @@ import BeginnerNote from '../components/BeginnerNote.astro';
     <p class="text-sm font-semibold text-purple">Up next</p>
     <h2 class="mt-1 text-xl font-bold text-text">Module 2: Terminal Survival Kit</h2>
     <p class="mt-2 text-sm text-text-secondary">
-      You have Claude Code installed. Before we use it, let's learn the 6 terminal commands that cover 95% of what you'll ever need.
+      Your environment is ready. Before we use Claude Code, let's learn the 6 terminal commands that cover 95% of what you'll ever need.
     </p>
     <a
       href="/02-terminal-survival"

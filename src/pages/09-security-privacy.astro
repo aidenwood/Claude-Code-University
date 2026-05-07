@@ -151,46 +151,52 @@ import BeginnerNote from '../components/BeginnerNote.astro';
     </BeginnerNote>
   </section>
 
-  <!-- 5. WhisperFlow vs GhostPepper -->
+  <!-- 5. Voice-to-Text: Local vs Cloud -->
   <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
-    <h2 class="text-xl font-bold text-text">WhisperFlow vs GhostPepper — Local vs Cloud Transcription</h2>
+    <h2 class="text-xl font-bold text-text">Voice-to-Text: Local vs Cloud Transcription</h2>
     <p class="mt-3 text-text-secondary">
-      If you use voice-to-text to talk to Claude Code, where your audio goes matters. Not all transcription tools are equal when it comes to privacy.
+      If you use voice-to-text to talk to Claude Code, <strong>where your audio goes matters</strong>. Not all transcription tools are equal when it comes to privacy.
     </p>
 
     <div class="mt-5 grid gap-4 md:grid-cols-2">
-      <!-- WhisperFlow - success themed -->
+      <!-- Local tools - success themed -->
       <div class="rounded-xl border border-success/30 bg-success-light p-5">
         <div class="flex items-center gap-2">
           <span class="text-success font-bold">&#10003;</span>
-          <p class="text-sm font-bold text-success">WhisperFlow (Recommended)</p>
+          <p class="text-sm font-bold text-success">Fully Local Apps (Recommended)</p>
         </div>
+        <p class="mt-1 text-xs text-text-muted">e.g., GhostPepper, macOS Dictation, Whisper.cpp</p>
         <div class="mt-3 space-y-2">
-          <p class="text-sm text-text-secondary">Runs transcription <strong>locally on your machine</strong>.</p>
+          <p class="text-sm text-text-secondary">Runs transcription <strong>entirely on your machine</strong>.</p>
           <p class="text-sm text-text-secondary">Audio never leaves your device.</p>
-          <p class="text-sm text-text-secondary">Your conversations stay private.</p>
-          <p class="text-sm text-text-secondary">No third-party servers involved.</p>
+          <p class="text-sm text-text-secondary">Your conversations stay completely private.</p>
+          <p class="text-sm text-text-secondary">No third-party servers involved at any stage.</p>
         </div>
       </div>
 
-      <!-- GhostPepper - danger themed -->
+      <!-- Cloud tools - danger themed -->
       <div class="rounded-xl border border-danger/30 bg-danger-light p-5">
         <div class="flex items-center gap-2">
           <span class="text-danger font-bold">&#10005;</span>
-          <p class="text-sm font-bold text-danger">GhostPepper (NOT Recommended)</p>
+          <p class="text-sm font-bold text-danger">Cloud-Based Tools (NOT Recommended)</p>
         </div>
+        <p class="mt-1 text-xs text-text-muted">e.g., WhisperFlow, Otter.ai, cloud speech APIs</p>
         <div class="mt-3 space-y-2">
-          <p class="text-sm text-text-secondary">Sends audio to <strong>external cloud services</strong>.</p>
+          <p class="text-sm text-text-secondary">Sends audio to <strong>external cloud services</strong> for processing.</p>
           <p class="text-sm text-text-secondary">Your voice data travels through third-party servers.</p>
-          <p class="text-sm text-text-secondary">You lose control of that data.</p>
-          <p class="text-sm text-text-secondary">Not suitable for business conversations.</p>
+          <p class="text-sm text-text-secondary">You lose control of that data once it leaves your machine.</p>
+          <p class="text-sm text-text-secondary">Company discussions, client details, and internal plans could be exposed.</p>
         </div>
       </div>
     </div>
 
     <p class="mt-5 text-sm font-semibold text-text-secondary">
-      For any business use, always choose tools that keep data local. WhisperFlow over GhostPepper, every time.
+      For any business use, always choose tools that keep data local. If audio leaves your machine, it's a risk you don't need to take.
     </p>
+
+    <BeginnerNote>
+      <p>The key question to ask about any voice tool: <strong>"Does my audio stay on my computer, or does it get sent somewhere?"</strong> If it gets sent to a server — even for a split second — that's a cloud tool. For work conversations, always pick the local option.</p>
+    </BeginnerNote>
   </section>
 
   <!-- 6. Environment variables -->
@@ -268,7 +274,7 @@ import BeginnerNote from '../components/BeginnerNote.astro';
       <div class="flex items-start gap-3">
         <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
         <p class="text-sm text-text-secondary">
-          <strong>Use local-first tools</strong> (WhisperFlow) over cloud-based alternatives (GhostPepper) for voice transcription.
+          <strong>Use local-only tools</strong> (GhostPepper, macOS Dictation, Whisper.cpp) over cloud-based alternatives (WhisperFlow, Otter.ai) for voice transcription.
         </p>
       </div>
       <div class="flex items-start gap-3">
