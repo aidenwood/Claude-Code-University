@@ -1,0 +1,228 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import CopyBlock from '../../components/CopyBlock.astro';
+import BeginnerNote from '../../components/BeginnerNote.astro';
+import ThisNotThat from '../../components/ThisNotThat.astro';
+---
+
+<MainLayout title="Marketing & Content Team Training" subtitle="Claude Code for marketing — campaigns, content, analytics, and brand management">
+
+  <!-- Section 1: What Claude Can Do For Marketing -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">What Claude Can Do For Marketing</h2>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Claude is your always-on marketing assistant. Treat it as a senior team member who can:
+    </p>
+
+    <ul class="mt-4 space-y-2 text-sm text-text-secondary list-disc list-inside">
+      <li><strong>Write campaign copy</strong> — headlines, body copy, CTAs that align with your brand voice</li>
+      <li><strong>Analyze ad performance</strong> — parse export CSVs, calculate ROAS, identify trends</li>
+      <li><strong>Generate social content</strong> — platform-specific (LinkedIn, Facebook, Instagram) with right tone</li>
+      <li><strong>SEO optimization</strong> — meta descriptions, heading hierarchy, keyword analysis</li>
+      <li><strong>Email sequences</strong> — nurture flows, re-engagement, templating</li>
+      <li><strong>Landing page content</strong> — value propositions, benefit statements, social proof hooks</li>
+      <li><strong>Competitive analysis</strong> — compare messaging, find positioning gaps, spot opportunities</li>
+    </ul>
+
+    <BeginnerNote>
+      <p>The key: <strong>Give Claude context first</strong>. Point it at your brand guide, existing content, your actual data files. Never ask it to write "generic" copy. Specific context = better results.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 2: Content Creation -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Content Creation</h2>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Blog posts, social media, email — Claude can draft it all when you feed it your brand voice and existing examples.
+    </p>
+
+    <CopyBlock
+      command={`Write 5 blog post outlines about hail damage prevention for homeowners. Match the tone of existing posts in content/blog/. Each needs a meta description under 155 characters`}
+      breakdown={[
+        { segment: "Match the tone", explanation: "read existing content so Claude learns your voice" },
+        { segment: "5 outlines", explanation: "get multiple angles on the same topic" },
+        { segment: "meta descriptions", explanation: "SEO-ready, character-counted" }
+      ]}
+    />
+
+    <CopyBlock
+      command={`Create a week of social media posts for our storm season campaign. Include LinkedIn (professional), Facebook (community-focused), and Instagram (visual-first) versions`}
+      breakdown={[
+        { segment: "week of posts", explanation: "7 days of consistent content, pre-written" },
+        { segment: "platform-specific", explanation: "tone and length tailored to each channel" },
+        { segment: "storm season campaign", explanation: "tied to actual business timing" }
+      ]}
+    />
+
+    <BeginnerNote title="Why matching tone matters">
+      <p>Claude can adapt instantly to any voice. If your existing blog posts are casual and joke-heavy, but you tell Claude to write "professionally," it'll match what you tell it. Always point Claude at 2-3 real examples of your work so it learns the actual voice, not a description of it.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 3: Campaign & Ad Copy -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Campaign & Ad Copy</h2>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Short, high-stakes copy requires precision. Claude excels at Google Ads, Facebook ads, and email campaigns when you give it constraints and keywords.
+    </p>
+
+    <CopyBlock
+      command={`Write 3 Google Ads variations for our emergency repair service. Headlines max 30 chars, descriptions max 90 chars. Include the keywords from seo-keywords.csv`}
+      breakdown={[
+        { segment: "3 variations", explanation: "test multiple angles for A/B testing" },
+        { segment: "character limits", explanation: "Google Ads enforces strict length — no guessing" },
+        { segment: "seo-keywords.csv", explanation: "Claude reads the file and bakes those keywords in" }
+      ]}
+    />
+
+    <CopyBlock
+      command={`Read our current email sequence in campaigns/nurture-sequence/ and write a re-engagement email for leads who haven't opened in 30 days`}
+      breakdown={[
+        { segment: "Read existing sequence", explanation: "Claude maintains template formatting and tone" },
+        { segment: "re-engagement angle", explanation: "different psychology than cold outreach" },
+        { segment: "30-day criterion", explanation: "specific trigger for automation" }
+      ]}
+    />
+
+    <BeginnerNote title="Constraints = better copy">
+      <p>The tighter the rules (character count, keyword inclusion, brand guidelines), the better Claude performs. Constraints force precision and creativity within bounds.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 4: Analytics & Reporting -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Analytics & Reporting</h2>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Raw CSV data is noise without analysis. Claude can read exports, calculate metrics, and surface actionable insights.
+    </p>
+
+    <CopyBlock
+      command={`Read google-ads-export.csv and create a performance summary: top 5 campaigns by ROAS, worst performers, and budget reallocation recommendations`}
+      breakdown={[
+        { segment: "google-ads-export.csv", explanation: "Claude parses the CSV and calculates metrics" },
+        { segment: "ROAS (Return on Ad Spend)", explanation: "revenue per dollar spent" },
+        { segment: "reallocation recommendations", explanation: "strategic next steps, not just numbers" }
+      ]}
+    />
+
+    <CopyBlock
+      command={`Analyze website-traffic.csv — compare this month vs last month, identify which landing pages have the highest bounce rate, suggest improvements`}
+      breakdown={[
+        { segment: "month-on-month", explanation: "trends matter more than single snapshots" },
+        { segment: "bounce rate analysis", explanation: "which pages are losing visitors immediately" },
+        { segment: "suggest improvements", explanation: "not just diagnosis, actionable fixes" }
+      ]}
+    />
+
+    <BeginnerNote title="Data is only useful with context">
+      <p>When you export CSVs from Google Ads or your analytics tool, that's raw data. Claude can make sense of it, spot trends, and give you the "so what?" — the strategy behind the numbers.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 5: SEO & Content Optimization -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">SEO & Content Optimization</h2>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Every page should work for SEO. Claude can audit your site, check keyword coverage, and fix common SEO mistakes.
+    </p>
+
+    <CopyBlock
+      command={`Audit the content in src/pages/services/ for SEO — check meta titles, descriptions, heading hierarchy, keyword density. Output a table of issues and fixes`}
+      breakdown={[
+        { segment: "meta titles/descriptions", explanation: "visible in search results — must be compelling and keyword-rich" },
+        { segment: "heading hierarchy", explanation: "H1, H2, H3 structure helps search engines understand page" },
+        { segment: "keyword density", explanation: "are we targeting the right terms without overstuffing?" }
+      ]}
+    />
+
+    <CopyBlock
+      command={`Read competitor-pages.txt and compare their keyword strategy against our target-keywords.csv — find gaps we're not covering`}
+      breakdown={[
+        { segment: "competitor-pages.txt", explanation: "Claude reads the competitor content" },
+        { segment: "target-keywords.csv", explanation: "your existing keyword list" },
+        { segment: "find gaps", explanation: "opportunities where competitors rank but you don't" }
+      ]}
+    />
+
+    <BeginnerNote title="Meta descriptions are SEO real estate">
+      <p>Your meta description (the 155-character snippet under your URL in search results) affects click-through rate. Claude can rewrite all your meta descriptions in bulk — just point it at a list of pages.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 6: This / Not That for Marketing -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">This / Not That for Marketing</h2>
+
+    <ThisNotThat
+      notThis="Write me some social media posts"
+      notThisDetail="Too generic. Claude doesn't know your brand voice, tone, or audience."
+      doThis="Read our brand voice guide at docs/brand-voice.md and create 5 LinkedIn posts about storm preparedness, matching our existing tone in content/social/"
+      doThisDetail="Now Claude has context: your voice, your audience, your angle. It'll match what you've already written, not guess."
+    />
+
+    <ThisNotThat
+      notThis="Analyze our marketing performance"
+      notThisDetail="Too vague. Raw numbers without strategy."
+      doThis="Read google-ads-export.csv and facebook-ads.csv, calculate CPA and ROAS per channel, and recommend which channels to scale vs cut"
+      doThisDetail="Now Claude has specific data and a clear output: actionable budget recommendations based on actual metrics."
+    />
+
+    <ThisNotThat
+      notThis="Create a landing page"
+      notThisDetail="Claude will write generic copy that doesn't match your brand or current pages."
+      doThis="Read the existing landing page at src/pages/services/hail-repair.astro and create a variant for commercial property owners, keeping the same component structure"
+      doThisDetail="Claude now knows your exact structure, tone, CTA hierarchy, and design patterns. The new page will feel like it belongs on your site."
+    />
+
+    <ThisNotThat
+      notThis="Write an email campaign"
+      notThisDetail="Generic template. Doesn't match your voice or segmentation strategy."
+      doThis="Read our Mailchimp template at campaigns/templates/standard.mjml and our subscriber segments in subscribers.csv, then write 3 campaign variations for high-engagement subscribers"
+      doThisDetail="Claude matches your template structure, understands who you're targeting, and writes copy that's proven to work on your audience."
+    />
+  </section>
+
+  <!-- Section 7: Email & Automation -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Email & Automation</h2>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Email is one of the highest ROI channels. Claude can build sequences, segment audiences, and write campaigns in bulk.
+    </p>
+
+    <CopyBlock
+      command={`Build a 5-email welcome sequence for new insurance claim leads. Reference the existing templates in campaigns/templates/ for formatting`}
+      breakdown={[
+        { segment: "5-email sequence", explanation: "progressive journey from sign-up to engaged customer" },
+        { segment: "claim leads", explanation: "specific audience — Claude tailors messaging to their needs" },
+        { segment: "reference templates", explanation: "Claude copies your exact HTML, CSS, spacing — consistency guaranteed" }
+      ]}
+    />
+
+    <CopyBlock
+      command={`Read our Mailchimp export subscribers.csv — segment by postcode, identify clusters with 10+ subscribers for localized campaigns`}
+      breakdown={[
+        { segment: "subscribers.csv", explanation: "Claude reads your subscriber list" },
+        { segment: "segment by postcode", explanation: "geographic targeting" },
+        { segment: "10+ clusters", explanation: "only groups large enough to campaign to separately" }
+      ]}
+    />
+
+    <BeginnerNote title="Email segmentation beats blast emails">
+      <p>Sending the same email to everyone rarely works. Targeted emails to specific segments (by location, behavior, past purchase) get higher open rates and conversions. Claude can identify these segments from your data and write different copy for each.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Back link -->
+  <div class="mt-8 rounded-xl border border-border bg-background-alt p-5 text-center">
+    <p class="text-sm text-text-secondary">
+      Back to the <a href="/departments" class="font-medium text-[#47B1CC] hover:underline">department hub &rarr;</a>
+    </p>
+  </div>
+
+</MainLayout>

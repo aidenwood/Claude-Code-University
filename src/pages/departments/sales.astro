@@ -1,0 +1,343 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import CopyBlock from '../../components/CopyBlock.astro';
+import BeginnerNote from '../../components/BeginnerNote.astro';
+import ThisNotThat from '../../components/ThisNotThat.astro';
+---
+
+<MainLayout
+  title="Sales Team Training"
+  subtitle="Claude Code for sales — pipelines, proposals, CRM data, and client communications"
+>
+  <!-- What Claude Can Do For Sales -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">What Claude Can Do For Sales</h2>
+    <p class="text-text-secondary mb-4">
+      Claude reads your CRM, analyzes pipelines, drafts proposals, and writes client emails—faster than spreadsheet hunting. Turn data into decisions and templates into revenue.
+    </p>
+    <ul class="space-y-2 text-text-secondary">
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Analyze pipelines:</strong> Stuck deals, win rates by rep, conversion patterns, risk flags</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Generate proposals:</strong> Read templates, populate with client data, pricing, and terms</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Draft client emails:</strong> Follow-ups, re-engagement, objection handling, soft CTAs</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Territory & commission:</strong> Geocode territories, calculate comp, map high-value areas</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Lead scoring & routing:</strong> Rank prospects by fit, flag high-intent, assign to reps</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Forecasting & reports:</strong> Weekly pipeline snapshots, seasonal trends, quota tracking</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Pipeline & CRM Analysis -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Pipeline & CRM Analysis</h2>
+    <p class="text-text-secondary mb-6">
+      Stop guessing which deals are at risk. Claude reads your Pipedrive exports and finds patterns—stuck deals, win rates by rep, conversion bottlenecks.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read pipedrive-export.csv — show me deals stuck in 'Proposal Sent' for more than 14 days, sorted by value. Include the assigned rep and last activity date"
+        breakdown={[
+          { segment: "pipedrive-export.csv", explanation: "your CRM dump with all deal data" },
+          { segment: "stuck in 'Proposal Sent'", explanation: "filter by stage and inactivity" },
+          { segment: "more than 14 days", explanation: "flag stale deals" },
+          { segment: "sorted by value", explanation: "highest-risk revenue first" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Analyze our Q1 pipeline data in sales-q1.csv — win rate by rep, average deal size by source, and which stages have the biggest drop-off"
+        breakdown={[
+          { segment: "Q1 pipeline data", explanation: "all deals for the quarter" },
+          { segment: "win rate by rep", explanation: "who closes deals" },
+          { segment: "average deal size by source", explanation: "which sources bring bigger deals" },
+          { segment: "biggest drop-off", explanation: "which stage loses most prospects" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read our deals in 'Negotiation' stage from pipedrive-export.csv and flag any where days-in-stage > 21. Show rep, deal value, and client name"
+        breakdown={[
+          { segment: "deals in 'Negotiation'", explanation: "filter by stage" },
+          { segment: "days-in-stage > 21", explanation: "calculate duration from dates" },
+          { segment: "rep + value + client", explanation: "actionable deal info" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Export your Pipedrive data as CSV (include all columns: stage, owner, value, date_added, last_activity). Claude can spot trends in seconds that'd take hours in a spreadsheet.
+    </BeginnerNote>
+  </div>
+
+  <!-- Proposals & Quotes -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Proposals & Quotes</h2>
+    <p class="text-text-secondary mb-6">
+      Never write a proposal from scratch. Claude reads your template, pulls client details, applies pricing, and delivers a ready-to-send quote.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read the proposal template in templates/proposal-template.md and generate a proposal for a commercial hail damage assessment at 45 George St, Brisbane. Property: 3-storey office, ~2000sqm roof area"
+        breakdown={[
+          { segment: "proposal template", explanation: "your format, tone, and structure" },
+          { segment: "45 George St, Brisbane", explanation: "specific property address" },
+          { segment: "3-storey office", explanation: "property type impacts scope" },
+          { segment: "~2000sqm roof", explanation: "size drives pricing" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Create a comparison quote table showing our three service tiers (Basic Assessment, Full Report, Full Report + Project Management) with pricing from pricing-schedule.csv"
+        breakdown={[
+          { segment: "comparison quote table", explanation: "side-by-side tiers" },
+          { segment: "three service tiers", explanation: "differentiated offerings" },
+          { segment: "pricing-schedule.csv", explanation: "pulls exact prices" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read the proposal for client XYZ in proposals/xyz-proposal.md and generate a revised version with updated property photos, revised roof area (2200sqm not 1800), and new price from pricing-schedule.csv"
+        breakdown={[
+          { segment: "revised version", explanation: "updates existing proposal" },
+          { segment: "property photos", explanation: "adds visual evidence" },
+          { segment: "revised roof area", explanation: "recalculates scope" },
+          { segment: "new price", explanation: "applies updated rate" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Store your template once. Claude learns your tone, sections, and disclaimer language, then reuses it for every client. Saves time and keeps brand voice consistent.
+    </BeginnerNote>
+  </div>
+
+  <!-- Client Communications -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Client Communications</h2>
+    <p class="text-text-secondary mb-6">
+      Draft follow-ups, re-engagement emails, and objection responses. Claude matches your voice and references the client's specific deal.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Draft a follow-up email for a client who received our assessment report 5 days ago but hasn't responded. Professional tone, reference the report findings, include a soft CTA for a call"
+        breakdown={[
+          { segment: "follow-up email", explanation: "gentle nudge without pressure" },
+          { segment: "received report 5 days ago", explanation: "timing context" },
+          { segment: "reference findings", explanation: "shows you're engaged" },
+          { segment: "soft CTA", explanation: "friendly ask for next step" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read the deals in stalled-deals.csv and write personalized re-engagement emails for each — reference their specific property and damage type"
+        breakdown={[
+          { segment: "stalled-deals.csv", explanation: "read all stalled opportunities" },
+          { segment: "personalized for each", explanation: "generates multiple emails at once" },
+          { segment: "property + damage type", explanation: "uses their specific details" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read the last 3 emails in comms/client-jones/ (our conversation with this client) and draft a response that addresses their timeline concern while reinforcing our quality guarantee"
+        breakdown={[
+          { segment: "read last 3 emails", explanation: "understands conversation context" },
+          { segment: "timeline concern", explanation: "addresses their specific objection" },
+          { segment: "quality guarantee", explanation: "reinforces your value prop" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Store email threads in a folder for each client. Claude reads the full conversation and writes responses that feel continuous, not generic.
+    </BeginnerNote>
+  </div>
+
+  <!-- Territory & Performance -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Territory & Performance</h2>
+    <p class="text-text-secondary mb-6">
+      Map territories, calculate commissions, analyze rep performance by area. Claude processes geocoded data and commission rules instantly.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read claims-data.csv with geocoded locations — map the top 20 postcodes by claim volume and show which reps cover each area"
+        breakdown={[
+          { segment: "claims-data.csv", explanation: "all claims with postcodes" },
+          { segment: "geocoded locations", explanation: "data includes location info" },
+          { segment: "top 20 postcodes", explanation: "filter by volume" },
+          { segment: "which reps cover", explanation: "territory assignment" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Calculate commission from sales-march.csv using the structure in commission-rules.md — output a summary per rep with base, bonus, and total"
+        breakdown={[
+          { segment: "sales-march.csv", explanation: "all March sales by rep" },
+          { segment: "commission-rules.md", explanation: "your bonus structure" },
+          { segment: "base, bonus, total", explanation: "full breakdown per person" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read Q1 sales data in sales-q1.csv — compare each rep's win rate, average deal size, and close time. Rank them and flag who needs coaching"
+        breakdown={[
+          { segment: "Q1 sales data", explanation: "all rep performance" },
+          { segment: "win rate + deal size + close time", explanation: "three key metrics" },
+          { segment: "rank them", explanation: "competitive leaderboard" },
+          { segment: "flag who needs coaching", explanation: "identify underperformers" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Use geocoded data (postcode, lat/long) for territory mapping. Claude reads the structure and generates territory assignments or overlaps automatically.
+    </BeginnerNote>
+  </div>
+
+  <!-- This / Not That for Sales -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Common Mistakes — Do This Instead</h2>
+
+    <ThisNotThat
+      notThis="Write a proposal for a client"
+      notThisDetail="Too vague. Claude doesn't know your template, pricing, or property details."
+      doThis="Read our proposal template in templates/ and generate one for [specific client, address, property type, damage details] using pricing from pricing-schedule.csv"
+      doThisDetail="Claude sees your actual template format, applies real pricing, and generates a ready-to-send doc."
+    />
+
+    <ThisNotThat
+      notThis="Tell me how sales are going"
+      notThisDetail="Upload the data. Then ask specific questions."
+      doThis="Read pipedrive-export.csv, calculate win rates by stage and rep, identify which lead sources have the best conversion, and flag deals at risk of stalling"
+      doThisDetail="Claude processes actual data with specific metrics and surfaces actionable insights."
+    />
+
+    <ThisNotThat
+      notThis="Help me with my emails"
+      notThisDetail="Which client? What stage? What's the context?"
+      doThis="Read the last 3 emails in the thread at comms/client-jones/ and draft a response addressing their concern about timeline while reinforcing our quality guarantee"
+      doThisDetail="Claude understands the full conversation and writes a response that feels continuous."
+    />
+
+    <ThisNotThat
+      notThis="Calculate commission for last month"
+      notThisDetail="Which sales? Which reps? What's your commission structure?"
+      doThis="Read sales-march.csv (all March deals by rep) and commission-rules.md (our bonus structure), then output total commission per rep"
+      doThisDetail="Claude applies your exact rules and does the math across all reps at once."
+    />
+
+    <ThisNotThat
+      notThis="Analyze our leads"
+      notThisDetail="Which leads? By what criteria? What's your definition of 'good' lead?"
+      doThis="Read leads.csv and our SLA targets in sales-standards.md — score each lead by fit (property type, location, value), flag high-intent, and assign to reps by territory"
+      doThisDetail="Claude applies your actual criteria and routing rules automatically."
+    />
+  </div>
+
+  <!-- Reporting & Forecasting -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Reporting & Forecasting</h2>
+    <p class="text-text-secondary mb-6">
+      Generate weekly pipeline snapshots, forecast accuracy, and seasonal trends. Claude reads your historical data and predicts patterns for planning.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Generate a weekly sales report from this week's pipeline data in sales-weekly.csv — deals won, deals lost, new deals added, total pipeline value, and forecast vs target"
+        breakdown={[
+          { segment: "weekly sales report", explanation: "structured format for management" },
+          { segment: "deals won/lost/added", explanation: "activity summary" },
+          { segment: "total pipeline value", explanation: "revenue forecast" },
+          { segment: "forecast vs target", explanation: "quota tracking" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read historical sales data in sales-2024.csv and sales-2025.csv — identify seasonal patterns and predict our strongest months for Q3 planning"
+        breakdown={[
+          { segment: "sales-2024 + 2025", explanation: "two years of data" },
+          { segment: "seasonal patterns", explanation: "month-to-month trends" },
+          { segment: "strongest months", explanation: "peak periods for planning" },
+          { segment: "Q3 planning", explanation: "forecasts next quarter" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read the last 3 months of pipeline snapshots (march-pipeline.csv, april-pipeline.csv, may-pipeline.csv) and calculate: deals progressed per stage, average days-in-stage, and forecasted close rate"
+        breakdown={[
+          { segment: "3-month snapshots", explanation: "progression over time" },
+          { segment: "deals progressed per stage", explanation: "stage velocity" },
+          { segment: "average days-in-stage", explanation: "sales cycle length" },
+          { segment: "forecasted close rate", explanation: "prediction accuracy" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Take weekly pipeline snapshots (export same columns each week). Claude can then spot velocity trends, forecast accuracy drift, and seasonal swings with just 3-4 weeks of history.
+    </BeginnerNote>
+  </div>
+
+  <!-- Lead Scoring & Qualification -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Lead Scoring & Qualification</h2>
+    <p class="text-text-secondary mb-6">
+      Score and rank leads by fit. Claude applies your qualification criteria and flags high-intent prospects for your reps to call first.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read leads.csv with property type, location, and damage type. Score each lead by fit using our SLA in qualification-standards.md — rank by highest to lowest fit and flag any 'high-intent' leads"
+        breakdown={[
+          { segment: "leads.csv", explanation: "all incoming leads" },
+          { segment: "property type + location + damage", explanation: "qualification data" },
+          { segment: "qualification-standards.md", explanation: "your fit criteria" },
+          { segment: "rank by fit + flag high-intent", explanation: "actionable priority list" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read this month's leads in leads-may.csv and compare them to our closed deals in closed-deals-2025.csv — identify which lead source and property type have the highest conversion rate"
+        breakdown={[
+          { segment: "leads-may.csv", explanation: "all May prospects" },
+          { segment: "closed-deals-2025.csv", explanation: "what actually closed" },
+          { segment: "by source + property type", explanation: "multi-dimensional analysis" },
+          { segment: "highest conversion rate", explanation: "best source to focus on" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Store your qualification criteria once (property type, location, damage, value thresholds). Claude reuses them across all your lead scoring, so you get consistent rankings.
+    </BeginnerNote>
+  </div>
+
+  <!-- Back to Hub -->
+  <div class="mt-8 rounded-xl border border-border bg-background-alt p-5 text-center">
+    <p class="text-sm text-text-secondary">
+      Ready to close more deals? Explore other departments or return to the main course.
+      <br />
+      <a href="/departments" class="font-medium text-purple hover:underline">All departments &rarr;</a>
+    </p>
+  </div>
+</MainLayout>

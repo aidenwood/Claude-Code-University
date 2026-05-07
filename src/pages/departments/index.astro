@@ -1,0 +1,51 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+const departments = [
+  { title: 'Human Resources', desc: 'Onboarding docs, policy writing, employee data management, recruitment workflows', href: '/departments/human-resources', icon: 'HR', color: 'bg-purple' },
+  { title: 'Marketing & Content', desc: 'Campaign copy, social media, SEO content, analytics reports, brand assets', href: '/departments/marketing', icon: 'MK', color: 'bg-[#47B1CC]' },
+  { title: 'Sales', desc: 'CRM data, proposals, pipeline reports, client communications, lead scoring', href: '/departments/sales', icon: 'SL', color: 'bg-[#22c55e]' },
+  { title: 'Finance & Accounting', desc: 'Invoices, expense reports, budget analysis, financial summaries, compliance docs', href: '/departments/finance', icon: 'FN', color: 'bg-[#f59e0b]' },
+  { title: 'Operations & Project Management', desc: 'Process docs, project tracking, resource planning, SOPs, workflow automation', href: '/departments/operations', icon: 'OP', color: 'bg-[#8b7ff0]' },
+  { title: 'Customer Service', desc: 'Response templates, FAQ management, ticket analysis, customer feedback reports', href: '/departments/customer-service', icon: 'CS', color: 'bg-[#00D3DD]' },
+  { title: 'Legal & Compliance', desc: 'Contract review, policy drafts, compliance checklists, regulatory summaries', href: '/departments/legal', icon: 'LG', color: 'bg-[#ef4444]' },
+  { title: 'IT & Systems Admin', desc: 'Server configs, automation scripts, documentation, incident reports, monitoring', href: '/departments/it-admin', icon: 'IT', color: 'bg-[#1a1a2e]' },
+  { title: 'Executive & Leadership', desc: 'Board reports, strategic summaries, data-driven decisions, presentation prep', href: '/departments/executive', icon: 'EX', color: 'bg-[#6b5ce6]' },
+];
+---
+
+<MainLayout title="Department Training" subtitle="Claude Code training tailored to your role — every example speaks your language.">
+  <div class="beginner-only rounded-xl border border-purple-200 bg-purple-50 p-5 mb-2">
+    <p class="text-sm font-semibold text-purple mb-1">How this works</p>
+    <p class="text-sm text-text-secondary">
+      Each department page teaches the same Claude Code skills from the main course, but <strong>every example, prompt, and use case is written for your specific work</strong>. Pick your department to see what Claude can do for you.
+    </p>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {departments.map((d) => (
+      <a
+        href={d.href}
+        class="group flex flex-col gap-3 rounded-xl border border-border bg-surface p-5 transition-all hover:border-purple/40 hover:shadow-md"
+      >
+        <div class={`flex h-10 w-10 items-center justify-center rounded-lg ${d.color} text-xs font-bold text-white`}>
+          {d.icon}
+        </div>
+        <div>
+          <h2 class="font-bold text-text group-hover:text-purple transition-colors">
+            {d.title}
+          </h2>
+          <p class="mt-1 text-sm text-text-secondary">{d.desc}</p>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <div class="mt-8 rounded-xl border border-border bg-background-alt p-5 text-center">
+    <p class="text-sm text-text-secondary">
+      Completed the core modules first? Great. These department pages build on that foundation.
+      <br />
+      <a href="/" class="font-medium text-purple hover:underline">Back to main course &rarr;</a>
+    </p>
+  </div>
+</MainLayout>

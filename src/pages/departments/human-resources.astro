@@ -1,0 +1,258 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import CopyBlock from '../../components/CopyBlock.astro';
+import BeginnerNote from '../../components/BeginnerNote.astro';
+import ThisNotThat from '../../components/ThisNotThat.astro';
+---
+
+<MainLayout
+  title="Human Resources Staff Training"
+  subtitle="Claude Code for HR — onboarding, policies, recruitment, and people management"
+>
+  <!-- What Claude Can Do For HR -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">What Claude Can Do For HR</h2>
+    <p class="text-text-secondary mb-4">
+      Claude handles the time-consuming, repetitive tasks that eat HR's day. From drafting policies to processing employee data, Claude reads your company's format, tone, and structure — then generates work that fits like it came from your own hand.
+    </p>
+    <ul class="space-y-2 text-text-secondary">
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Draft policies & handbooks:</strong> Read existing docs, generate new ones matching your style</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Create onboarding packs:</strong> Customized welcome docs, checklists, and 90-day plans</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Write job descriptions:</strong> Role specs, KPIs, and requirements that attract the right talent</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Analyze employee data:</strong> Flag expiring certifications, merge datasets, spot trends</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Process applications:</strong> Summarize candidate pools, flag experience gaps, match criteria</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Generate reports:</strong> Compliance checklists, diversity breakdowns, survey analysis</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Onboarding Document Generation -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Onboarding Document Generation</h2>
+    <p class="text-text-secondary mb-6">
+      New hires need a smooth start. Claude generates customized onboarding packs by reading your existing templates and matching your company's voice.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read our existing onboarding checklist at docs/onboarding.md and create a new hire welcome pack for a Senior Account Manager starting in the Claims department"
+        breakdown={[
+          { segment: "Read our existing", explanation: "Claude learns your format and tone" },
+          { segment: "create a new hire", explanation: "generates customized for one person" },
+          { segment: "Senior Account Manager", explanation: "role-specific tasks and responsibilities" },
+          { segment: "Claims department", explanation: "department-specific knowledge areas" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Generate a 90-day onboarding plan template with weekly milestones for new field assessors"
+        breakdown={[
+          { segment: "90-day plan", explanation: "structured timeline with phases" },
+          { segment: "weekly milestones", explanation: "specific, measurable goals per week" },
+          { segment: "field assessors", explanation: "role-specific skill progression" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Claude reads your existing docs to match your company's tone and format. The more context you give (existing templates, past onboarding docs), the better the output.
+    </BeginnerNote>
+  </div>
+
+  <!-- Policy Writing & Updates -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Policy Writing & Updates</h2>
+    <p class="text-text-secondary mb-6">
+      Keep policies current without rewriting from scratch. Claude drafts new policies or updates existing ones based on your company's structure and legal requirements.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Draft a work-from-home policy based on our existing policies in the hr-policies/ folder. Include eligibility criteria, equipment provisions, and performance expectations"
+        breakdown={[
+          { segment: "based on existing", explanation: "maintains consistency with other policies" },
+          { segment: "hr-policies/ folder", explanation: "reads all your current docs for tone" },
+          { segment: "eligibility criteria", explanation: "who can WFH and when" },
+          { segment: "equipment provisions", explanation: "what company provides" },
+          { segment: "performance expectations", explanation: "how performance is measured" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Review leave-policy.md and update it to comply with the 2026 Fair Work amendments — highlight what changed"
+        breakdown={[
+          { segment: "Review leave-policy.md", explanation: "reads your current policy" },
+          { segment: "2026 Fair Work amendments", explanation: "Claude knows legal requirements" },
+          { segment: "highlight what changed", explanation: "shows before/after for compliance" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Always paste the latest legal requirements or amendments into your prompt. Claude drafts based on what you give it, so legal accuracy depends on your input.
+    </BeginnerNote>
+  </div>
+
+  <!-- Job Descriptions & Recruitment -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Job Descriptions & Recruitment</h2>
+    <p class="text-text-secondary mb-6">
+      Write job descriptions that attract the right candidates. Claude references your existing roles, KPIs, and company structure to create specs that match your needs.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Write a job description for a Junior Claims Assessor. Reference the existing role-descriptions/ folder for our format and tone. Include KPIs from the claims-team-kpis.csv"
+        breakdown={[
+          { segment: "Junior Claims Assessor", explanation: "specific role to define" },
+          { segment: "role-descriptions/", explanation: "matches your existing JD format" },
+          { segment: "claims-team-kpis.csv", explanation: "ensures KPIs are realistic and aligned" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Analyze the last 50 applications in applications.csv — summarize qualifications distribution and flag candidates with insurance industry experience"
+        breakdown={[
+          { segment: "Analyze applications.csv", explanation: "processes all applications at once" },
+          { segment: "qualifications distribution", explanation: "what skills are common across candidates" },
+          { segment: "flag insurance industry", explanation: "highlights relevant experience" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Upload CSV files with candidate data. Claude can summarize, filter, and spot patterns much faster than manual review.
+    </BeginnerNote>
+  </div>
+
+  <!-- Employee Data Management -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Employee Data Management</h2>
+    <p class="text-text-secondary mb-6">
+      Track employee records, certifications, and performance without manual spreadsheet juggling. Claude merges datasets, flags at-risk records, and generates reminders.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read staff-roster.csv, flag anyone whose certifications expire in the next 90 days, and generate reminder emails for each person"
+        breakdown={[
+          { segment: "Read staff-roster.csv", explanation: "processes all employee records" },
+          { segment: "certifications expire", explanation: "calculates against today's date" },
+          { segment: "next 90 days", explanation: "early warning window" },
+          { segment: "reminder emails", explanation: "generates personalized messages" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Merge the training-records.csv and performance-reviews.csv files by employee ID — create a summary showing completion rates by department"
+        breakdown={[
+          { segment: "Merge by employee ID", explanation: "combines datasets accurately" },
+          { segment: "training-records + reviews", explanation: "cross-references two data sources" },
+          { segment: "completion rates by department", explanation: "aggregates and summarizes trends" }
+        ]}
+      />
+    </div>
+
+    <div class="my-6 rounded-xl border-2 border-danger/30 bg-danger-light p-5">
+      <div class="mb-2 flex items-center gap-2">
+        <span class="flex h-6 w-6 items-center justify-center rounded-full bg-danger text-white text-xs font-bold">!</span>
+        <span class="text-sm font-bold uppercase tracking-wide text-danger">Data Privacy Warning</span>
+      </div>
+      <p class="text-sm text-text">
+        <strong>Never paste real employee names, TFNs, tax file numbers, or personal details into Claude.</strong> Use de-identified data (Employee ID + role only) or ask Claude to work with the file structure without content. Privacy rules apply even if you own the data.
+      </p>
+    </div>
+  </div>
+
+  <!-- This / Not That -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Common Mistakes — Do This Instead</h2>
+
+    <ThisNotThat
+      notThis="Write me an employee handbook"
+      notThisDetail="Too vague. Claude doesn't know your company's policies or format."
+      doThis="Read our existing policies in hr-policies/ and compile them into a handbook following the structure in handbook-template.md"
+      doThisDetail="Claude sees your actual policies and existing format, then creates a handbook that matches."
+    />
+
+    <ThisNotThat
+      notThis="Summarize the survey results"
+      notThisDetail="Claude can't guess what's in your survey. Upload the raw data."
+      doThis="Read engagement-survey.csv, calculate satisfaction scores by department, and flag any department below 60%"
+      doThisDetail="Claude processes the actual data and gives you actionable insights with thresholds."
+    />
+
+    <ThisNotThat
+      notThis="Update my leave policy for 2026"
+      notThisDetail="Which legal changes? Australia? Sick leave? Parental? Be specific."
+      doThis="Update leave-policy.md to reflect the Fair Work Ombudsman's 2026 casual employment guidelines — highlight what changed"
+      doThisDetail="Claude knows specific regulations. Cite the source so it stays accurate."
+    />
+
+    <ThisNotThat
+      notThis="Create an onboarding checklist"
+      notThisDetail="Generic checklist won't match your roles or company structure."
+      doThis="Read our current onboarding checklist and create one for a Payroll Specialist in the Finance team with compliance sign-offs"
+      doThisDetail="Claude customizes based on role, department, and your existing format."
+    />
+  </div>
+
+  <!-- Compliance & Reporting -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Compliance & Reporting</h2>
+    <p class="text-text-secondary mb-6">
+      Generate compliance reports and audit checklists. Claude cross-references legal requirements with your data to ensure nothing slips through.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Generate a quarterly diversity report from staff-demographics.csv — breakdown by department, role level, and tenure bands"
+        breakdown={[
+          { segment: "quarterly diversity report", explanation: "creates standard reporting format" },
+          { segment: "staff-demographics.csv", explanation: "uses actual company data" },
+          { segment: "by department + role level", explanation: "multi-dimensional analysis" },
+          { segment: "tenure bands", explanation: "groups by years of service" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Create a Fair Work compliance checklist for our current leave policies — compare against the NES minimums"
+        breakdown={[
+          { segment: "Fair Work compliance", explanation: "knows Australian legal minimums" },
+          { segment: "current leave policies", explanation: "reads your specific policies" },
+          { segment: "compare against NES", explanation: "National Employment Standards reference" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Always cite the legal source (Fair Work Ombudsman, state regulations, etc.) in your prompt so Claude knows which rules apply to your jurisdiction.
+    </BeginnerNote>
+  </div>
+
+  <!-- Back to Hub -->
+  <div class="mt-8 rounded-xl border border-border bg-background-alt p-5 text-center">
+    <p class="text-sm text-text-secondary">
+      Ready for more? Explore other departments or jump back to the main course.
+      <br />
+      <a href="/departments" class="font-medium text-purple hover:underline">All departments &rarr;</a>
+    </p>
+  </div>
+</MainLayout>
