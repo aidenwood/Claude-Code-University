@@ -1,0 +1,402 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+import BeginnerNote from '../components/BeginnerNote.astro';
+---
+
+<MainLayout title="Rebuild Relief Brand Rules" subtitle="Colour palette, logo usage, and the CLAUDE.md rule you can copy into any project.">
+
+  <!-- Intro -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Why this page exists</h2>
+    <p class="mt-3 text-text-secondary">
+      Every project you build for Rebuild Relief needs to look like Rebuild Relief. This page gives you the colour palette, logo files, and a <strong>ready-to-copy CLAUDE.md rule</strong> that teaches Claude your brand. Paste it into any project and Claude will use the right colours, the right logos, and the right design patterns automatically.
+    </p>
+  </section>
+
+  <!-- Colour Palette -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Colour Palette</h2>
+    <p class="mt-3 text-text-secondary">
+      10 brand colours. Each has a specific job. Never use a colour outside its assigned role.
+    </p>
+
+    <div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-5">
+      <div class="space-y-2">
+        <div class="h-16 rounded-lg bg-[#2F3A48] border border-border"></div>
+        <p class="text-xs font-semibold text-text">Charcoal Blue</p>
+        <p class="text-xs text-text-muted font-mono">#2F3A48</p>
+      </div>
+      <div class="space-y-2">
+        <div class="h-16 rounded-lg bg-[#001B51]"></div>
+        <p class="text-xs font-semibold text-text">Deep Navy</p>
+        <p class="text-xs text-text-muted font-mono">#001B51</p>
+      </div>
+      <div class="space-y-2">
+        <div class="h-16 rounded-lg bg-[#429DB4]"></div>
+        <p class="text-xs font-semibold text-text">Pacific Blue</p>
+        <p class="text-xs text-text-muted font-mono">#429DB4</p>
+      </div>
+      <div class="space-y-2">
+        <div class="h-16 rounded-lg bg-[#47B1CC]"></div>
+        <p class="text-xs font-semibold text-text">Pacific Blue Lt</p>
+        <p class="text-xs text-text-muted font-mono">#47B1CC</p>
+      </div>
+      <div class="space-y-2">
+        <div class="h-16 rounded-lg bg-[#00D3DD]"></div>
+        <p class="text-xs font-semibold text-text">Strong Cyan</p>
+        <p class="text-xs text-text-muted font-mono">#00D3DD</p>
+      </div>
+      <div class="space-y-2">
+        <div class="h-16 rounded-lg bg-[#32BA39]"></div>
+        <p class="text-xs font-semibold text-text">Jade Green</p>
+        <p class="text-xs text-text-muted font-mono">#32BA39</p>
+      </div>
+      <div class="space-y-2">
+        <div class="h-16 rounded-lg bg-[#27912C]"></div>
+        <p class="text-xs font-semibold text-text">Forest Green</p>
+        <p class="text-xs text-text-muted font-mono">#27912C</p>
+      </div>
+      <div class="space-y-2">
+        <div class="h-16 rounded-lg bg-[#E8C100]"></div>
+        <p class="text-xs font-semibold text-text">Saffron</p>
+        <p class="text-xs text-text-muted font-mono">#E8C100</p>
+      </div>
+      <div class="space-y-2">
+        <div class="h-16 rounded-lg bg-[#FFA600]"></div>
+        <p class="text-xs font-semibold text-text">Orange</p>
+        <p class="text-xs text-text-muted font-mono">#FFA600</p>
+      </div>
+      <div class="space-y-2">
+        <div class="h-16 rounded-lg bg-[#FF0505]"></div>
+        <p class="text-xs font-semibold text-text">Red</p>
+        <p class="text-xs text-text-muted font-mono">#FF0505</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Digital / Dark Scheme -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Digital Design (Dark Scheme)</h2>
+    <p class="mt-3 text-text-secondary">
+      For websites, apps, social media ads, digital billboards, and screen-based material. Dark backgrounds create visual impact and brand recognition.
+    </p>
+
+    <div class="mt-6 rounded-xl overflow-hidden border border-border">
+      <!-- Preview: Dark scheme -->
+      <div class="bg-[#001B51] p-8 space-y-4">
+        <div class="flex items-center gap-3">
+          <img src="/logos/rebuild-logo-horizontal-white.svg" alt="Rebuild Relief" class="h-8" />
+        </div>
+        <h3 class="text-2xl font-extrabold text-white">Example Dark Layout</h3>
+        <p class="text-sm text-white/70">Body text on dark backgrounds uses white at 70-80% opacity.</p>
+        <div class="flex gap-3 mt-2">
+          <span class="rounded-full bg-[#32BA39] px-4 py-1.5 text-sm font-semibold text-white">Primary CTA</span>
+          <span class="rounded-full border border-white/20 px-4 py-1.5 text-sm font-semibold text-white/80">Secondary Link</span>
+        </div>
+        <div class="flex gap-3 mt-2">
+          <span class="rounded bg-[#E8C100] px-3 py-1 text-xs font-bold text-[#001B51]">Warning / Alert</span>
+          <span class="rounded bg-[#47B1CC] px-3 py-1 text-xs font-bold text-white">Accent Tag</span>
+          <span class="rounded bg-[#00D3DD] px-3 py-1 text-xs font-bold text-[#001B51]">Highlight</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5 space-y-3">
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#47B1CC]"></span>
+        <p class="text-sm text-text-secondary"><strong>Backgrounds:</strong> Deep Navy <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">#001B51</code> as primary, Charcoal Blue <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">#2F3A48</code> for elevated surfaces and cards. Never pure black.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#47B1CC]"></span>
+        <p class="text-sm text-text-secondary"><strong>Text:</strong> White <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">#FFFFFF</code> for headings, white at 70-80% opacity for body text. Never use light grey — use opacity instead.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#47B1CC]"></span>
+        <p class="text-sm text-text-secondary"><strong>Primary CTA:</strong> Jade Green <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">#32BA39</code> buttons for revenue actions (book, sign up, enquire). Forest Green <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">#27912C</code> on hover.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#47B1CC]"></span>
+        <p class="text-sm text-text-secondary"><strong>Secondary links:</strong> Outline buttons (border white/20, no fill) or Pacific Blue text links. Never green for non-revenue actions.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#47B1CC]"></span>
+        <p class="text-sm text-text-secondary"><strong>Accents:</strong> Pacific Blue <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">#47B1CC</code> for tags, icons, location pins, and brand accents. Strong Cyan <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">#00D3DD</code> for highlights and emphasis.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#47B1CC]"></span>
+        <p class="text-sm text-text-secondary"><strong>Alerts:</strong> Saffron <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">#E8C100</code> for warnings and attention badges. Orange <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">#FFA600</code> for secondary alerts. Red <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">#FF0505</code> for errors and destructive actions only.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#47B1CC]"></span>
+        <p class="text-sm text-text-secondary"><strong>Colour balance:</strong> Navy/Charcoal should make up ~70% of any layout. Pacific Blue/Cyan accents ~15%. Green CTAs, Saffron alerts, and other accents ~15%. The brand reads as <em>dark blue with teal accents</em> — not a rainbow.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#47B1CC]"></span>
+        <p class="text-sm text-text-secondary"><strong>Logo:</strong> Use <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">rebuild-logo-horizontal-white.svg</code> on dark backgrounds. House icon <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">rr-secondary-logo.svg</code> for favicons and app icons.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Print / Light Scheme -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Print Design (Light Scheme)</h2>
+    <p class="mt-3 text-text-secondary">
+      For printed material — flyers, business cards, letterheads, brochures, signage. White backgrounds save ink and look cleaner in print. Dark text, minimal colour accents.
+    </p>
+
+    <div class="mt-6 rounded-xl overflow-hidden border border-border">
+      <!-- Preview: Light scheme -->
+      <div class="bg-white p-8 space-y-4">
+        <div class="flex items-center gap-3">
+          <img src="/logos/rebuild-logo-horizontal-black.svg" alt="Rebuild Relief" class="h-8" />
+        </div>
+        <h3 class="text-2xl font-extrabold text-[#001B51]">Example Print Layout</h3>
+        <p class="text-sm text-[#2F3A48]/80">Body text uses Charcoal Blue or Deep Navy at 80% on white backgrounds.</p>
+        <div class="flex gap-3 mt-2">
+          <span class="rounded-full bg-[#32BA39] px-4 py-1.5 text-sm font-semibold text-white">Primary CTA</span>
+          <span class="rounded-full border border-[#001B51]/20 px-4 py-1.5 text-sm font-semibold text-[#001B51]">Secondary Link</span>
+        </div>
+        <div class="flex gap-3 mt-2">
+          <span class="rounded bg-[#47B1CC] px-3 py-1 text-xs font-bold text-white">Brand Accent</span>
+          <span class="rounded border border-[#2F3A48]/20 px-3 py-1 text-xs font-bold text-[#2F3A48]">Subtle Tag</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5 space-y-3">
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#001B51]"></span>
+        <p class="text-sm text-text-secondary"><strong>Background:</strong> Plain white <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">#FFFFFF</code> always. White = less ink = cheaper print runs + cleaner design. Never use navy as a full background in print.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#001B51]"></span>
+        <p class="text-sm text-text-secondary"><strong>Text:</strong> Deep Navy <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">#001B51</code> for headings. Charcoal Blue <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">#2F3A48</code> for body text. Never pure black (#000) — it looks harsh in print.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#001B51]"></span>
+        <p class="text-sm text-text-secondary"><strong>Accents:</strong> Use Pacific Blue <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">#47B1CC</code> sparingly — for borders, dividers, and small accent elements. Minimal ink usage.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#001B51]"></span>
+        <p class="text-sm text-text-secondary"><strong>CTAs:</strong> Green buttons still work in print, but keep them small. In print, the phone number or URL is your CTA — make it large and navy.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#001B51]"></span>
+        <p class="text-sm text-text-secondary"><strong>Colour balance:</strong> White should be ~80% of the layout. Navy text ~15%. Colour accents (Pacific Blue, Green) ~5%. Print should feel <em>clean and professional</em>, not busy.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#001B51]"></span>
+        <p class="text-sm text-text-secondary"><strong>Logo:</strong> Use <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">rebuild-logo-horizontal-black.svg</code> on light backgrounds. <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">rr-secondary-logo-charcoal.svg</code> for icons on light backgrounds.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logo Files -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Logo Files</h2>
+    <p class="mt-3 text-text-secondary">
+      All SVG logos are in your project at <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">public/logos/</code>. Use the right logo for the right background.
+    </p>
+
+    <div class="mt-6 space-y-4">
+      <!-- Dark bg logos -->
+      <div class="rounded-xl bg-[#001B51] p-6">
+        <p class="text-xs font-semibold uppercase tracking-wide text-white/50 mb-4">On dark backgrounds</p>
+        <div class="flex flex-wrap items-center gap-6">
+          <div class="space-y-2">
+            <img src="/logos/rebuild-logo-horizontal-white.svg" alt="Horizontal white" class="h-8" />
+            <p class="text-[10px] text-white/40 font-mono">rebuild-logo-horizontal-white.svg</p>
+          </div>
+          <div class="space-y-2">
+            <img src="/logos/rr-secondary-logo.svg" alt="Icon white" class="h-10" />
+            <p class="text-[10px] text-white/40 font-mono">rr-secondary-logo.svg</p>
+          </div>
+          <div class="space-y-2">
+            <img src="/logos/rebuild-relief-logo.svg" alt="Stacked logo" class="h-14" />
+            <p class="text-[10px] text-white/40 font-mono">rebuild-relief-logo.svg</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Light bg logos -->
+      <div class="rounded-xl bg-white border border-border p-6">
+        <p class="text-xs font-semibold uppercase tracking-wide text-text-muted mb-4">On light backgrounds</p>
+        <div class="flex flex-wrap items-center gap-6">
+          <div class="space-y-2">
+            <img src="/logos/rebuild-logo-horizontal-black.svg" alt="Horizontal black" class="h-8" />
+            <p class="text-[10px] text-text-muted font-mono">rebuild-logo-horizontal-black.svg</p>
+          </div>
+          <div class="space-y-2">
+            <img src="/logos/rr-secondary-logo-charcoal.svg" alt="Icon charcoal" class="h-10" />
+            <p class="text-[10px] text-text-muted font-mono">rr-secondary-logo-charcoal.svg</p>
+          </div>
+          <div class="space-y-2">
+            <img src="/logos/rr-secondary-logo-light.svg" alt="Icon light" class="h-10" />
+            <p class="text-[10px] text-text-muted font-mono">rr-secondary-logo-light.svg</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <BeginnerNote title="Logo colours">
+      <p>The house icon's body is white on dark backgrounds, charcoal on light backgrounds. The roof accent is always Pacific Blue (<code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">#47B1CC</code>). Never change these colours.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Typography -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Typography</h2>
+    <div class="mt-4 space-y-3">
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#47B1CC]"></span>
+        <p class="text-sm text-text-secondary"><strong>Font:</strong> Inter (Google Fonts). No other fonts. Ever.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#47B1CC]"></span>
+        <p class="text-sm text-text-secondary"><strong>Weights:</strong> 400 (body), 500 (medium), 600 (semibold), 700 (bold), 800 (headings)</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#47B1CC]"></span>
+        <p class="text-sm text-text-secondary"><strong>Fallback:</strong> <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">ui-sans-serif, system-ui, sans-serif</code></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Copiable CLAUDE.md Rule -->
+  <section class="rounded-xl border-2 border-[#47B1CC]/40 bg-surface p-6 md:p-8">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#47B1CC] text-white text-sm font-bold">RR</span>
+      <div>
+        <h2 class="text-xl font-bold text-text">Copy This Into Your CLAUDE.md</h2>
+        <p class="text-xs text-text-muted">Paste this block into any project's CLAUDE.md to enforce the brand automatically</p>
+      </div>
+    </div>
+
+    <CopyBlock
+      command={`## Rebuild Relief Brand Rules
+
+### Colour Palette
+| Name | Hex | Usage |
+|------|-----|-------|
+| Charcoal Blue | #2F3A48 | Dark backgrounds, body text |
+| Deep Navy | #001B51 | Primary dark, headers, footers |
+| Pacific Blue | #429DB4 | Secondary brand, hover states |
+| Pacific Blue Lt | #47B1CC | Primary brand accent, buttons, links, icons |
+| Strong Cyan | #00D3DD | Highlight accents, emphasis |
+| Jade Green | #32BA39 | Primary CTA buttons (revenue actions ONLY) |
+| Forest Green | #27912C | CTA hover state, dark green accents |
+| Saffron | #E8C100 | Warning badges, attention alerts |
+| Orange | #FFA600 | Secondary alerts |
+| Red | #FF0505 | Error states, destructive actions ONLY |
+
+### Digital Design (Dark Scheme) — Websites, Apps, Ads, Social
+- Backgrounds: Deep Navy #001B51 (primary), Charcoal #2F3A48 (elevated). Never pure black.
+- Text: White #FFFFFF for headings, white/70-80 opacity for body. Never light grey.
+- Primary CTA: Jade Green #32BA39 buttons for revenue actions (book, sign up, enquire). Forest Green #27912C on hover.
+- Secondary links: Outline (border white/20, no fill) or Pacific Blue text. Never green for non-revenue.
+- Accents: Pacific Blue #47B1CC for tags, icons, pins. Cyan #00D3DD for highlights.
+- Alerts: Saffron #E8C100 for warnings. Orange #FFA600 secondary. Red #FF0505 errors only.
+- Balance: Navy/Charcoal ~70%, Pacific/Cyan accents ~15%, Green/Saffron/other ~15%.
+- Logo: rebuild-logo-horizontal-white.svg on dark. rr-secondary-logo.svg for favicons.
+
+### Print Design (Light Scheme) — Flyers, Business Cards, Brochures
+- Background: Plain white #FFFFFF always. White = less ink = cheaper + cleaner.
+- Text: Deep Navy #001B51 for headings. Charcoal #2F3A48 for body. Never pure black.
+- Accents: Pacific Blue #47B1CC sparingly — borders, dividers, small elements.
+- Balance: White ~80%, Navy text ~15%, Colour accents ~5%. Clean and professional.
+- Logo: rebuild-logo-horizontal-black.svg on light. rr-secondary-logo-charcoal.svg for icons.
+
+### Typography
+- Font: Inter (Google Fonts). No other fonts.
+- Weights: 400 body, 500 medium, 600 semibold, 700 bold, 800 headings.
+- Fallback: ui-sans-serif, system-ui, sans-serif
+
+### CTA Button Rules
+- Green buttons (#32BA39) = revenue-generating CTAs ONLY (buy, sign-up, book, enquire for paid services)
+- Outline buttons (border, no fill) = non-revenue links (learn more, view all, secondary navigation)
+- Never use green for non-revenue. Never use outline for revenue.
+
+### Hard Rules
+- Never change font-family from Inter
+- Never add colours outside this palette
+- Never use pure black (#000000) — use Navy or Charcoal instead
+- Never use navy backgrounds for print — use white
+- Logo roof accent is always Pacific Blue #47B1CC — never change it`}
+    />
+
+    <BeginnerNote title="How to use this">
+      <p>Click <strong>Copy</strong> above, then paste it into the <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">CLAUDE.md</code> file at the root of any Rebuild Relief project. Claude will read this every time it starts and automatically follow the brand rules. You only need to do this once per project.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Tailwind Theme Tokens -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Tailwind CSS 4 Theme Tokens</h2>
+    <p class="mt-3 text-text-secondary">
+      For Tailwind CSS 4 projects, copy these tokens into your <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">global.css</code> inside an <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">@theme</code> block.
+    </p>
+
+    <CopyBlock
+      command={`@theme {
+  /* Rebuild Relief brand scale (navy → pacific blue → cyan) */
+  --color-brand-50: #edf9fb;
+  --color-brand-100: #d3f1f6;
+  --color-brand-200: #a8e3ed;
+  --color-brand-300: #7dd1e2;
+  --color-brand-400: #47B1CC;
+  --color-brand-500: #429DB4;
+  --color-brand-600: #347d90;
+  --color-brand-700: #285e6c;
+  --color-brand-800: #1a3f49;
+  --color-brand-900: #001B51;
+  --color-brand-950: #001236;
+
+  /* Named accents */
+  --color-accent: #E8C100;
+  --color-accent-hover: #d4b000;
+  --color-cyan: #00D3DD;
+  --color-green: #32BA39;
+  --color-green-dark: #27912C;
+  --color-orange: #FFA600;
+  --color-red: #FF0505;
+
+  /* Surfaces */
+  --color-surface-light: #ffffff;
+  --color-surface-dark: #0f1a2e;
+  --color-surface-dark-alt: #162036;
+  --color-surface-dark-elevated: #1c2a44;
+
+  /* Typography */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}`}
+      breakdown={[
+        { segment: "--color-brand-400", explanation: "Pacific Blue Light — primary brand accent" },
+        { segment: "--color-brand-900", explanation: "Deep Navy — primary dark background" },
+        { segment: "--color-green", explanation: "Jade Green — CTA buttons (revenue actions only)" },
+        { segment: "--color-accent", explanation: "Saffron — warning badges and alerts" },
+      ]}
+    />
+  </section>
+
+  <!-- Coolors Link -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Interactive Palette</h2>
+    <p class="mt-3 text-text-secondary">
+      View and export the full palette on Coolors:
+    </p>
+    <CopyBlock
+      command="https://coolors.co/2f3a48-001b51-429db4-47b1cc-00d3dd-32ba39-27912c-e8c100-ffa600-ff0505"
+    />
+  </section>
+
+  <!-- Back to main -->
+  <section class="rounded-xl border border-purple/20 bg-purple-50 p-6 md:p-8">
+    <p class="text-sm text-text-secondary">
+      <a href="/" class="font-medium text-purple hover:underline">&larr; Back to main course</a>
+      <span class="mx-2 text-text-muted">|</span>
+      <a href="/departments" class="font-medium text-purple hover:underline">Department training &rarr;</a>
+    </p>
+  </section>
+
+</MainLayout>
