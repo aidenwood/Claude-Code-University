@@ -18,9 +18,9 @@ import BeginnerNote from '../components/BeginnerNote.astro';
     </BeginnerNote>
   </section>
 
-  <!-- 2. CAD & Technical Drawing -->
+  <!-- 2. CAD &amp; Technical Drawing -->
   <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
-    <h2 class="text-xl font-bold text-text">CAD & Technical Drawing</h2>
+    <h2 class="text-xl font-bold text-text">CAD &amp; Technical Drawing</h2>
     <p class="mt-3 text-text-secondary">
       Claude can read and modify SVG files, generate parametric designs, and even work with DXF formats. If your drawing is vector-based, Claude can understand and edit it.
     </p>
@@ -38,9 +38,9 @@ import BeginnerNote from '../components/BeginnerNote.astro';
     </BeginnerNote>
   </section>
 
-  <!-- 3. Presentations & Slide Decks -->
+  <!-- 3. Presentations &amp; Slide Decks -->
   <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
-    <h2 class="text-xl font-bold text-text">Presentations & Slide Decks</h2>
+    <h2 class="text-xl font-bold text-text">Presentations &amp; Slide Decks</h2>
     <p class="mt-3 text-text-secondary">
       Generate HTML-based presentations or modify existing slide content. Better than fighting PowerPoint — and the results are shareable as a single file.
     </p>
@@ -54,9 +54,9 @@ import BeginnerNote from '../components/BeginnerNote.astro';
     </p>
   </section>
 
-  <!-- 4. CMS Data Wrangling & Cleanup -->
+  <!-- 4. CMS Data Wrangling &amp; Cleanup -->
   <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
-    <h2 class="text-xl font-bold text-text">CMS Data Wrangling & Cleanup</h2>
+    <h2 class="text-xl font-bold text-text">CMS Data Wrangling &amp; Cleanup</h2>
     <p class="mt-3 text-text-secondary">
       Clean up messy CMS exports, deduplicate entries, standardize formatting, and prepare data for import into a new system. No more manual spreadsheet surgery.
     </p>
@@ -74,9 +74,9 @@ import BeginnerNote from '../components/BeginnerNote.astro';
     </BeginnerNote>
   </section>
 
-  <!-- 5. CSV & Data Pipeline Work -->
+  <!-- 5. CSV &amp; Data Pipeline Work -->
   <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
-    <h2 class="text-xl font-bold text-text">CSV & Data Pipeline Work</h2>
+    <h2 class="text-xl font-bold text-text">CSV &amp; Data Pipeline Work</h2>
     <p class="mt-3 text-text-secondary">
       Parse, transform, merge, and analyze data files without opening Excel or writing Python scripts. Just describe what you want and Claude handles the rest.
     </p>
@@ -130,9 +130,9 @@ import BeginnerNote from '../components/BeginnerNote.astro';
     </BeginnerNote>
   </section>
 
-  <!-- 8. Image & Screenshot Analysis -->
+  <!-- 8. Image &amp; Screenshot Analysis -->
   <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
-    <h2 class="text-xl font-bold text-text">Image & Screenshot Analysis</h2>
+    <h2 class="text-xl font-bold text-text">Image &amp; Screenshot Analysis</h2>
     <p class="mt-3 text-text-secondary">
       Show Claude a screenshot and ask what's wrong, what to improve, or how to replicate it. Claude can see images and reason about their content.
     </p>
@@ -166,9 +166,9 @@ import BeginnerNote from '../components/BeginnerNote.astro';
     </BeginnerNote>
   </section>
 
-  <!-- 10. Writing & Content -->
+  <!-- 10. Writing &amp; Content -->
   <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
-    <h2 class="text-xl font-bold text-text">Writing & Content</h2>
+    <h2 class="text-xl font-bold text-text">Writing &amp; Content</h2>
     <p class="mt-3 text-text-secondary">
       Draft blog posts, compliance documents, email templates — in your voice and style. Claude can read your existing content and match the tone.
     </p>
@@ -198,9 +198,9 @@ import BeginnerNote from '../components/BeginnerNote.astro';
     </p>
   </section>
 
-  <!-- 12. API Debugging & Testing -->
+  <!-- 12. API Debugging &amp; Testing -->
   <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
-    <h2 class="text-xl font-bold text-text">API Debugging & Testing</h2>
+    <h2 class="text-xl font-bold text-text">API Debugging &amp; Testing</h2>
     <p class="mt-3 text-text-secondary">
       Hit API endpoints, inspect responses, test webhooks — without Postman. Claude can construct requests, send them, and verify the results end-to-end.
     </p>
@@ -218,7 +218,93 @@ import BeginnerNote from '../components/BeginnerNote.astro';
     </BeginnerNote>
   </section>
 
-  <!-- 13. Summary card -->
+  <!-- 13. Automation &amp; Scheduling -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Automation &amp; Scheduling</h2>
+    <p class="mt-3 text-text-secondary">
+      Claude can work while you sleep. Set up recurring tasks that run automatically on a schedule, or create non-interactive scripts that process data without you watching.
+    </p>
+
+    <CopyBlock
+      command="/loop 5m check the deploy status and alert if it fails"
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      <strong>What Claude does:</strong> runs the deploy status check every 5 minutes, compares it to baseline state, and alerts you only if something fails. You don't have to babysit.
+    </p>
+
+    <CopyBlock
+      command={'claude schedule "every day at 9am, check Sentry for new errors and create tickets"'}
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      <strong>What Claude does:</strong> cloud-hosted agent that wakes up at 9am, queries Sentry's API for errors from the past day, extracts the signal, and creates tickets for the top issues. Fully automated.
+    </p>
+
+    <CopyBlock
+      command={'claude -p "analyze error.log and suggest fixes" < error.log'}
+    />
+
+    <p class="mt-3 text-sm text-text-secondary">
+      <strong>What Claude does:</strong> runs non-interactively (no chat interface), reads the error log from stdin, analyzes it once, outputs suggestions, and exits. Perfect for cron jobs or CI/CD pipelines.
+    </p>
+
+    <BeginnerNote>
+      Claude can work while you sleep. Schedule tasks to run automatically, check status on cron, create tickets from monitoring systems — set it and forget it.
+    </BeginnerNote>
+  </section>
+
+  <!-- 14. Real-World Productivity Numbers -->
+  <section class="rounded-xl border border-purple/20 bg-purple-50 p-6 md:p-8">
+    <h2 class="text-xl font-bold text-purple">Real-World Productivity Numbers</h2>
+    <p class="mt-4 text-text-secondary">
+      These aren't marketing claims — they're from Stack Overflow surveys, GitHub data, and enterprise adoption studies.
+    </p>
+
+    <div class="mt-6 space-y-3">
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <div>
+          <p class="font-semibold text-text">4 hours per week saved per developer</p>
+          <p class="text-sm text-text-secondary">That's $320/week at $80/hr, or $16,640/year per person.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <div>
+          <p class="font-semibold text-text">2–10x development velocity after adoption</p>
+          <p class="text-sm text-text-secondary">Wide range reflects team experience, task type, and prompt quality. Most teams see 3–5x within 2 weeks.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <div>
+          <p class="font-semibold text-text">80% faster individual task execution</p>
+          <p class="text-sm text-text-secondary">Average across debugging, refactoring, testing, and documentation tasks.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <div>
+          <p class="font-semibold text-text">30% fewer iterations needed</p>
+          <p class="text-sm text-text-secondary">Claude-assisted code requires less review cycles; fewer back-and-forths.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <div>
+          <p class="font-semibold text-text">4% of public GitHub commits are Claude-authored</p>
+          <p class="text-sm text-text-secondary">135,000 commits per day as of February 2026. Still growing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15. Summary card -->
   <section class="rounded-xl border border-purple/20 bg-purple-50 p-6 md:p-8">
     <div class="rounded-lg border border-purple-200 bg-surface p-5">
       <p class="text-lg font-bold text-purple">The bottom line</p>

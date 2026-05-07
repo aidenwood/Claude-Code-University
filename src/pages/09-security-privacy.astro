@@ -56,6 +56,118 @@ import BeginnerNote from '../components/BeginnerNote.astro';
     </BeginnerNote>
   </section>
 
+  <!-- 2.5. Permission Model Deep Dive -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Permission Model Deep Dive</h2>
+    <p class="mt-3 text-text-secondary">
+      Claude Code's permission system uses a three-tier model: <strong>Deny → Ask → Allow</strong>. The first match wins. This gives you precise control over what Claude can and can't do.
+    </p>
+
+    <div class="mt-5">
+      <p class="text-sm font-semibold text-text mb-3">How it works:</p>
+      <div class="space-y-3">
+        <div class="flex items-start gap-3">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-danger"></span>
+          <div>
+            <p class="text-sm font-semibold text-text">Deny (block dangerous actions)</p>
+            <p class="text-xs text-text-muted mt-1">Certain operations are blocked entirely — force push to main branch, rm -rf, editing sensitive auth files.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-orange"></span>
+          <div>
+            <p class="text-sm font-semibold text-text">Ask (check with you)</p>
+            <p class="text-xs text-text-muted mt-1">Most actions default to asking. Claude shows you what it wants to do and waits for your approval.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-success"></span>
+          <div>
+            <p class="text-sm font-semibold text-text">Allow (trust automatically)</p>
+            <p class="text-xs text-text-muted mt-1">Safe actions like reading files or creating test files can be whitelisted to skip approval.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-5 text-sm font-semibold text-text">Configure this in <code class="rounded bg-purple-100 px-1.5 py-0.5 text-xs font-mono text-purple">.claude/settings.json</code>:</p>
+
+    <CopyBlock
+      command={`{\n  "permissions": {\n    "deny": [\n      "git push --force",\n      "rm -rf",\n      "edit .env*",\n      "edit **/*auth*.ts"\n    ],\n    "ask": [\n      "npm install",\n      "git commit",\n      "run test"\n    ],\n    "allow": [\n      "read **/*.ts",\n      "grep",\n      "list files"\n    ]\n  }\n}`}
+      breakdown={[
+        { segment: '"deny"', explanation: 'Operations that are completely blocked' },
+        { segment: '"ask"', explanation: 'Default behavior — Claude asks before proceeding' },
+        { segment: '"allow"', explanation: 'Safe operations that auto-approve' },
+      ]}
+    />
+
+    <div class="mt-5 rounded-lg border border-purple-200 bg-purple-50 p-4">
+      <p class="text-sm font-semibold text-purple">Enterprise Controls (2026)</p>
+      <p class="mt-2 text-sm text-text-secondary">
+        Large organizations can configure <strong>managed-settings.json</strong> for team-wide policies: zero data retention, SSO integration, audit logging, and pre-approved action whitelists.
+      </p>
+    </div>
+
+    <BeginnerNote>
+      Permissions are your safety net. Deny blocks the truly dangerous stuff, Ask checks with you on important operations, and Allow speeds things up for routine tasks. This layered approach keeps you safe without slowing you down.
+    </BeginnerNote>
+  </section>
+
+  <!-- 2.6. Sandboxing -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Sandboxing</h2>
+    <p class="mt-3 text-text-secondary">
+      Claude Code can run in <strong>sandboxed mode</strong> — a restricted environment where Claude has limited filesystem and network access. This is OS-level protection on top of permissions.
+    </p>
+
+    <div class="mt-5 space-y-3">
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <p class="text-sm text-text-secondary">
+          <strong>Restricted filesystem:</strong> Claude can only access files inside your project folder. It can't read your Documents, browse your Downloads, or access system files.
+        </p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <p class="text-sm text-text-secondary">
+          <strong>No network access:</strong> Claude can't reach external services, APIs, or the internet — only tools your project provides.
+        </p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+        <p class="text-sm text-text-secondary">
+          <strong>Complements permissions:</strong> Sandboxing is OS-level protection. Permissions are tool-level control. Together they provide belt-and-suspenders safety.
+        </p>
+      </div>
+    </div>
+
+    <p class="mt-5 text-sm text-text-secondary">
+      Best for: CI/CD pipelines, automated workflows, untrusted environments, or when you want Claude to work on sensitive projects without any risk of it escaping the project folder.
+    </p>
+
+    <div class="mt-5 rounded-lg border border-success/30 bg-success-light p-4">
+      <p class="text-sm font-semibold text-success">When to enable sandboxing</p>
+      <ul class="mt-2 space-y-1 text-sm text-text-secondary">
+        <li class="flex items-start gap-2">
+          <span class="text-success font-bold text-xs mt-0.5">●</span>
+          <span>Running Claude on CI/CD servers with access to production credentials</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-success font-bold text-xs mt-0.5">●</span>
+          <span>Working on client projects where isolation is required</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-success font-bold text-xs mt-0.5">●</span>
+          <span>Testing untrusted code or scripts</span>
+        </li>
+      </ul>
+    </div>
+
+    <BeginnerNote>
+      Sandboxing means Claude can only touch files in your project folder and can't access the internet. It's belt and suspenders — permissions say what Claude can do, sandboxing says where it can do it.
+    </BeginnerNote>
+  </section>
+
   <!-- 3. What NOT to paste into Claude -->
   <section class="rounded-xl border border-danger/30 bg-danger-light p-6 md:p-8">
     <div class="flex items-center gap-2">

@@ -270,4 +270,297 @@ import BeginnerNote from '../components/BeginnerNote.astro';
     </BeginnerNote>
   </section>
 
+  <!-- 7. Hooks: Automate Your Workflow -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Hooks: Automate Your Workflow</h2>
+    <p class="mt-3 text-text-secondary">
+      Hooks let you automate Claude's behavior. Instead of remembering to format code after every edit or asking Claude to check git status, hooks run automatically at key lifecycle points.
+    </p>
+
+    <div class="mt-5 space-y-4">
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text"><code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">PreToolUse</code> — Block dangerous commands</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Runs before Claude executes any CLI command. Perfect for preventing mistakes like <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">git push --force</code> or <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">rm -rf</code> on main branches.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text"><code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">PostToolUse</code> — Auto-format after edits</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Runs after Claude edits files. Use this to auto-run Prettier, ESLint, or your formatter so code is always formatted correctly without you asking.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text"><code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">OnSessionStart</code> — Inject context</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Runs when a new Claude session starts. Great for injecting project status (git status, pending PRs, failing tests) without you having to repeat it.
+        </p>
+      </div>
+    </div>
+
+    <p class="mt-4 text-sm font-semibold text-text">Example: Block force push and auto-format with Prettier</p>
+    <CopyBlock
+      command={`"hooks": {
+  "PreToolUse": {
+    "rules": [
+      { "command": "git push --force", "action": "block", "message": "Cannot force push — merge instead" },
+      { "command": "rm -rf", "action": "block", "message": "Destructive. Use git clean -fd instead" }
+    ]
+  },
+  "PostToolUse": {
+    "rules": [
+      { "commands": ["Edit", "Write"], "action": "run", "after": "prettier --write {files}" }
+    ]
+  }
+}`}
+      breakdown={[
+        { segment: '"hooks"', explanation: 'Root key in settings.json' },
+        { segment: '"PreToolUse"', explanation: 'Runs before CLI commands' },
+        { segment: '"block"', explanation: 'Prevents dangerous commands from running' },
+        { segment: '"PostToolUse"', explanation: 'Runs after file changes' },
+        { segment: 'prettier --write', explanation: 'Auto-formats files automatically' },
+      ]}
+    />
+
+    <div class="mt-5 rounded-lg border border-border bg-background p-4">
+      <p class="text-sm font-semibold text-text">Config locations (priority order):</p>
+      <ul class="mt-2 space-y-1.5 text-text-secondary">
+        <li class="flex items-start gap-2 text-sm">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">.claude/settings.local.json</code> — Personal overrides (not committed)</span>
+        </li>
+        <li class="flex items-start gap-2 text-sm">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">.claude/settings.json</code> — Project-level rules (committed to repo)</span>
+        </li>
+        <li class="flex items-start gap-2 text-sm">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">~/.claude/settings.json</code> — Global defaults (all projects)</span>
+        </li>
+      </ul>
+    </div>
+
+    <BeginnerNote>
+      Hooks are like guardrails. They run automatically so you don't have to remember. Set them once, and Claude follows them forever.
+    </BeginnerNote>
+  </section>
+
+  <!-- 8. MCP: Connect Claude to Your Tools -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">MCP: Connect Claude to Your Tools</h2>
+    <p class="mt-3 text-text-secondary">
+      MCP (Model Context Protocol) lets Claude talk to external services and APIs. Instead of you copying data between tools, Claude can read from your database, check GitHub issues, run browser automation, or monitor errors — all directly.
+    </p>
+
+    <div class="mt-5 space-y-4">
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Key integrations available</p>
+        <div class="mt-2 space-y-2">
+          <p class="text-sm text-text-secondary"><strong>Supabase:</strong> Direct SQL queries, RLS debugging, real-time monitoring</p>
+          <p class="text-sm text-text-secondary"><strong>GitHub:</strong> Read/write issues, pull requests, code search</p>
+          <p class="text-sm text-text-secondary"><strong>Playwright:</strong> Cross-browser automation, visual testing</p>
+          <p class="text-sm text-text-secondary"><strong>Sentry:</strong> Error monitoring and debugging</p>
+          <p class="text-sm text-text-secondary"><strong>1000+ servers:</strong> Use whatever your stack needs</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-4 text-sm font-semibold text-text">Example: Connect to Supabase</p>
+    <CopyBlock
+      command="claude mcp add supabase"
+      breakdown={[
+        { segment: 'claude mcp add', explanation: 'Command to add an MCP server' },
+        { segment: 'supabase', explanation: 'Server name — installs Supabase integration' },
+      ]}
+    />
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Once connected, Claude can query your database directly. Instead of you running SQL and copying results, Claude runs:
+    </p>
+    <div class="mt-2 rounded-lg border border-border bg-background p-3">
+      <code class="text-xs font-mono text-text-secondary">SELECT * FROM users WHERE status = 'active'</code>
+    </div>
+
+    <div class="mt-5 rounded-lg border border-border bg-background p-4">
+      <p class="text-sm font-semibold text-text">Performance: 95% context reduction</p>
+      <p class="mt-1 text-sm text-text-secondary">
+        MCP servers use lazy loading — Claude only pulls in what it needs. A 500MB database doesn't load unless Claude asks for it. Result: sessions stay focused, context windows stay clean.
+      </p>
+    </div>
+
+    <BeginnerNote>
+      MCP servers are like plugins. They give Claude superpowers beyond just reading files. You don't need all 1000+ — just add the ones your project uses.
+    </BeginnerNote>
+  </section>
+
+  <!-- 9. Custom Agents -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Custom Agents</h2>
+    <p class="mt-3 text-text-secondary">
+      Instead of explaining the same role every time, define a custom agent once. Agents are specialized Claude instances that can be triggered with a slash command.
+    </p>
+
+    <p class="mt-4 text-sm font-semibold text-text">How to define an agent</p>
+    <p class="mt-2 text-sm text-text-secondary">
+      Create a file in <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">.claude/agents/agent-name.md</code>:
+    </p>
+
+    <CopyBlock
+      command={`# Code Reviewer
+
+You are a senior code reviewer. Your job is to:
+1. Check for bugs and security issues
+2. Suggest performance improvements
+3. Ensure code follows project conventions
+4. Ask clarifying questions before approving
+
+When reviewing:
+- Be specific about what to change and why
+- Suggest the fix, don't just point out problems
+- Flag breaking changes before merge
+
+Isolation: worktree
+Permission: acceptEdits`}
+      breakdown={[
+        { segment: '# Code Reviewer', explanation: 'Agent name — becomes /code-reviewer command' },
+        { segment: 'You are a senior...', explanation: 'Role definition — what this agent does' },
+        { segment: 'Isolation: worktree', explanation: 'Agent works in isolated git branch' },
+        { segment: 'Permission: acceptEdits', explanation: 'Agent can write code without asking' },
+      ]}
+    />
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Then trigger it with <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">/code-reviewer</code> followed by your code or PR link.
+    </p>
+
+    <div class="mt-5 rounded-lg border border-border bg-background p-4">
+      <p class="text-sm font-semibold text-text">Common custom agents</p>
+      <ul class="mt-2 space-y-1.5 text-text-secondary">
+        <li class="flex items-start gap-2 text-sm">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><strong>code-reviewer</strong> — Reviews code for bugs and best practices</span>
+        </li>
+        <li class="flex items-start gap-2 text-sm">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><strong>test-validator</strong> — Writes and verifies test coverage</span>
+        </li>
+        <li class="flex items-start gap-2 text-sm">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><strong>code-migrator</strong> — Handles large refactors (TypeScript upgrades, API migrations)</span>
+        </li>
+        <li class="flex items-start gap-2 text-sm">
+          <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-purple"></span>
+          <span><strong>docs-writer</strong> — Writes and updates documentation</span>
+        </li>
+      </ul>
+    </div>
+
+    <BeginnerNote>
+      Custom agents are like saved roles. Instead of explaining what you want every time, define it once. Claude remembers the role forever.
+    </BeginnerNote>
+  </section>
+
+  <!-- 10. IDE Integrations -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">IDE Integrations</h2>
+    <p class="mt-3 text-text-secondary">
+      The CLI is powerful, but sometimes you want visual feedback. Official Claude extensions bring the full power of Claude Code into your editor.
+    </p>
+
+    <div class="mt-5 space-y-4">
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">VS Code extension</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Side panel chat with visual diffs, file mentions with <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">@file</code>, checkpoint undo to revert changes, parallel conversations. Everything the CLI has, but with side-by-side visuals.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">JetBrains plugin</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Same features for IntelliJ, PyCharm, WebStorm, and other JetBrains IDEs. Side panel chat, shared settings with global CLI, and IDE-native editing.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">CLI vs IDE: When to use each</p>
+        <div class="mt-2 space-y-2">
+          <p class="text-sm text-text-secondary"><strong>Use CLI:</strong> Full power — hooks, agents, worktrees, multi-agent workflows, scripting</p>
+          <p class="text-sm text-text-secondary"><strong>Use IDE:</strong> Visual comfort — see diffs side-by-side, click to apply changes, less context switching</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-4 text-sm font-semibold text-text">Install VS Code extension</p>
+    <CopyBlock
+      command="code --install-extension Anthropic.claude"
+      breakdown={[
+        { segment: 'code --install-extension', explanation: 'VS Code CLI command' },
+        { segment: 'Anthropic.claude', explanation: 'Official Claude extension ID' },
+      ]}
+    />
+
+    <BeginnerNote>
+      The IDE extension is great if you prefer clicking over typing, but the CLI has more power. Use whichever fits your workflow — they share the same settings and work together.
+    </BeginnerNote>
+  </section>
+
+  <!-- 11. Real Numbers -->
+  <section class="rounded-xl border border-purple-200 bg-purple-50 p-6 md:p-8">
+    <h2 class="text-xl font-bold text-purple">Real Numbers: Claude Code ROI</h2>
+    <p class="mt-3 text-text-secondary">
+      Claude Code isn't magic, but the numbers speak for themselves. Here's what real developers are seeing after adoption:
+    </p>
+
+    <div class="mt-5 grid gap-4 grid-cols-1 md:grid-cols-2">
+      <div class="rounded-lg border border-purple-200 bg-white p-4">
+        <p class="text-lg font-bold text-purple">4 hours/week</p>
+        <p class="text-xs text-text-secondary">saved per developer (at $80/hr = $320/week)</p>
+      </div>
+
+      <div class="rounded-lg border border-purple-200 bg-white p-4">
+        <p class="text-lg font-bold text-purple">2–10x velocity</p>
+        <p class="text-xs text-text-secondary">after 1–2 weeks of adoption</p>
+      </div>
+
+      <div class="rounded-lg border border-purple-200 bg-white p-4">
+        <p class="text-lg font-bold text-purple">$37.50 per PR</p>
+        <p class="text-xs text-text-secondary">AI cost vs $150 in developer time = 4:1 ROI</p>
+      </div>
+
+      <div class="rounded-lg border border-purple-200 bg-white p-4">
+        <p class="text-lg font-bold text-purple">135,000 commits/day</p>
+        <p class="text-xs text-text-secondary">4% of all public GitHub commits (Feb 2026)</p>
+      </div>
+
+      <div class="rounded-lg border border-purple-200 bg-white p-4">
+        <p class="text-lg font-bold text-purple">-30% iterations</p>
+        <p class="text-xs text-text-secondary">fewer rounds of feedback when using planning</p>
+      </div>
+
+      <div class="rounded-lg border border-purple-200 bg-white p-4">
+        <p class="text-lg font-bold text-purple">1–2 week ramp</p>
+        <p class="text-xs text-text-secondary">before seeing consistent results</p>
+      </div>
+    </div>
+
+    <p class="mt-5 text-sm text-text-secondary">
+      The ROI isn't immediate — it takes 1–2 weeks to learn how to work with Claude effectively. But after that ramp period, the velocity gains are real and measurable.
+    </p>
+
+    <BeginnerNote title="A warning">
+      These numbers are averages. Your results depend on your skill, how well you prompt, whether you use the planning workflow, and your project type. If you jump in and start asking Claude to "build a feature," you'll get decent code but miss the 10x gains. The tools work best when you <em>plan first, then build.</em>
+    </BeginnerNote>
+  </section>
+
+  <!-- Up Next -->
+  <section class="mt-12 rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Up Next</h2>
+    <p class="mt-3 text-text-secondary">
+      You've learned the features. Now it's time to put them together into a real workflow. The next module ties everything together.
+    </p>
+  </section>
+
 </MainLayout>

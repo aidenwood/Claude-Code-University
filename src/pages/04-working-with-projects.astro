@@ -187,4 +187,85 @@ import BeginnerNote from '../components/BeginnerNote.astro';
     </div>
   </section>
 
+  <!-- 6. CLAUDE.md Best Practices -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">CLAUDE.md best practices</h2>
+    <p class="mt-3 text-text-secondary">
+      CLAUDE.md is powerful, but it has limits. Following these patterns keeps it effective and ensures Claude uses it properly.
+    </p>
+
+    <div class="mt-4 space-y-4">
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Keep it under 200 lines</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Once CLAUDE.md exceeds 200 lines, Claude's compliance degrades. The file becomes a junk drawer instead of a cheat sheet. If your project needs more guidance, break large rule sets into separate files in <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">.claude/rules/</code>.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Use the hierarchy wisely</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          CLAUDE.md files cascade. Your global instructions live in <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">~/.claude/CLAUDE.md</code>, project defaults in <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">/project/CLAUDE.md</code>, and directory-specific rules in <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">/dir/CLAUDE.md</code>. Personal overrides live in <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">.claude/settings.local.json</code>.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">What to include (and what to skip)</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          <strong>Do include:</strong> build commands, code conventions, tech stack, hard rules that never change. <strong>Don't include:</strong> architecture you're still exploring, debugging notes from last week, temporary context, or problems you're trying to solve.
+        </p>
+      </div>
+    </div>
+
+    <p class="mt-4 text-sm font-semibold text-text">Minimal CLAUDE.md example:</p>
+    <CopyBlock
+      command={`# Simple Invoice (SaaS)\n\n## Stack\n- Next.js 15, React 19, TypeScript\n- Supabase (Postgres, RLS, Auth)\n- Stripe for payments\n- Deployed on Netlify\n\n## Code Style\n- Server components by default\n- Client components with 'use client' at top\n- Tailwind only, no CSS modules\n- Zod for form validation\n\n## Hard Rules\n- Never change colors without asking\n- RLS policies before inserts\n- Always verify Stripe webhook signatures`}
+      breakdown={[
+        { segment: '# Simple Invoice', explanation: 'Project name — keeps it scannable' },
+        { segment: '## Stack', explanation: 'Frameworks and key tools only' },
+        { segment: '## Code Style', explanation: 'Patterns that affect every file' },
+        { segment: '## Hard Rules', explanation: 'Non-negotiable constraints' },
+      ]}
+    />
+
+    <BeginnerNote>
+      Think of CLAUDE.md like a cheat sheet for a new team member. Short, clear, essential. If you have to flip through more than 2 screens to find something, it's too long.
+    </BeginnerNote>
+  </section>
+
+  <!-- 7. Auto Memory -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Auto Memory — Claude learning your patterns</h2>
+    <p class="mt-3 text-text-secondary">
+      Beyond CLAUDE.md, Claude observes and remembers your patterns. Over multiple sessions, it builds a mental model of how you work, what you care about, and the code style you prefer.
+    </p>
+
+    <div class="mt-4 space-y-4">
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">What Auto Memory captures</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Build commands you use repeatedly. Debugging patterns you follow. Component conventions you prefer. The files you ask about most. Your communication style. Error messages you fix over and over. These observations compound — the more you work on a project, the faster Claude becomes.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">CLAUDE.md + Auto Memory</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          CLAUDE.md is explicit: "always use TypeScript strict mode." Auto Memory is implicit: "this person always runs <code class="rounded bg-background-alt px-1.5 py-0.5 text-xs font-mono text-text">pnpm test</code> before committing, even when I don't ask." Together they make Claude your ideal teammate.
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-background p-4">
+        <p class="text-sm font-semibold text-text">Building better memory</p>
+        <p class="mt-1 text-sm text-text-secondary">
+          Be consistent. Run the same commands, follow the same naming conventions, ask questions in the same order. Claude learns from repetition. The more predictable you are, the faster it adapts.
+        </p>
+      </div>
+    </div>
+
+    <BeginnerNote>
+      Auto Memory is like Claude taking notes about how you work. Over time, it gets better at matching your style without you having to spell everything out every session.
+    </BeginnerNote>
+  </section>
+
 </MainLayout>
