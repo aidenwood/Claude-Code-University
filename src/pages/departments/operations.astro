@@ -1,0 +1,250 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import CopyBlock from '../../components/CopyBlock.astro';
+import BeginnerNote from '../../components/BeginnerNote.astro';
+import ThisNotThat from '../../components/ThisNotThat.astro';
+---
+
+<MainLayout
+  title="Operations & Project Management Training"
+  subtitle="Claude Code for ops — processes, SOPs, resource planning, and workflow automation"
+>
+  <!-- What Claude Can Do For Operations -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">What Claude Can Do For Operations</h2>
+    <p class="text-text-secondary mb-4">
+      Claude transforms how your operations team works. Read messy process notes, timesheets, and project files — Claude turns them into structured SOPs, catches bottlenecks, identifies over-allocated staff, and surfaces exactly what's blocking progress.
+    </p>
+    <ul class="space-y-2 text-text-secondary">
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Write & update SOPs:</strong> Read raw notes, generate formal procedures with steps, roles, timeframes, and escalations</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Analyze project timelines:</strong> Flag overdue tasks, identify blockers, calculate completion %, spot critical path</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Resource planning:</strong> Find who's over-allocated, flag capacity risks, suggest task redistribution</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Meeting notes to action items:</strong> Extract decisions, owners, due dates; flag unresolved issues</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Process mapping & automation:</strong> Identify repeatable steps, estimate time savings, prioritize by ROI</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Capacity & utilization analysis:</strong> Contractor hours, peak periods, staffing recommendations</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Standard Operating Procedures -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Standard Operating Procedures</h2>
+    <p class="text-text-secondary mb-6">
+      Turn chaotic process notes into formal SOPs your team can actually follow. Claude reads your current process documentation and generates structured procedures with numbered steps, roles, timeframes, and escalation paths.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read the current process notes in processes/ and create a formal SOP for the property assessment workflow — include steps, responsible roles, timeframes, and escalation triggers"
+        breakdown={[
+          { segment: "Read process notes", explanation: "extracts what people actually do" },
+          { segment: "formal SOP", explanation: "structures it with numbered steps" },
+          { segment: "responsible roles", explanation: "RACI matrix or role assignments" },
+          { segment: "escalation triggers", explanation: "when to escalate and to whom" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Create an SOP template based on our existing SOPs in sops/ folder — extract the common structure, then generate a new SOP for the client onboarding process"
+        breakdown={[
+          { segment: "Extract common structure", explanation: "finds the pattern in existing SOPs" },
+          { segment: "SOP template", explanation: "creates reusable format for future docs" },
+          { segment: "client onboarding", explanation: "applies template to new process" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Claude reads messy process notes and turns them into structured SOPs your team can actually follow. Messier input = better context. Include Slack threads, email chains, or handwritten notes.
+    </BeginnerNote>
+  </div>
+
+  <!-- Project Tracking & Timelines -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Project Tracking & Timelines</h2>
+    <p class="text-text-secondary mb-6">
+      Instantly see what's overdue, what's blocked, and what's on track. Claude reads your project tracker and highlights the exact blockers, completion percentage, and critical path items that need attention now.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read project-tracker.csv — flag any tasks overdue by more than 3 days, show blocked tasks and what's blocking them, and calculate overall project completion percentage"
+        breakdown={[
+          { segment: "flag overdue tasks", explanation: "shows what's slipping with urgency" },
+          { segment: "blocked tasks + blockers", explanation: "exact reason things are stuck" },
+          { segment: "completion percentage", explanation: "high-level project health" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Create a Gantt-style timeline breakdown for the Q3 office relocation project. Phases: planning (2 weeks), procurement (3 weeks), move (1 week), setup (1 week). Show dependencies"
+        breakdown={[
+          { segment: "Gantt timeline", explanation: "visual phase breakdown with dates" },
+          { segment: "Phases with durations", explanation: "clear milestones and timing" },
+          { segment: "dependencies", explanation: "what must finish before next phase starts" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Upload your tracker as CSV or paste the raw data. The messier the format, the more useful Claude becomes — it reads through the chaos and surfaces signal.
+    </BeginnerNote>
+  </div>
+
+  <!-- Resource Planning -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Resource Planning</h2>
+    <p class="text-text-secondary mb-6">
+      Find hidden capacity issues before they become crises. Claude cross-references staff availability and project assignments to flag over-allocation, identify who has bandwidth, and suggest rebalancing.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read staff-availability.csv and current-projects.csv — identify who's over-allocated (>100% capacity) and who has bandwidth. Suggest rebalancing"
+        breakdown={[
+          { segment: "Read both files", explanation: "combines availability + assignments" },
+          { segment: "over-allocated >100%", explanation: "flags exactly who's drowning" },
+          { segment: "who has bandwidth", explanation: "identifies capacity to pull from" },
+          { segment: "suggest rebalancing", explanation: "actionable redistribution ideas" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Analyze contractor-hours.csv for the last 6 months — show utilization rates, identify peak periods, and recommend optimal contractor count for next quarter"
+        breakdown={[
+          { segment: "utilization rates", explanation: "% of available hours used per month" },
+          { segment: "peak periods", explanation: "when do you need the most contractors" },
+          { segment: "optimal count", explanation: "right-sized staffing recommendation" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Always include time period and allocation units (hours, % FTE, task count) so Claude can calculate accurately. More historical data = better trend spotting.
+    </BeginnerNote>
+  </div>
+
+  <!-- Meeting Notes & Action Items -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Meeting Notes & Action Items</h2>
+    <p class="text-text-secondary mb-6">
+      Stop drowning in meeting notes. Claude extracts action items with owners and due dates, surfaces key decisions, and flags unresolved items that need follow-up.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read meeting-notes-raw.txt — extract action items with owners and due dates, list key decisions made, and flag any unresolved items that need follow-up"
+        breakdown={[
+          { segment: "action items", explanation: "what was agreed to and by whom" },
+          { segment: "owners + due dates", explanation: "exactly who does what by when" },
+          { segment: "key decisions", explanation: "major calls made in the meeting" },
+          { segment: "unresolved items", explanation: "what still needs a decision" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Summarize the last 4 weekly standup notes in standups/ — show recurring blockers, track action item completion rate, highlight items that keep slipping"
+        breakdown={[
+          { segment: "recurring blockers", explanation: "what's blocking multiple weeks" },
+          { segment: "completion rate", explanation: "% of action items actually done" },
+          { segment: "slipping items", explanation: "tasks mentioned >1 week without closure" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Paste raw notes (don't reformat). Include timestamps or dates so Claude can track velocity and patterns across multiple meetings.
+    </BeginnerNote>
+  </div>
+
+  <!-- This / Not That -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Common Mistakes — Do This Instead</h2>
+
+    <ThisNotThat
+      notThis="Help me organize the project"
+      notThisDetail="Too vague. How is it organized now? What's the format?"
+      doThis="Read project-tracker.csv, identify the critical path, flag tasks at risk of slipping based on current velocity, and suggest which tasks to parallelize"
+      doThisDetail="Claude analyzes actual data and gives you specific risks and optimization moves."
+    />
+
+    <ThisNotThat
+      notThis="Write a process document"
+      notThisDetail="Claude doesn't know your process. Upload your raw notes or existing examples."
+      doThis="Read the existing notes in processes/assessment-workflow.md and the team's Slack export in comms/ — create a formal SOP with numbered steps, RACI matrix, and exception handling"
+      doThisDetail="Claude sees how the process actually runs, matches your tone and format, and structures it properly."
+    />
+
+    <ThisNotThat
+      notThis="Check on team capacity"
+      notThisDetail="Need numbers. What's allocated vs available? In what units?"
+      doThis="Read staff-availability.csv and current-projects.csv, calculate hours allocated vs available per person, flag anyone over 90% utilization, suggest task redistribution"
+      doThisDetail="Claude does the math and gives you actionable redistribution options."
+    />
+
+    <ThisNotThat
+      notThis="Summarize the meeting"
+      notThisDetail="Upload actual notes. Don't paraphrase or Claude loses detail."
+      doThis="Read meeting-notes-raw.txt — extract action items with owners and due dates, show which decisions reversed previous calls, and flag any items mentioned but not assigned"
+      doThisDetail="Claude pulls exact owners, dates, and inconsistencies you'd miss in a manual summary."
+    />
+  </div>
+
+  <!-- Workflow Automation -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Workflow Automation</h2>
+    <p class="text-text-secondary mb-6">
+      Find the repetitive steps killing your team's time. Claude maps your processes, identifies automatable steps, estimates time savings, and prioritizes by ROI.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read our current manual checklist in checklists/new-claim.md — convert it into a structured JSON schema that could be used in a digital form system"
+        breakdown={[
+          { segment: "Read checklist", explanation: "sees current steps and format" },
+          { segment: "JSON schema", explanation: "machine-readable structure for a form" },
+          { segment: "digital form system", explanation: "ready to plug into an app or workflow tool" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Analyze the steps in process-map.md — identify repetitive steps that could be automated, estimate time savings per occurrence, and prioritize by ROI"
+        breakdown={[
+          { segment: "repetitive steps", explanation: "manual work that happens the same way each time" },
+          { segment: "time savings per occurrence", explanation: "how many minutes we save per cycle" },
+          { segment: "prioritize by ROI", explanation: "high-impact automations first" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote title="Pro tip">
+      Include frequency (how often this step runs) and current time per cycle. Claude calculates total time savings and spots the high-value automations first.
+    </BeginnerNote>
+  </div>
+
+  <!-- Back to Hub -->
+  <div class="mt-8 rounded-xl border border-border bg-background-alt p-5 text-center">
+    <p class="text-sm text-text-secondary">
+      Ready for more? Explore other departments or jump back to the main course.
+      <br />
+      <a href="/departments" class="font-medium text-purple hover:underline">All departments &rarr;</a>
+    </p>
+  </div>
+</MainLayout>

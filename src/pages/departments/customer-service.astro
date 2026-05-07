@@ -1,0 +1,226 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import CopyBlock from '../../components/CopyBlock.astro';
+import BeginnerNote from '../../components/BeginnerNote.astro';
+import ThisNotThat from '../../components/ThisNotThat.astro';
+---
+
+<MainLayout
+  title="Customer Service Team Training"
+  subtitle="Claude Code for support — response templates, ticket analysis, FAQ management, and feedback reports"
+>
+  <!-- Section 1: What Claude Can Do For Customer Service -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="mb-4 text-2xl font-bold text-text">What Claude Can Do For Customer Service</h2>
+    <div class="space-y-2 text-text-secondary">
+      <p><strong>Draft response templates</strong> — Read existing templates + recent tickets. Generate new ones matching your tone.</p>
+      <p><strong>Analyze ticket trends</strong> — Parse CSV data. Find response times, resolution times, SLA gaps, seasonal spikes, issue categories.</p>
+      <p><strong>Manage FAQs</strong> — Compare current FAQ vs. recent tickets. Identify missing Q&As. Rewrite for clarity/simplicity.</p>
+      <p><strong>Generate feedback reports</strong> — Categorize customer sentiment. Extract themes from complaints. Identify systemic problems.</p>
+      <p><strong>Create training scripts</strong> — Extract best-response patterns. Turn high-rated tickets into training examples.</p>
+      <p><strong>Sentiment analysis</strong> — Flag angry/frustrated customers. Spot repeat complainers. Track satisfaction over time.</p>
+      <p><strong>Escalation workflows</strong> — Read ticket history. Draft de-escalation responses. Identify when human intervention is needed.</p>
+    </div>
+  </section>
+
+  <!-- Section 2: Response Templates -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="mb-4 text-2xl font-bold text-text">Response Templates</h2>
+    <p class="mb-6 text-text-secondary">Consistency at scale. Claude reads your existing tone and generates templates for your most common questions.</p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read our existing templates in templates/customer-responses/ and create 5 new response templates for common hail damage claim enquiries — initial contact, assessment scheduling, report delivery, next steps, and claim closure. Match our brand voice and tone."
+        breakdown={[
+          { segment: "Read existing templates", explanation: "Claude mirrors your actual tone, not generic corporate-speak" },
+          { segment: "5 new templates", explanation: "Initial contact, assessment scheduling, report delivery, next steps, claim closure" },
+          { segment: "Match brand voice", explanation: "Ensures consistency across all customer communications" },
+        ]}
+      />
+
+      <CopyBlock
+        command="Read the last 20 customer emails in inbox/recent/ — identify the 5 most common questions and draft template responses for each, matching our existing tone in templates/."
+        breakdown={[
+          { segment: "Read recent emails", explanation: "Claude finds real patterns from actual customer questions" },
+          { segment: "5 most common questions", explanation: "Templates for high-volume, recurring issues" },
+          { segment: "Match existing tone", explanation: "References your current templates to maintain consistency" },
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      <p>Claude reads your existing templates to learn your tone and style. Templates = faster responses + consistent voice. Don't start from scratch.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 3: Ticket Analysis -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="mb-4 text-2xl font-bold text-text">Ticket Analysis</h2>
+    <p class="mb-6 text-text-secondary">Turn CSV data into metrics. Response times, resolution times, SLA gaps, trending issues.</p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read support-tickets-april.csv — show average response time, resolution time by category, and which issue types have the longest wait. Flag anything over our 24hr SLA."
+        breakdown={[
+          { segment: "Read CSV", explanation: "Claude parses ticket data and calculates metrics" },
+          { segment: "avg response time", explanation: "How fast do we first reply?" },
+          { segment: "resolution time by category", explanation: "What types of issues take longest?" },
+          { segment: "Flag 24hr SLA breaches", explanation: "Spot performance problems immediately" },
+        ]}
+      />
+
+      <CopyBlock
+        command="Analyze ticket-data.csv for the last 3 months — identify trending issues, show volume by day of week, and flag any spike patterns that suggest systemic problems."
+        breakdown={[
+          { segment: "3-month analysis", explanation: "Spot trends over time, not just one month" },
+          { segment: "Trending issues", explanation: "What complaints are increasing?" },
+          { segment: "Day of week volume", explanation: "When do support requests peak?" },
+          { segment: "Spike patterns", explanation: "Weather event? Product change? System outage?" },
+        ]}
+      />
+    </div>
+  </section>
+
+  <!-- Section 4: FAQ Management -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="mb-4 text-2xl font-bold text-text">FAQ Management</h2>
+    <p class="mb-6 text-text-secondary">Keep FAQ in sync with real customer questions. Find gaps. Simplify for readability.</p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read our current FAQ page at content/faq.md and the last 50 support tickets in tickets/ — find questions customers ask that aren't in our FAQ and draft new entries."
+        breakdown={[
+          { segment: "Compare FAQ vs tickets", explanation: "Find real customer questions not currently answered" },
+          { segment: "Draft new entries", explanation: "Based on actual support volume, not guesses" },
+          { segment: "50 tickets", explanation: "Large enough sample to find real patterns" },
+        ]}
+      />
+
+      <CopyBlock
+        command="Rewrite our FAQ entries in content/faq.md for a Grade 8 reading level — keep the information accurate but make it simpler and more scannable."
+        breakdown={[
+          { segment: "Grade 8 reading level", explanation: "Simpler words, shorter sentences, less jargon" },
+          { segment: "Accurate", explanation: "Don't lose technical detail, just communicate better" },
+          { segment: "Scannable", explanation: "Bold key phrases, short paragraphs, bullet points" },
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      <p>Customer-friendly FAQs reduce support tickets. If your FAQ doesn't answer the question, customers email support. Simple language = fewer confused customers.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 5: Customer Feedback & Sentiment -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="mb-4 text-2xl font-bold text-text">Customer Feedback & Sentiment</h2>
+    <p class="mb-6 text-text-secondary">Extract patterns from feedback. What's working? What's breaking? What do detractors complain about most?</p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read customer-reviews.csv — categorize feedback as positive/neutral/negative, extract common themes from negative reviews, and suggest specific improvements for the top 3 complaints."
+        breakdown={[
+          { segment: "Categorize sentiment", explanation: "Positive/neutral/negative sentiment split" },
+          { segment: "Common themes in negatives", explanation: "What do upset customers complain about?" },
+          { segment: "Top 3 complaints", explanation: "Prioritize fixes by frequency, not anecdotes" },
+        ]}
+      />
+
+      <CopyBlock
+        command="Analyze NPS-survey.csv — break down scores by service type, identify promoters' common praise and detractors' common complaints, draft a summary for the team meeting."
+        breakdown={[
+          { segment: "NPS by service type", explanation: "Which services have highest/lowest scores?" },
+          { segment: "Promoters' praise", explanation: "What do happy customers say?" },
+          { segment: "Detractors' complaints", explanation: "What upsets customers most?" },
+          { segment: "Team summary", explanation: "Ready-to-present findings with actionable patterns" },
+        ]}
+      />
+    </div>
+  </section>
+
+  <!-- Section 6: This / Not That -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="mb-4 text-2xl font-bold text-text">This / Not That for Support</h2>
+
+    <ThisNotThat
+      notThis="Write some customer email templates"
+      notThisDetail="Generic templates don't match your voice or solve real problems."
+      doThis="Read our existing templates in templates/ and recent tickets in tickets/ — create templates for the 5 most common unresolved question types, matching our brand voice"
+      doThisDetail="Based on actual customer questions + your existing tone. Solves real problems fast."
+    />
+
+    <ThisNotThat
+      notThis="Check our support metrics"
+      notThisDetail="Vague. Which metrics? Which period? What counts as a problem?"
+      doThis="Read support-tickets-april.csv, calculate avg response time, resolution time by category, SLA compliance rate, and flag the 3 worst-performing categories"
+      doThisDetail="Specific, measurable, actionable. Know exactly where you're losing time."
+    />
+
+    <ThisNotThat
+      notThis="Help with difficult customers"
+      notThisDetail="Too broad. Difficult how? What happened? What do they actually want?"
+      doThis="Read the conversation thread at tickets/escalated/ticket-4521.txt — draft a professional de-escalation response that addresses their specific concern about assessment delays"
+      doThisDetail="Claude sees the full context, understands the specific complaint, and addresses it directly."
+    />
+
+    <ThisNotThat
+      notThis="Create a training guide for new support staff"
+      notThisDetail="Starting from scratch = generic, not based on your best practices."
+      doThis="Read our best-rated ticket resolutions in tickets/five-star/ — extract the common patterns and create a training guide showing what great responses look like"
+      doThisDetail="Learn from your actual top performers. Teach patterns that work in your business."
+    />
+  </section>
+
+  <!-- Section 7: Training & Quality -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="mb-4 text-2xl font-bold text-text">Training & Quality</h2>
+    <p class="mb-6 text-text-secondary">Turn your best work into training. Benchmark performance. Identify skill gaps.</p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read our best-rated ticket resolutions in tickets/five-star/ — extract the common patterns and create a training guide showing what great responses look like."
+        breakdown={[
+          { segment: "Read five-star tickets", explanation: "What do your best responses have in common?" },
+          { segment: "Common patterns", explanation: "Response tone, structure, speed, helpfulness" },
+          { segment: "Training guide", explanation: "Teach new staff what excellence looks like" },
+        ]}
+      />
+
+      <CopyBlock
+        command="Compare response quality between team members using tickets-march.csv (has CSAT scores per agent) — identify top performers' techniques and areas where others can improve."
+        breakdown={[
+          { segment: "CSAT by agent", explanation: "Who has the highest satisfaction scores?" },
+          { segment: "Top performer techniques", explanation: "How do they write? How fast? What tone?" },
+          { segment: "Gap analysis", explanation: "What can lower-performing agents learn?" },
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      <p>Learn from your best staff. Claude can extract what makes them great, then teach everyone else those patterns. Training built on real examples beats generic templates.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Danger Warning -->
+  <section class="rounded-xl border border-danger/30 bg-danger-light p-6 md:p-8">
+    <div class="mb-3 flex items-center gap-2">
+      <span class="text-lg font-bold text-danger">⚠️ Security & Privacy</span>
+    </div>
+    <div class="space-y-2 text-sm text-text-secondary">
+      <p><strong>Never paste real customer names, phone numbers, claim IDs, or addresses into Claude.</strong> Use de-identified data — remove PII before sharing.</p>
+      <p>OK: "customer in Brisbane reported slow assessment turnaround"</p>
+      <p>NOT OK: "Sarah Johnson (0412 345 678) in Toowoomba complained about..."</p>
+      <p>Safe data: CSVs with anonymized IDs, truncated timestamps, no personal details. Numbers, categories, timestamps are safe.</p>
+    </div>
+  </section>
+
+  <!-- Link back to hub -->
+  <div class="mt-8 text-center">
+    <a
+      href="/departments"
+      class="inline-block rounded-lg border border-border px-4 py-2 text-sm font-medium text-text-secondary transition-colors hover:border-purple hover:text-purple"
+    >
+      ← Back to Department Hub
+    </a>
+  </div>
+</MainLayout>

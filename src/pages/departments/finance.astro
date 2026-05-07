@@ -1,0 +1,268 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import CopyBlock from '../../components/CopyBlock.astro';
+import BeginnerNote from '../../components/BeginnerNote.astro';
+import ThisNotThat from '../../components/ThisNotThat.astro';
+---
+
+<MainLayout
+  title="Finance & Accounting Team Training"
+  subtitle="Claude Code for finance — invoices, budgets, expense analysis, and financial reporting"
+>
+  <!-- What Claude Can Do For Finance -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">What Claude Can Do For Finance</h2>
+    <p class="text-text-secondary mb-4">
+      Claude automates the data entry and analysis work that drains accounting teams. From invoice processing to budget variance analysis, Claude reads your files, extracts data, and generates reports in minutes instead of hours.
+    </p>
+    <ul class="space-y-2 text-text-secondary">
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Invoice processing:</strong> Extract vendor, amount, date, GST from PDFs — output as CSV</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Expense categorization:</strong> Read raw expenses, match to chart of accounts, flag outliers</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Budget analysis:</strong> Compare actuals vs budget, calculate variance, suggest reallocation</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Financial reporting:</strong> Generate P&L, cash flow forecasts, monthly summaries</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Reconciliation:</strong> Match bank statements to ledger, flag unmatched transactions</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Tax prep summaries:</strong> GST, FBT, BAS calculations and supporting documentation</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Invoice & Expense Processing -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Invoice & Expense Processing</h2>
+    <p class="text-text-secondary mb-6">
+      Turn stacks of invoices into structured data. Claude reads PDFs and CSVs, extracts the numbers you need, and outputs clean data ready for entry into your accounting system.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read invoices/ folder — extract vendor name, invoice number, amount, due date, and GST from each PDF. Output as a CSV sorted by due date"
+        breakdown={[
+          { segment: "Read invoices/", explanation: "processes all PDFs in the folder" },
+          { segment: "extract vendor, amount, date, GST", explanation: "captures the four key fields" },
+          { segment: "Output as CSV", explanation: "ready-to-paste format for accounting system" },
+          { segment: "sorted by due date", explanation: "organized by urgency" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Categorize expenses in expense-report-march.csv using our chart of accounts in chart-of-accounts.csv — flag anything over $5,000 for review"
+        breakdown={[
+          { segment: "Categorize expenses", explanation: "assigns each to an account code" },
+          { segment: "using chart of accounts", explanation: "matches your exact account structure" },
+          { segment: "flag over $5,000", explanation: "highlights items needing approval" },
+          { segment: "for review", explanation: "marks exceptions for accountant sign-off" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      Claude reads PDFs and CSVs — turns hours of data entry into minutes. Upload the files directly; no manual retyping needed.
+    </BeginnerNote>
+  </div>
+
+  <!-- Budget Analysis -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Budget Analysis</h2>
+    <p class="text-text-secondary mb-6">
+      Track spending against budget in real time. Claude compares actuals to targets, calculates variance, and identifies cost control opportunities by department.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Compare actual spending in actuals-q1.csv against budget-q1.csv — show variance by department, highlight anything over 10% above budget"
+        breakdown={[
+          { segment: "Compare actuals vs budget", explanation: "calculates actual minus budget" },
+          { segment: "variance by department", explanation: "breaks down over/under by cost center" },
+          { segment: "over 10% above budget", explanation: "flags material variances automatically" },
+          { segment: "highlight", explanation: "shows which departments need attention" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read our last 12 months of expenses in expenses-2025.csv and project monthly costs for Q3 based on seasonal trends"
+        breakdown={[
+          { segment: "12 months expenses", explanation: "identifies seasonal patterns" },
+          { segment: "project Q3 costs", explanation: "forecasts forward based on history" },
+          { segment: "seasonal trends", explanation: "accounts for predictable variations" },
+          { segment: "monthly breakdown", explanation: "shows expected spend each month" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      Always include the full year of data — Claude learns your seasonal patterns and gives better forecasts.
+    </BeginnerNote>
+  </div>
+
+  <!-- Financial Reporting -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Financial Reporting</h2>
+    <p class="text-text-secondary mb-6">
+      Generate monthly P&L, cash flow forecasts, and financial summaries. Claude reads your transactions, organizes by category, and formats for board presentations or stakeholder reviews.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Generate a monthly P&L summary from transactions-april.csv — revenue, COGS, operating expenses, net profit. Format as a clean table"
+        breakdown={[
+          { segment: "monthly P&L summary", explanation: "standard profit & loss format" },
+          { segment: "from transactions-april.csv", explanation: "reads actual transaction data" },
+          { segment: "revenue, COGS, op. expenses", explanation: "organizes by standard line items" },
+          { segment: "Format as clean table", explanation: "presentation-ready output" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Create a cash flow forecast for the next 90 days using receivables.csv, payables.csv, and recurring-costs.csv"
+        breakdown={[
+          { segment: "90-day cash flow forecast", explanation: "projects cash in and out" },
+          { segment: "receivables.csv", explanation: "when you expect to collect from customers" },
+          { segment: "payables.csv", explanation: "when you need to pay suppliers" },
+          { segment: "recurring-costs.csv", explanation: "regular monthly expenses" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      Include all data sources — receivables, payables, and operating costs. More data = more accurate forecast.
+    </BeginnerNote>
+  </div>
+
+  <!-- Reconciliation -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Reconciliation</h2>
+    <p class="text-text-secondary mb-6">
+      Close the books faster. Claude matches transactions between sources, flags discrepancies, and generates reconciliation reports automatically.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Compare bank-statement-april.csv against our ledger in xero-export.csv — find unmatched transactions and output them in a reconciliation report"
+        breakdown={[
+          { segment: "Compare bank vs ledger", explanation: "matches transaction by amount and date" },
+          { segment: "find unmatched", explanation: "identifies items not in both sources" },
+          { segment: "reconciliation report", explanation: "formatted for accountant review" },
+          { segment: "output", explanation: "shows what needs manual investigation" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read the three supplier statements in statements/ and match them against our AP in accounts-payable.csv — flag discrepancies"
+        breakdown={[
+          { segment: "Read supplier statements", explanation: "processes multiple PDFs at once" },
+          { segment: "match against AP ledger", explanation: "cross-references your records" },
+          { segment: "flag discrepancies", explanation: "highlights amounts that don't match" },
+          { segment: "by supplier", explanation: "organized for supplier correspondence" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      Bank feeds can have timing differences. Claude flags the gaps; you decide if it's a timing issue or an error.
+    </BeginnerNote>
+  </div>
+
+  <!-- This / Not That -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Common Mistakes — Do This Instead</h2>
+
+    <ThisNotThat
+      notThis="Analyze our finances"
+      notThisDetail="Too vague. Which files? Which metrics? Which period?"
+      doThis="Read actuals-q1.csv and budget-q1.csv, calculate variance by line item, highlight departments over budget, and suggest reallocation from underspent areas"
+      doThisDetail="Claude sees the actual numbers, calculates what matters, and gives you actionable options."
+    />
+
+    <ThisNotThat
+      notThis="Help with invoices"
+      notThisDetail="Which invoices? Extract what fields? Output where?"
+      doThis="Read the 15 PDFs in invoices/pending/ — extract vendor, amount, GST, due date into a CSV and flag any due within 7 days"
+      doThisDetail="Claude processes all files, pulls the data you need, and highlights urgent items."
+    />
+
+    <ThisNotThat
+      notThis="Do the BAS"
+      notThisDetail="Which transactions? Which period? GST or other tax?"
+      doThis="Read transactions-q1.csv, separate GST-eligible from GST-free, calculate total GST collected vs paid, and output the BAS summary figures"
+      doThisDetail="Claude categorizes transactions correctly and does the math — you review and lodge."
+    />
+
+    <ThisNotThat
+      notThis="Reconcile the bank"
+      notThisDetail="Which account? Which period? Against what?"
+      doThis="Compare bank-statement-may.csv against xero-export.csv, match transactions by amount and date, and list unmatched items with possible explanations"
+      doThisDetail="Claude shows exact gaps; you decide if it's timing, fees, or an error."
+    />
+  </div>
+
+  <!-- Tax & Compliance -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Tax & Compliance</h2>
+    <p class="text-text-secondary mb-6">
+      Prepare tax documents faster. Claude separates eligible transactions, calculates GST and FBT, and generates BAS summaries and compliance reports.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read transactions-2025.csv — separate GST-eligible transactions, calculate total GST collected and GST paid, summarize for BAS preparation"
+        breakdown={[
+          { segment: "Read transactions-2025.csv", explanation: "processes annual data" },
+          { segment: "GST-eligible transactions", explanation: "filters by GST treatment" },
+          { segment: "GST collected and paid", explanation: "calculates what you owe/receive" },
+          { segment: "BAS summary", explanation: "figures ready for tax office" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Generate a FBT summary from benefits-register.csv — categorize by benefit type, calculate grossed-up values, flag any near the reportable threshold"
+        breakdown={[
+          { segment: "FBT summary", explanation: "fringe benefits tax calculation" },
+          { segment: "from benefits-register.csv", explanation: "reads your benefit records" },
+          { segment: "categorize by benefit type", explanation: "meals, car parking, phones, etc." },
+          { segment: "flag near threshold", explanation: "alerts you before you exceed limits" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      Always cite your tax year and jurisdiction in the prompt (Australia 2025, etc.). Claude knows the rules but confirms with you.
+    </BeginnerNote>
+  </div>
+
+  <!-- Data Security Warning -->
+  <div class="my-6 rounded-xl border-2 border-danger/30 bg-danger-light p-5">
+    <div class="mb-2 flex items-center gap-2">
+      <span class="flex h-6 w-6 items-center justify-center rounded-full bg-danger text-white text-xs font-bold">!</span>
+      <span class="text-sm font-bold uppercase tracking-wide text-danger">Financial Data Security</span>
+    </div>
+    <p class="text-sm text-text">
+      <strong>Never paste real bank account numbers, credit card details, tax file numbers, or live client financial data into Claude.</strong> Use de-identified data, test data, or file structures without amounts. De-identification is essential even for internal files — privacy and security rules apply to all financial data.
+    </p>
+  </div>
+
+  <!-- Back to Hub -->
+  <div class="mt-8 rounded-xl border border-border bg-background-alt p-5 text-center">
+    <p class="text-sm text-text-secondary">
+      Ready for more? Explore other departments or jump back to the main course.
+      <br />
+      <a href="/departments" class="font-medium text-purple hover:underline">All departments &rarr;</a>
+    </p>
+  </div>
+</MainLayout>
