@@ -272,4 +272,283 @@ import ThisNotThat from '../../components/ThisNotThat.astro';
     </p>
   </div>
 
+  <!-- Khushi's Training Roadmap -->
+  <section class="rounded-xl border-2 border-[#47B1CC]/20 bg-surface p-6 md:p-8 mt-8" id="khushi-roadmap">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#47B1CC] text-sm font-bold text-white">KH</span>
+      <div>
+        <h2 class="text-xl font-bold text-text">Khushi's 3-Day Claude Code Kickstart</h2>
+        <p class="text-sm text-text-muted">Marketing Content Creator &amp; Meta Ad Manager</p>
+      </div>
+    </div>
+    <p class="mt-4 text-text-secondary">
+      Three focused days to go from zero to using Claude Code for content creation, ad management, and campaign analytics. By the end of Day 3, you'll have real workflows you can use every week.
+    </p>
+
+    <!-- Day 1: Setup & Content Creation -->
+    <div class="rounded-xl border border-border bg-background-alt p-5 mt-6">
+      <h3 class="text-lg font-bold text-text mb-4">Day 1: Setup & Content Creation</h3>
+
+      <!-- Morning Session -->
+      <div class="mb-5">
+        <h4 class="font-semibold text-text mb-3 text-sm uppercase tracking-wide text-[#47B1CC]">Morning — Get Set Up (2 hours)</h4>
+        <ul class="space-y-2 text-sm text-text-secondary list-disc list-inside">
+          <li>Complete Module 1 (dev environment: Homebrew, Node, Git, GitHub Desktop, Claude Code)</li>
+          <li>Read Module 2 (Terminal Survival Kit) — just the 6 commands</li>
+          <li>Read Module 3 (Your First Conversation) — run <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs font-mono">claude</code> for the first time</li>
+          <li>Practice opening Terminal from a folder (right-click → New Terminal at Folder)</li>
+        </ul>
+
+        <CopyBlock
+          command={`claude`}
+          breakdown={[
+            { segment: "Then ask:", explanation: "\"What can you help me with for marketing content creation?\"" }
+          ]}
+        />
+
+        <BeginnerNote title="Key concept">
+          <p>You don't need to understand code. You're learning to talk to Claude, not to program.</p>
+        </BeginnerNote>
+      </div>
+
+      <!-- Afternoon Session -->
+      <div class="border-t border-border pt-5">
+        <h4 class="font-semibold text-text mb-3 text-sm uppercase tracking-wide text-[#47B1CC]">Afternoon — Content Creation Workflows (3 hours)</h4>
+
+        <div class="space-y-4">
+          <div>
+            <p class="text-sm font-semibold text-text mb-2">1. Read the Marketing training page (sections 1-3)</p>
+            <p class="text-sm font-semibold text-text mb-2">2. Create a project folder: <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs font-mono">marketing-content/</code> with a subfolder for brand docs</p>
+            <p class="text-sm font-semibold text-text mb-3">3. Copy your brand voice guide, style guide, and example posts into the folder</p>
+
+            <p class="text-sm font-semibold text-text mb-2">Practice: Generate a week of social content</p>
+            <CopyBlock
+              command={`Read all the files in this folder to understand our brand voice. Then create a 5-day social media calendar for our storm season campaign. For each day: one LinkedIn post (professional, 100-150 words), one Facebook post (community-focused, 80-120 words), and one Instagram caption (visual-first, under 80 words with hashtags). All posts should reference free roof inspections.`}
+              breakdown={[
+                { segment: "brand voice", explanation: "Claude learns from your actual files, not a description" },
+                { segment: "5-day calendar", explanation: "consistent, ready-to-schedule content" },
+                { segment: "platform-specific", explanation: "LinkedIn professional, Facebook community, Instagram visual" },
+                { segment: "CTA baked in", explanation: "free roof inspections mentioned in every post" }
+              ]}
+            />
+          </div>
+
+          <div class="border-t border-border pt-4">
+            <p class="text-sm font-semibold text-text mb-2">Practice: Blog post creation</p>
+            <CopyBlock
+              command={`Write a blog post titled 'What to Do After a Hailstorm Hits Your Roof — A Homeowner's Guide'. 800 words, conversational but authoritative tone. Include: immediate steps, when to call a professional, insurance claim timeline, and a CTA to book a free inspection. Add a meta title (under 60 chars) and meta description (under 155 chars).`}
+              breakdown={[
+                { segment: "800 words", explanation: "publishable, substantive length" },
+                { segment: "conversational but authoritative", explanation: "helpful, not stuffy" },
+                { segment: "practical sections", explanation: "immediate steps, timing, process" },
+                { segment: "meta title + description", explanation: "SEO-ready for search results" }
+              ]}
+            />
+          </div>
+
+          <div class="border-t border-border pt-4">
+            <p class="text-sm font-semibold text-text mb-2">Practice: Repurpose content</p>
+            <CopyBlock
+              command={`Read the blog post you just created and repurpose it into: 1. A 60-second video script, 2. Three Instagram carousel slide texts (punchy, one key point per slide), 3. A short email teaser (3 sentences + CTA link). Keep the same information but adapt the format.`}
+              breakdown={[
+                { segment: "video script", explanation: "spoken tone, pacing, visual cues" },
+                { segment: "carousel slides", explanation: "Instagram-native format, snappy copy" },
+                { segment: "email teaser", explanation: "short hook to drive clicks" },
+                { segment: "same info, different format", explanation: "maximize content ROI" }
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 2: Ad Copy & Campaign Analytics -->
+    <div class="rounded-xl border border-border bg-background-alt p-5 mt-6">
+      <h3 class="text-lg font-bold text-text mb-4">Day 2: Ad Copy & Campaign Analytics</h3>
+
+      <!-- Morning Session -->
+      <div class="mb-5">
+        <h4 class="font-semibold text-text mb-3 text-sm uppercase tracking-wide text-[#47B1CC]">Morning — Meta Ad Copy (2.5 hours)</h4>
+
+        <div class="space-y-4">
+          <div>
+            <p class="text-sm font-semibold text-text mb-2">Read the Marketing training sections on Campaign &amp; Ad Copy</p>
+
+            <p class="text-sm font-semibold text-text mb-2">Practice: Generate ad variations</p>
+            <CopyBlock
+              command={`Write 5 Meta (Facebook/Instagram) ad variations for our free roof inspection service. Target audience: homeowners in Western Sydney aged 35-65 who have experienced recent hail. For each ad: headline (under 40 chars), primary text (under 125 chars for mobile), description (under 30 chars), and a CTA button recommendation. Include at least 2 urgency-based variants and 2 trust-based variants.`}
+              breakdown={[
+                { segment: "5 variations", explanation: "test multiple psychological angles" },
+                { segment: "character limits", explanation: "Meta's actual constraints, not guesses" },
+                { segment: "urgency-based", explanation: "scarcity, time-sensitivity" },
+                { segment: "trust-based", explanation: "credentials, social proof, authority" }
+              ]}
+            />
+          </div>
+
+          <div class="border-t border-border pt-4">
+            <p class="text-sm font-semibold text-text mb-2">Practice: A/B test copy</p>
+            <CopyBlock
+              command={`I'm running an A/B test on our roof inspection ads. Version A headline: 'Free Roof Inspection After Hail'. Version B headline: 'Hidden Hail Damage? Check Free'. Write 3 more headline variations that test different angles: fear of missing out, social proof, and cost savings. Keep each under 40 characters.`}
+              breakdown={[
+                { segment: "A/B framework", explanation: "test control vs variant approach" },
+                { segment: "3 new angles", explanation: "FOMO, social proof, economics" },
+                { segment: "40 characters", explanation: "Meta headline hard limit" }
+              ]}
+            />
+          </div>
+
+          <div class="border-t border-border pt-4">
+            <p class="text-sm font-semibold text-text mb-2">Practice: Ad copy for different placements</p>
+            <CopyBlock
+              command={`Adapt our best-performing ad for these Meta placements: 1. Feed (primary text up to 125 chars), 2. Stories (super short — 2 lines max + swipe up CTA), 3. Reels (hook in first 3 seconds, casual tone). Same message, different format per placement.`}
+              breakdown={[
+                { segment: "feed", explanation: "longer, detailed, persuasive" },
+                { segment: "stories", explanation: "minimal text, visual-focused, sense of urgency" },
+                { segment: "reels", explanation: "hook immediately, conversational, platform-native" }
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Afternoon Session -->
+      <div class="border-t border-border pt-5">
+        <h4 class="font-semibold text-text mb-3 text-sm uppercase tracking-wide text-[#47B1CC]">Afternoon — Campaign Analytics (2.5 hours)</h4>
+
+        <div class="space-y-4">
+          <div>
+            <p class="text-sm font-semibold text-text mb-2">Read the Marketing training sections on Analytics &amp; Reporting</p>
+
+            <p class="text-sm font-semibold text-text mb-2">Practice: Analyze campaign data</p>
+            <CopyBlock
+              command={`Read meta-ads-export.csv — create a performance report showing: top 3 campaigns by ROAS, worst 3 campaigns by CPA, cost per lead trend over the last 30 days, and which ad creative (image vs video) performs better. Recommend which campaigns to scale, which to pause, and where to reallocate budget. Output as a clean summary I can share with my manager.`}
+              breakdown={[
+                { segment: "ROAS (Return on Ad Spend)", explanation: "revenue per dollar spent" },
+                { segment: "CPA (Cost Per Acquisition)", explanation: "how much each lead costs" },
+                { segment: "30-day trend", explanation: "direction matters — is it improving?" },
+                { segment: "creative analysis", explanation: "which format works better" }
+              ]}
+            />
+          </div>
+
+          <div class="border-t border-border pt-4">
+            <p class="text-sm font-semibold text-text mb-2">Practice: Audience analysis</p>
+            <CopyBlock
+              command={`Read our Meta audience insights export in audience-data.csv — break down our engaged audience by: age group, gender, location (suburb level), device, and time of day they engage most. Identify our best-performing audience segment and recommend a lookalike audience strategy.`}
+              breakdown={[
+                { segment: "demographic breakdown", explanation: "who's actually engaging with us" },
+                { segment: "geographic detail", explanation: "suburb-level insights for hyper-local strategy" },
+                { segment: "engagement timing", explanation: "when to post and run ads" },
+                { segment: "lookalike audiences", explanation: "scale to similar high-value segments" }
+              ]}
+            />
+          </div>
+
+          <div class="border-t border-border pt-4">
+            <p class="text-sm font-semibold text-text mb-2">Practice: Monthly report</p>
+            <CopyBlock
+              command={`Read all the CSV exports in reports/ (Google Ads, Meta Ads, website analytics) — create a monthly marketing report with: total spend vs budget, leads generated per channel, cost per lead per channel, website traffic trend, top landing pages by conversion rate, and 3 recommendations for next month. Format it as a professional document I can present to the team.`}
+              breakdown={[
+                { segment: "multi-channel view", explanation: "Google, Meta, website all in one picture" },
+                { segment: "spend vs budget", explanation: "are we on track?" },
+                { segment: "channel comparison", explanation: "which channels deliver better quality leads" },
+                { segment: "recommendations", explanation: "not just metrics — strategic next steps" }
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3: Workflows & Automation -->
+    <div class="rounded-xl border border-border bg-background-alt p-5 mt-6">
+      <h3 class="text-lg font-bold text-text mb-4">Day 3: Workflows & Automation</h3>
+
+      <!-- Morning Session -->
+      <div class="mb-5">
+        <h4 class="font-semibold text-text mb-3 text-sm uppercase tracking-wide text-[#47B1CC]">Morning — SEO & Content Optimization (2 hours)</h4>
+
+        <CopyBlock
+          command={`Read our website content in content/pages/ — audit every page for SEO basics: does it have a meta title under 60 chars, meta description under 155 chars, proper H1-H2-H3 hierarchy, alt text on images, and at least one internal link? Output a table showing each page, what's missing, and a priority rating (high/medium/low).`}
+          breakdown={[
+            { segment: "meta title/description", explanation: "visible in search results — must be compelling" },
+            { segment: "heading hierarchy", explanation: "H1-H2-H3 structure helps search engines" },
+            { segment: "alt text on images", explanation: "accessibility + SEO signal" },
+            { segment: "internal links", explanation: "keeps visitors on-site, distributes authority" }
+          ]}
+        />
+
+        <div class="border-t border-border pt-4 mt-4">
+          <CopyBlock
+            command={`Read our target keywords in keywords.csv and our existing blog posts in content/blog/ — find keyword gaps: which target keywords don't have a blog post yet? Prioritize by search volume and suggest 5 blog topics that would fill the biggest gaps.`}
+            breakdown={[
+              { segment: "keyword coverage analysis", explanation: "are we owning the keywords that matter?" },
+              { segment: "gap identification", explanation: "unserved, high-value search terms" },
+              { segment: "search volume priority", explanation: "focus on keywords people actually search" },
+              { segment: "content roadmap", explanation: "what to write next for maximum impact" }
+            ]}
+          />
+        </div>
+      </div>
+
+      <!-- Afternoon Session -->
+      <div class="border-t border-border pt-5">
+        <h4 class="font-semibold text-text mb-3 text-sm uppercase tracking-wide text-[#47B1CC]">Afternoon — Build Your Repeatable Workflows (3 hours)</h4>
+
+        <div class="space-y-4">
+          <div>
+            <p class="text-sm font-semibold text-text mb-2">1. Create a <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs font-mono">marketing-prompts/</code> folder with your best prompts saved as text files</p>
+
+            <CopyBlock
+              command={`Read all the prompts I've used in this session. Save the best ones as individual .md files in marketing-prompts/ with descriptive filenames like weekly-social-calendar.md, blog-post-generator.md, meta-ad-variations.md, monthly-report.md. Include a README.md explaining what each prompt does and when to use it.`}
+              breakdown={[
+                { segment: "prompt library", explanation: "reusable templates you'll run weekly" },
+                { segment: "descriptive filenames", explanation: "find the right prompt fast" },
+                { segment: "README.md", explanation: "quick reference for when to use each one" }
+              ]}
+            />
+          </div>
+
+          <div class="border-t border-border pt-4">
+            <p class="text-sm font-semibold text-text mb-2">2. Read Module 5 (Think Like a Developer) — learn This/Not That patterns</p>
+            <p class="text-sm font-semibold text-text mb-3">3. Read Module 9 (Security &amp; Privacy) — know what NOT to paste (customer data, ad account credentials)</p>
+
+            <p class="text-sm font-semibold text-text mb-2">4. Set up a CLAUDE.md for the marketing-content project</p>
+            <CopyBlock
+              command={`Create a CLAUDE.md file for this project that includes: our brand voice (professional but approachable, Australian English, insurance industry), our target audiences (homeowners 35-65, Western Sydney focus), our key services (free roof inspections, hail damage claims), and rules (always include a CTA, never promise specific claim amounts, always mention 'free inspection').`}
+              breakdown={[
+                { segment: "brand voice", explanation: "Claude learns your exact tone and vocabulary" },
+                { segment: "target audiences", explanation: "ensures copy speaks to the right people" },
+                { segment: "key services", explanation: "what you're selling, what you're emphasizing" },
+                { segment: "guardrails", explanation: "compliance rules, CTAs, forbidden statements" }
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What You'll Have -->
+    <div class="rounded-xl border border-[#47B1CC] bg-[#47B1CC]/5 p-5 mt-6">
+      <h3 class="text-lg font-bold text-text mb-3">What You'll Have After 3 Days</h3>
+      <ul class="space-y-2 text-sm text-text-secondary list-disc list-inside">
+        <li><strong>A library of reusable prompt templates</strong> for weekly content creation</li>
+        <li><strong>Meta ad copy generation workflow</strong> — 5 variations in minutes, not hours</li>
+        <li><strong>Campaign analytics reporting</strong> you can run on any CSV export</li>
+        <li><strong>SEO audit capability</strong> for the entire website</li>
+        <li><strong>A CLAUDE.md</strong> that teaches Claude your brand voice</li>
+        <li><strong>Confidence</strong> to use Claude for any content or analytics task going forward</li>
+      </ul>
+    </div>
+
+    <!-- Weekly Workflow Tip -->
+    <div class="rounded-xl border border-border bg-background-alt p-5 mt-4">
+      <p class="text-xs font-semibold uppercase tracking-wide text-text mb-2">Weekly workflow suggestion</p>
+      <p class="text-sm text-text-secondary">
+        <strong>Every Monday morning,</strong> run your social calendar prompt. <strong>Every Friday,</strong> run your analytics report prompt. Claude remembers your brand voice from CLAUDE.md — so the output stays consistent week to week.
+      </p>
+    </div>
+  </section>
+
 </MainLayout>
