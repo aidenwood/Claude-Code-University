@@ -1,0 +1,268 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import CopyBlock from '../../components/CopyBlock.astro';
+import BeginnerNote from '../../components/BeginnerNote.astro';
+import ThisNotThat from '../../components/ThisNotThat.astro';
+---
+
+<MainLayout
+  title="IT & Systems Admin Training"
+  subtitle="Claude Code for IT — automation scripts, server configs, documentation, and incident management"
+>
+  <!-- What Claude Can Do For IT -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">What Claude Can Do For IT</h2>
+    <p class="text-text-secondary mb-4">
+      Claude automates the repetitive work that burns out IT teams. Write automation scripts, generate config files, parse logs, document infrastructure, and manage incidents — all in minutes instead of hours.
+    </p>
+    <ul class="space-y-2 text-text-secondary">
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Automation scripts:</strong> Bash, Python, PowerShell — any language, any task</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Config generation:</strong> nginx, Docker, Kubernetes, database configs with defaults</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Log analysis:</strong> Parse gigabytes of logs, find errors, spot patterns, identify threats</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Infrastructure docs:</strong> Generate architecture diagrams, runbooks, deployment procedures</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Incident response:</strong> Parse notes, organize timelines, root cause analysis, remediation steps</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Security audits:</strong> Check for exposed secrets, verify permissions, scan for vulnerabilities</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Automation Scripts -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Automation Scripts</h2>
+    <p class="text-text-secondary mb-6">
+      Write scripts in any language. Claude handles logic, error checking, and integrations. Just describe what you want — the script is ready to test.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Write a bash script that checks disk usage on all mounted volumes, sends a Slack webhook alert if any volume is over 85% full, and logs results to /var/log/disk-check.log with timestamps"
+        breakdown={[
+          { segment: "checks disk usage", explanation: "uses df to check all mounts" },
+          { segment: "over 85% full", explanation: "sets threshold for alert" },
+          { segment: "Slack webhook alert", explanation: "posts to your monitoring channel" },
+          { segment: "logs with timestamps", explanation: "tracks every check for audit" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Create a Python script that reads our user-accounts.csv, compares against active-directory-export.csv, and flags accounts that exist in AD but not in our records (potential orphan accounts)"
+        breakdown={[
+          { segment: "reads user-accounts.csv", explanation: "your current user database" },
+          { segment: "compares against AD export", explanation: "active directory authoritative source" },
+          { segment: "flags orphan accounts", explanation: "finds accounts not in your records" },
+          { segment: "potential security risk", explanation: "inactive accounts that need removal" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      Claude writes working scripts — just test in staging first. Include specific file paths, thresholds, and alert destinations so Claude gets the details right.
+    </BeginnerNote>
+  </div>
+
+  <!-- Server & Infrastructure Configs -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Server & Infrastructure Configs</h2>
+    <p class="text-text-secondary mb-6">
+      Generate production-ready configs for nginx, Docker, Kubernetes, and more. Claude adds security headers, rate limiting, health checks, and best practices by default.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Generate an nginx config for reverse-proxying our internal apps: app1 on port 3000 at app1.internal.company.com, app2 on port 8080 at app2.internal.company.com. Include SSL, rate limiting, and security headers"
+        breakdown={[
+          { segment: "reverse-proxy", explanation: "routes external requests to internal apps" },
+          { segment: "app1:3000, app2:8080", explanation: "internal service addresses" },
+          { segment: "SSL", explanation: "HTTPS encryption for security" },
+          { segment: "rate limiting + headers", explanation: "DoS protection and security hardening" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read our current docker-compose.yml and add a Redis cache service, connect it to the existing app service, add health checks, and set a 512MB memory limit"
+        breakdown={[
+          { segment: "add Redis service", explanation: "new cache layer for performance" },
+          { segment: "connect to app", explanation: "sets correct network and env vars" },
+          { segment: "health checks", explanation: "Docker monitors service readiness" },
+          { segment: "512MB limit", explanation: "resource constraint for cost control" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      Share your current config files — Claude reads them and outputs updated versions with minimal changes, keeping your existing setup intact.
+    </BeginnerNote>
+  </div>
+
+  <!-- Log Analysis & Troubleshooting -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Log Analysis & Troubleshooting</h2>
+    <p class="text-text-secondary mb-6">
+      Parse massive log files in seconds. Claude finds errors, identifies patterns, spots correlations with deployments, and flags security incidents.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read error-log.txt — find the most common error types, show frequency over time, and identify any patterns (time of day, specific endpoints, user agents)"
+        breakdown={[
+          { segment: "error types", explanation: "groups by error message or code" },
+          { segment: "frequency over time", explanation: "shows when errors spike" },
+          { segment: "patterns by endpoint", explanation: "finds which routes fail most" },
+          { segment: "correlate with time", explanation: "reveals if errors cluster at certain hours" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Analyze auth-failures.log for the last 7 days — identify IP addresses with more than 10 failed attempts, check for brute-force patterns, and generate a blocklist"
+        breakdown={[
+          { segment: "IP addresses", explanation: "groups failed logins by source" },
+          { segment: "more than 10 attempts", explanation: "threshold for suspicious activity" },
+          { segment: "brute-force patterns", explanation: "rapid-fire attempts from single IP" },
+          { segment: "blocklist output", explanation: "IPs ready for firewall rules" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      Large logs (100MB+) work fine — Claude streams analysis and highlights the critical bits. Include date ranges so Claude filters by time.
+    </BeginnerNote>
+  </div>
+
+  <!-- Infrastructure Documentation -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Infrastructure Documentation</h2>
+    <p class="text-text-secondary mb-6">
+      Turn config files and deployment scripts into clean documentation. Claude generates architecture diagrams, runbooks, and deployment procedures from your actual code.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read our infrastructure setup in configs/ and docker-compose files — generate a system architecture document showing services, ports, dependencies, and data flow"
+        breakdown={[
+          { segment: "read configs/ folder", explanation: "gathers all infrastructure files" },
+          { segment: "system architecture doc", explanation: "visual overview of the whole setup" },
+          { segment: "services + ports", explanation: "what runs where" },
+          { segment: "dependencies + data flow", explanation: "how services talk to each other" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Create a runbook for our deployment process: read deploy.sh and the CI config in .github/workflows/ — document each step, common failure modes, and rollback procedures"
+        breakdown={[
+          { segment: "read deploy.sh", explanation: "actual deployment script" },
+          { segment: "read CI workflow", explanation: "automated pipeline config" },
+          { segment: "document each step", explanation: "plain English walkthrough" },
+          { segment: "failure modes + rollback", explanation: "what can go wrong and how to fix it" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      Share your actual scripts and config files — Claude documents what you really run, not theoretical best practices. Runbooks end up in Confluence or your wiki.
+    </BeginnerNote>
+  </div>
+
+  <!-- This / Not That -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Common Mistakes — Do This Instead</h2>
+
+    <ThisNotThat
+      notThis="Write me a backup script"
+      notThisDetail="Where? What database? How often? Where does it go?"
+      doThis="Write a bash script that backs up the PostgreSQL database at SUPABASE_DB_URL to /backups/ with timestamp naming, retains the last 30 days, uploads to S3 bucket backup-bucket, and sends a Slack notification on success or failure"
+      doThisDetail="Claude sees the full picture: database source, retention policy, storage destination, and alerting."
+    />
+
+    <ThisNotThat
+      notThis="Check the logs"
+      notThisDetail="Which logs? Which period? What are you looking for?"
+      doThis="Read error-log.txt from the last 24 hours, group errors by type and endpoint, show a timeline of error spikes, and correlate with deploy times from deploy-history.csv"
+      doThisDetail="Claude parses, groups, and correlates — you get actionable insights instead of raw lines."
+    />
+
+    <ThisNotThat
+      notThis="Set up monitoring"
+      notThisDetail="Monitoring what? What thresholds? On which services?"
+      doThis="Read our docker-compose.yml services, generate a monitoring config for each service with health check endpoints, expected response times, and alert thresholds. Output as a Prometheus/Grafana config"
+      doThisDetail="Claude generates configs ready to apply — covers every service with sane defaults."
+    />
+
+    <ThisNotThat
+      notThis="Document the infrastructure"
+      notThisDetail="Which parts? What level of detail? For whom?"
+      doThis="Read all config files in infra/, deployment scripts in scripts/, and our current wiki page in docs/architecture.md — create an updated architecture doc showing services, ports, dependencies, and recent changes"
+      doThisDetail="Claude reads what you've already written and creates unified documentation."
+    />
+  </div>
+
+  <!-- Security & Incident Response -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Security & Incident Response</h2>
+    <p class="text-text-secondary mb-6">
+      Secure your infrastructure and respond to incidents faster. Claude audits for exposed secrets, analyzes incident logs, and generates formal reports.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Audit our .env files across all projects in ~/projects/ — check for hardcoded secrets, verify .gitignore includes .env, and flag any .env files that are tracked in git"
+        breakdown={[
+          { segment: "audit .env files", explanation: "checks all environment files" },
+          { segment: "hardcoded secrets", explanation: "finds API keys, tokens, passwords" },
+          { segment: "verify .gitignore", explanation: "ensures files aren't tracked in version control" },
+          { segment: "flag tracked .env", explanation: "potential exposure in git history" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read incident-report-template.md and the raw notes in incidents/2026-04-outage.txt — generate a formal incident report with timeline, root cause, impact assessment, and remediation steps"
+        breakdown={[
+          { segment: "incident notes", explanation: "raw troubleshooting logs" },
+          { segment: "timeline", explanation: "when each event occurred" },
+          { segment: "root cause", explanation: "what actually broke" },
+          { segment: "impact + remediation", explanation: "who was affected and how we fixed it" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      For incident reports, include timestamps and all troubleshooting notes — Claude organizes chaos into a clear narrative.
+    </BeginnerNote>
+  </div>
+
+  <!-- Data Security Warning -->
+  <div class="my-6 rounded-xl border-2 border-danger/30 bg-danger-light p-5">
+    <div class="mb-2 flex items-center gap-2">
+      <span class="flex h-6 w-6 items-center justify-center rounded-full bg-danger text-white text-xs font-bold">!</span>
+      <span class="text-sm font-bold uppercase tracking-wide text-danger">Never Share Production Secrets</span>
+    </div>
+    <p class="text-sm text-text">
+      <strong>Never paste production credentials, SSH keys, database connection strings, or API secrets.</strong> Use placeholder values instead. Claude can analyze config structure and logic without seeing real secrets. Replace actual values with PLACEHOLDER, YOUR_TOKEN, or XXX before sharing any code.
+    </p>
+  </div>
+
+  <!-- Back to Hub -->
+  <div class="mt-8 rounded-xl border border-border bg-background-alt p-5 text-center">
+    <p class="text-sm text-text-secondary">
+      Ready for more? Explore other departments or jump back to the main course.
+      <br />
+      <a href="/departments" class="font-medium text-purple hover:underline">All departments &rarr;</a>
+    </p>
+  </div>
+</MainLayout>

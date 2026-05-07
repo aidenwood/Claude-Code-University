@@ -1,0 +1,237 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import CopyBlock from '../../components/CopyBlock.astro';
+import BeginnerNote from '../../components/BeginnerNote.astro';
+import ThisNotThat from '../../components/ThisNotThat.astro';
+---
+
+<MainLayout title="Executive & Leadership Training" subtitle="Claude Code for leaders — strategic analysis, board reports, data-driven decisions, and presentation prep">
+
+  <!-- Section 1: What Claude Can Do For Executives -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">What Claude Can Do For Executives</h2>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Claude is your strategic thinking partner. Treat it as a senior advisor who can:
+    </p>
+
+    <ul class="mt-4 space-y-2 text-sm text-text-secondary list-disc list-inside">
+      <li><strong>Draft board reports</strong> — synthesize financials, operational data, risks into a 3-page executive brief</li>
+      <li><strong>Strategic analysis</strong> — SWOT, competitive positioning, market entry scenarios, margin analysis</li>
+      <li><strong>Competitive intelligence</strong> — synthesize competitor data and positioning, identify market gaps</li>
+      <li><strong>Financial summaries</strong> — parse quarterly results, compare to targets, flag variances</li>
+      <li><strong>KPI dashboards</strong> — turn spreadsheets into traffic-light health reports (green/amber/red)</li>
+      <li><strong>Presentation prep</strong> — convert strategies into 10-12 slide decks with talking points</li>
+      <li><strong>Scenario modeling</strong> — "what if we expand to Brisbane North?" vs "what if we consolidate?"</li>
+    </ul>
+
+    <BeginnerNote>
+      <p>The key: <strong>Point Claude at your actual data</strong>. Financials, market analysis, competitor research, KPI spreadsheets. Never ask for generic strategy. Real data = real insights.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 2: Board & Stakeholder Reports -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Board & Stakeholder Reports</h2>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Board reports need story and substance. Claude synthesizes multiple data sources into a narrative that shows performance and signals risk.
+    </p>
+
+    <CopyBlock
+      command={`Read our Q2 financials in financials-q2.csv, sales data in pipeline-q2.csv, and project status in projects-q2.csv — generate a board report with executive summary, financial highlights, operational KPIs, risks, and strategic recommendations`}
+      breakdown={[
+        { segment: "Read multiple sources", explanation: "financials, pipeline, project status — all cross-checked" },
+        { segment: "Executive summary", explanation: "one page that answers: how are we doing?" },
+        { segment: "Risks + recommendations", explanation: "not just reporting numbers, actionable next steps" }
+      ]}
+    />
+
+    <CopyBlock
+      command={`Read the last 4 monthly reports in reports/ — create a trend summary showing which metrics are improving, declining, or flat. Highlight anything that needs board attention`}
+      breakdown={[
+        { segment: "Last 4 months", explanation: "spot trends, not one-off blips" },
+        { segment: "Trends", explanation: "improving/declining/flat with trajectory" },
+        { segment: "Board attention", explanation: "flag only what matters, eliminate noise" }
+      ]}
+    />
+
+    <BeginnerNote title="Synthesis beats reporting">
+      <p>Claude reads your financials, pipeline, and projects in one prompt. It finds connections and tells the story — you made $5M this quarter, which came from these 3 deals, but pipeline is soft next quarter, so we need to discuss X. That's the work that normally takes 3 hours of spreadsheet juggling.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 3: Strategic Analysis -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Strategic Analysis</h2>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Big decisions need big data. Claude can analyze market position, competitive landscape, and identify growth opportunities.
+    </p>
+
+    <CopyBlock
+      command={`Read our market data in market-analysis.csv and competitor information in competitors/ — create a SWOT analysis for our expansion into commercial property claims`}
+      breakdown={[
+        { segment: "market-analysis.csv", explanation: "our market position, addressable market size" },
+        { segment: "competitors/", explanation: "Claude reads all competitor files, identifies positioning" },
+        { segment: "SWOT for expansion", explanation: "Strengths we bring, Weaknesses we have, market Opportunities, competitive Threats" }
+      ]}
+    />
+
+    <CopyBlock
+      command={`Analyze our last 3 years of revenue data in revenue-history.csv — identify growth trends by service line, seasonal patterns, and which segments have the highest margin. Recommend where to invest`}
+      breakdown={[
+        { segment: "3 years of revenue", explanation: "long enough to spot real trends, not seasonal noise" },
+        { segment: "By service line", explanation: "which lines are growing? which are flat?" },
+        { segment: "Margin analysis", explanation: "high revenue ≠ high profit — Claude finds the real money" }
+      ]}
+    />
+
+    <BeginnerNote title="Data + context = strategy">
+      <p>Strategy based on gut feel is risky. Strategy based on your actual revenue trends, margin data, and competitive landscape is defensible. Claude turns data into the story you tell the board.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 4: Presentation & Communication -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Presentation & Communication</h2>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Translating strategy into a presentation deck is tedious. Claude converts your plans into slide decks with clear hierarchy and talking points.
+    </p>
+
+    <CopyBlock
+      command={`Create a 12-slide strategy presentation from our strategic-plan.md — executive summary, market position, growth pillars, financial targets, key initiatives, timeline, and risks. Clean structure with bullet points, not paragraphs`}
+      breakdown={[
+        { segment: "12 slides", explanation: "short enough to keep attention, long enough for substance" },
+        { segment: "Slide structure", explanation: "Claude creates a logical flow: where we are → where we're going → how we get there" },
+        { segment: "Bullet points not paragraphs", explanation: "presentation copy is different from memo copy — tighter, punchier" }
+      ]}
+    />
+
+    <CopyBlock
+      command={`Read the all-hands meeting notes from the last 3 months in meetings/ — draft a company-wide update email hitting the top achievements, upcoming priorities, and team acknowledgements`}
+      breakdown={[
+        { segment: "All-hands notes", explanation: "Claude synthesizes what was discussed across 3 months" },
+        { segment: "Achievements + priorities", explanation: "what we did, what's next, why it matters" },
+        { segment: "Team acknowledgements", explanation: "people feel seen when leaders call out specific wins" }
+      ]}
+    />
+
+    <BeginnerNote title="Presentations are decisions made visible">
+      <p>A slide deck isn't decoration — it's how you make decisions. "We should expand to Brisbane North" becomes: market data shows 5,000+ claims/year, we can support it with 2 more staff, ROI is 40% in year 1. That's a decision the board can actually vote on.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 5: Data-Driven Decision Making -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">Data-Driven Decision Making</h2>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      The hardest decisions involve trade-offs. Claude can model scenarios, show financial impact, and give you options to decide between.
+    </p>
+
+    <CopyBlock
+      command={`Read our cost data in operational-costs.csv and revenue in revenue-by-region.csv — model the impact of closing underperforming regions vs investing in marketing. Show break-even scenarios`}
+      breakdown={[
+        { segment: "Operational costs", explanation: "fixed costs we save by closing a region" },
+        { segment: "Revenue by region", explanation: "what we're making (or losing) in each market" },
+        { segment: "Break-even scenarios", explanation: "how much marketing spend gets us to profitability vs closing?" }
+      ]}
+    />
+
+    <CopyBlock
+      command={`Analyze our customer data in customer-lifetime-value.csv — segment by acquisition channel, show LTV by segment, and identify which channels to scale based on ROI`}
+      breakdown={[
+        { segment: "customer-lifetime-value.csv", explanation: "how much profit we make per customer over their lifetime" },
+        { segment: "By acquisition channel", explanation: "which channel brings us the highest-value customers?" },
+        { segment: "ROI-ranked channels", explanation: "where should we spend more money to grow?" }
+      ]}
+    />
+
+    <BeginnerNote title="Models beat hunches">
+      <p>Instead of debating whether to close a region or invest in marketing, you have a model. "If we close the region, we save $50K/month but lose $30K revenue. If we invest $20K in marketing, we hit breakeven in 6 months." Now you're deciding on facts, not opinions.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 6: This / Not That for Executives -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">This / Not That for Executives</h2>
+
+    <ThisNotThat
+      notThis="Prepare the board report"
+      notThisDetail="Vague. Claude doesn't know what data matters, what format you need, what metrics the board cares about."
+      doThis="Read financials-q2.csv, pipeline-q2.csv, and projects-q2.csv — create a 3-page board report with executive summary, KPI table comparing to targets, risk register with mitigations, and 3 strategic recommendations with supporting data"
+      doThisDetail="Claude now has specific sources, specific format (3 pages, KPI table), and specific output (risks + recommendations with data). The report is board-ready."
+    />
+
+    <ThisNotThat
+      notThis="Should we expand into Brisbane North?"
+      notThisDetail="A question without context. Claude can't model the decision."
+      doThis="Read claims-data.csv filtered to Brisbane North postcodes, analyze claim volume trends, average claim value, competitor density from competitors.csv, and our current capacity in staff-roster.csv — model the revenue potential vs required investment"
+      doThisDetail="Claude now has: market size (claims volume), unit economics (claim value), competition, and your constraints (staff). It can show you: we'd generate $500K revenue, need 2 FTE, compete against 3 other firms. Then you decide."
+    />
+
+    <ThisNotThat
+      notThis="Make me a presentation"
+      notThisDetail="Generic presentation with generic slides that don't match your strategy."
+      doThis="Read strategic-plan.md and financials-q2.csv — create a 10-slide investor update with: market overview, our position, financial performance vs targets, growth strategy, key risks, and 12-month outlook. Bullet points, not paragraphs"
+      doThisDetail="Claude has your actual plan and your actual numbers. It creates a narrative that flows: here's the market, here's why we're winning, here's the proof (numbers), here's what's next."
+    />
+
+    <ThisNotThat
+      notThis="What's our financial position?"
+      notThisDetail="Too broad. Claude can't prioritize what matters to you."
+      doThis="Read our Q2 actuals in financials-q2.csv and our annual targets in targets-2026.csv — show year-to-date revenue vs target, largest variances, cash position, and whether we're on track to hit full-year EBITDA target"
+      doThisDetail="Now Claude understands: you care about YTD performance, variances, cash runway, and whether you'll hit your EBITDA goal. The answer is crisp: 'On track. YTD $3.5M vs $3.2M target (108%). Largest variance is lower cost of goods — good news. Cash runway 18 months.'"
+    />
+  </section>
+
+  <!-- Section 7: KPI Monitoring & Scenario Planning -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-xl font-bold text-text">KPI Monitoring & Scenario Planning</h2>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      KPIs are only useful if someone reads them. Claude turns spreadsheets into health reports that highlight what needs your attention.
+    </p>
+
+    <CopyBlock
+      command={`Read our KPI dashboard data in kpis-monthly.csv — create a traffic-light report showing each KPI as green (on target), amber (within 10%), or red (off target). Include trend arrows and month-over-month change`}
+      breakdown={[
+        { segment: "Green/amber/red", explanation: "instant visual: what's healthy, what's concerning, what's broken?" },
+        { segment: "Trend arrows", explanation: "improving, stable, or declining — direction matters as much as position" },
+        { segment: "Month-over-month", explanation: "is this blip a one-off or a trend?" }
+      ]}
+    />
+
+    <CopyBlock
+      command={`Model three scenarios for next financial year using our current run rate in financials-2026.csv: conservative (flat growth), moderate (15% growth), aggressive (30% growth). Show revenue, headcount needed, and cash runway for each`}
+      breakdown={[
+        { segment: "3 scenarios", explanation: "base case, optimistic, pessimistic — you can plan for all of them" },
+        { segment: "Headcount needed", explanation: "growth isn't free — how many people do we need to hire?" },
+        { segment: "Cash runway", explanation: "can we afford to grow? or do we need to raise/conserve?" }
+      ]}
+    />
+
+    <BeginnerNote title="Scenarios de-risk big decisions">
+      <p>Instead of one 5-year plan, you have three: conservative ($10M revenue, 20 people, 12-month cash runway), moderate ($11.5M, 24 people, 10-month runway), aggressive ($13M, 28 people, 8-month runway). Now you can discuss which scenario matches your risk tolerance and market conditions.</p>
+    </BeginnerNote>
+  </section>
+
+  <!-- Section 8: Summary -->
+  <section class="rounded-xl border border-purple-200 bg-purple-50 p-6 md:p-8">
+    <h2 class="text-xl font-bold text-purple">The Real Value</h2>
+
+    <p class="mt-4 text-sm text-text-secondary">
+      Claude's biggest value as a leader isn't doing work for you — <strong>it's synthesizing data you already have into actionable insights</strong>. Point it at your numbers, ask specific questions, and make faster decisions. That's the ROI of this tool: fewer hours in spreadsheets, more hours thinking about strategy.
+    </p>
+  </section>
+
+  <!-- Back link -->
+  <div class="mt-8 rounded-xl border border-border bg-background-alt p-5 text-center">
+    <p class="text-sm text-text-secondary">
+      Back to the <a href="/departments" class="font-medium text-[#47B1CC] hover:underline">department hub &rarr;</a>
+    </p>
+  </div>
+
+</MainLayout>

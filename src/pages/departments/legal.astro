@@ -1,0 +1,330 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import CopyBlock from '../../components/CopyBlock.astro';
+import BeginnerNote from '../../components/BeginnerNote.astro';
+import ThisNotThat from '../../components/ThisNotThat.astro';
+---
+
+<MainLayout
+  title="Legal & Compliance Team Training"
+  subtitle="Claude Code for legal — contract review, policy drafts, compliance checklists, and regulatory analysis"
+>
+  <!-- What Claude Can Do For Legal -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">What Claude Can Do For Legal</h2>
+    <p class="text-text-secondary mb-4">
+      Claude accelerates legal and compliance work by reading contracts, extracting clauses, drafting policies, and auditing processes. From risk analysis to regulatory change tracking, Claude handles the document review and pattern matching that consumes legal teams' time.
+    </p>
+    <ul class="space-y-2 text-text-secondary">
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Contract review:</strong> Extract parties, values, dates, termination clauses, liability caps, and flag unusual terms</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Contract comparison:</strong> Compare proposed vs standard terms, list deviations, rate risk, suggest positions</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Policy drafting:</strong> Write new policies or update existing ones to reflect regulatory changes</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Compliance checklists:</strong> Create audit checklists tied to specific regulations (ASIC, POPIA, WHS, etc.)</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Regulatory analysis:</strong> Summarize new legislation, identify process impacts, list required updates</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Risk registers:</strong> Track contract expiries, auto-renewal dates, key obligations, and renewal deadlines</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold">→</span>
+        <span><strong>Document organization:</strong> Rename files, create indices, track document status and versions</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Contract Review & Analysis -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Contract Review & Analysis</h2>
+    <p class="text-text-secondary mb-6">
+      Extract key contract terms in minutes instead of hours. Claude reads PDFs, identifies critical clauses, compares against standards, and flags risk areas.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read contract.pdf — extract all parties, contract value, start date, end date, termination clauses, penalty clauses, and liability caps. Flag any unusual terms"
+        breakdown={[
+          { segment: "Read contract.pdf", explanation: "processes the full contract document" },
+          { segment: "extract parties, value, dates", explanation: "captures core deal structure" },
+          { segment: "termination, penalty, liability clauses", explanation: "identifies key risk terms" },
+          { segment: "Flag unusual terms", explanation: "highlights anything outside standard practice" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Compare our standard-terms.pdf against the client's proposed-contract.pdf — list every clause that differs, rate risk level (low/medium/high), and suggest our position on each"
+        breakdown={[
+          { segment: "Compare standard vs proposed", explanation: "side-by-side clause analysis" },
+          { segment: "list every difference", explanation: "comprehensive deviation report" },
+          { segment: "rate risk (low/medium/high)", explanation: "quantifies exposure on each issue" },
+          { segment: "suggest our position", explanation: "negotiation guidance for legal team" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read the three contracts in supplier-agreements/ — create a summary table showing: supplier name, contract type, start date, end date, auto-renewal clause, and liability cap"
+        breakdown={[
+          { segment: "Read supplier agreements", explanation: "processes multiple contracts at once" },
+          { segment: "summary table", explanation: "standardized format across all contracts" },
+          { segment: "auto-renewal clause", explanation: "critical for tracking renewal deadlines" },
+          { segment: "liability cap", explanation: "shows exposure limits for each supplier" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      Claude reads PDFs directly. Upload your contracts and it extracts the key terms. Always have a qualified lawyer review the output before acting on it.
+    </BeginnerNote>
+  </div>
+
+  <!-- Policy Drafting -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Policy Drafting</h2>
+    <p class="text-text-secondary mb-6">
+      Draft new policies or update existing ones to match regulatory requirements. Claude reads your current policies for tone and structure, then drafts new versions that fit your framework.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read our existing policies in policies/ folder and draft a Data Retention Policy covering collection, storage duration, destruction methods, and exceptions. Reference the APPs (Australian Privacy Principles)"
+        breakdown={[
+          { segment: "Read existing policies", explanation: "learns your policy tone and structure" },
+          { segment: "Data Retention Policy", explanation: "comprehensive retention framework" },
+          { segment: "collection, storage, destruction", explanation: "covers full data lifecycle" },
+          { segment: "reference APPs", explanation: "ties to Australian Privacy Principles" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Update our privacy-policy.md to reflect the latest Privacy Act amendments — show tracked changes so we can see exactly what's new"
+        breakdown={[
+          { segment: "Update privacy-policy.md", explanation: "modifies existing document" },
+          { segment: "Privacy Act amendments", explanation: "incorporates latest legislative changes" },
+          { segment: "tracked changes", explanation: "shows what was added/modified/deleted" },
+          { segment: "exactly what's new", explanation: "audit trail for board/compliance review" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Draft a Social Media Governance Policy covering content approval, posting rights, legal review requirements, and brand protection — style it to match our Communications Policy in policies/communications.md"
+        breakdown={[
+          { segment: "Social Media Governance Policy", explanation: "new policy for digital channels" },
+          { segment: "content approval, posting rights", explanation: "operational controls" },
+          { segment: "legal review requirements", explanation: "compliance checkpoints" },
+          { segment: "match existing policy style", explanation: "consistency across all policies" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      Upload your current policies so Claude learns your style. It will draft new policies that fit your organization's tone and governance framework.
+    </BeginnerNote>
+  </div>
+
+  <!-- Compliance Checklists & Audits -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Compliance Checklists & Audits</h2>
+    <p class="text-text-secondary mb-6">
+      Audit your processes against specific regulations. Claude creates checklists tied to regulatory requirements, compares your current state, and flags gaps.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Create a compliance checklist for our insurance claims handling process against ASIC RG 271 (Internal Dispute Resolution). Cross-reference our current process in claims-process.md"
+        breakdown={[
+          { segment: "compliance checklist", explanation: "requirement-by-requirement framework" },
+          { segment: "ASIC RG 271", explanation: "specific regulatory standard" },
+          { segment: "insurance claims handling", explanation: "our actual process" },
+          { segment: "cross-reference", explanation: "shows where we already comply" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read our workplace-safety-docs/ folder and audit against current WHS regulations — flag gaps, missing documentation, and overdue reviews"
+        breakdown={[
+          { segment: "Read safety documentation", explanation: "processes all WHS files" },
+          { segment: "audit against WHS regulations", explanation: "compliance mapping" },
+          { segment: "flag gaps", explanation: "identifies missing requirements" },
+          { segment: "overdue reviews", explanation: "highlights documentation that needs refresh" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read our vendor-management-policy.md and our active-vendors.csv, then audit whether we have current compliance certificates (ISO, insurance, credentials) for each — flag those expiring within 60 days"
+        breakdown={[
+          { segment: "Read vendor policy and list", explanation: "understand requirements and who we use" },
+          { segment: "audit compliance certificates", explanation: "tracks certifications and credentials" },
+          { segment: "flag expiring within 60 days", explanation: "early warning for renewal" },
+          { segment: "by vendor", explanation: "actionable list for vendor management" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      Provide your process documents and the regulation reference (ASIC RG 271, NDB scheme, WHS Act, etc.). Claude will build a checklist and show you where you stand.
+    </BeginnerNote>
+  </div>
+
+  <!-- Regulatory Analysis -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Regulatory Analysis</h2>
+    <p class="text-text-secondary mb-6">
+      Track new legislation and its impact on your operations. Claude summarizes new rules, identifies which processes are affected, and lists required changes.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read the Insurance Contracts Amendment Bill summary in legislation/amendment-2026.pdf — summarize key changes, identify which of our current processes are affected, and list required updates"
+        breakdown={[
+          { segment: "Read legislation summary", explanation: "analyzes new regulatory requirements" },
+          { segment: "summarize key changes", explanation: "executive summary of what's new" },
+          { segment: "identify affected processes", explanation: "maps changes to your operations" },
+          { segment: "list required updates", explanation: "prioritized action list" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Compare our current compliance-matrix.csv against the updated regulatory requirements in new-regs.pdf — highlight gaps and priority actions"
+        breakdown={[
+          { segment: "Compare compliance matrix", explanation: "existing vs new requirements" },
+          { segment: "against updated regulations", explanation: "latest rule set" },
+          { segment: "highlight gaps", explanation: "shows where you're not yet aligned" },
+          { segment: "priority actions", explanation: "ranks by urgency and impact" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read our Insurance Contracts Act compliance policy in policies/ and the draft Privacy Legislation Amendment — flag any conflicts or new obligations we need to address"
+        breakdown={[
+          { segment: "Read existing compliance policy", explanation: "current state of compliance" },
+          { segment: "Read draft legislation", explanation: "upcoming regulatory changes" },
+          { segment: "flag conflicts", explanation: "identifies policy vs law gaps" },
+          { segment: "new obligations", explanation: "lists new requirements to implement" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      Upload the legislation summary or PDF plus your existing compliance documents. Claude will tell you what's new and what needs to change.
+    </BeginnerNote>
+  </div>
+
+  <!-- This / Not That -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Common Mistakes — Do This Instead</h2>
+
+    <ThisNotThat
+      notThis="Review this contract"
+      notThisDetail="Too vague. Which contract? What clauses matter to you? Compare against what standard?"
+      doThis="Read client-contract.pdf, extract all termination clauses, liability caps, and indemnity obligations, compare against our standard terms in templates/standard-terms.pdf, and flag deviations rated by risk level"
+      doThisDetail="Claude sees the exact differences, rates the risk, and gives you negotiating points."
+    />
+
+    <ThisNotThat
+      notThis="Write a privacy policy"
+      notThisDetail="Starting from blank? Tone? Structure? Which laws apply?"
+      doThis="Read our existing policies in policies/ for tone and structure, then draft a Data Breach Response Policy referencing the Notifiable Data Breaches scheme under the Privacy Act 1988"
+      doThisDetail="Claude learns your style and drafts a policy that fits your governance framework."
+    />
+
+    <ThisNotThat
+      notThis="Check if we're compliant"
+      notThisDetail="Against what? Which processes? Which regulations?"
+      doThis="Read our claims-process.md and audit it against ASIC RG 271 requirements — output a compliance matrix showing requirement, our current status, and remediation needed"
+      doThisDetail="Claude maps each requirement to your process and shows exactly what's missing or incomplete."
+    />
+
+    <ThisNotThat
+      notThis="Summarize the new legislation"
+      notThisDetail="Which parts affect us? What do we need to change? How urgent?"
+      doThis="Read the updated Insurance Contracts Amendment Bill in legislation/bill-2026.pdf, identify the three sections that affect our claims process, and create a 30/60/90 day action plan for compliance"
+      doThisDetail="Claude pinpoints what matters to your operations and prioritizes changes by deadline."
+    />
+  </div>
+
+  <!-- Risk & Document Management -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Risk & Document Management</h2>
+    <p class="text-text-secondary mb-6">
+      Track contract portfolios and manage document archives. Claude creates risk registers, generates renewal calendars, and organizes legal files with consistent naming and metadata.
+    </p>
+
+    <div class="space-y-4">
+      <CopyBlock
+        command="Read all contracts in active-contracts/ — create a risk register showing contract name, counterparty, expiry date, auto-renewal status, and key obligations. Flag anything expiring within 60 days"
+        breakdown={[
+          { segment: "Read all contracts", explanation: "processes entire portfolio" },
+          { segment: "risk register", explanation: "structured contract risk dashboard" },
+          { segment: "expiry, auto-renewal, obligations", explanation: "critical management fields" },
+          { segment: "flag within 60 days", explanation: "early warning system for renewals" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Organize the documents in legal-archive/ — rename files to follow our naming convention (YYYY-MM-DD_type_counterparty), create an index.csv with file path, document type, date, and status"
+        breakdown={[
+          { segment: "Organize legal archive", explanation: "standardizes file naming" },
+          { segment: "YYYY-MM-DD_type_counterparty", explanation: "consistent naming convention" },
+          { segment: "index.csv", explanation: "searchable metadata for all documents" },
+          { segment: "document type, date, status", explanation: "tracks version and currency" }
+        ]}
+      />
+
+      <CopyBlock
+        command="Read our current contract register in contracts-register.csv and compare against the actual files in active-contracts/ folder — identify missing files, orphaned files, and outdated entries"
+        breakdown={[
+          { segment: "Read contract register", explanation: "metadata source of truth" },
+          { segment: "Compare against files", explanation: "actual file system check" },
+          { segment: "missing files", explanation: "files listed but not in folder" },
+          { segment: "orphaned files", explanation: "files in folder but not listed" }
+        ]}
+      />
+    </div>
+
+    <BeginnerNote>
+      A contract risk register saves hours every quarter. Claude maintains it automatically — just re-run it when new contracts are added.
+    </BeginnerNote>
+  </div>
+
+  <!-- CRITICAL WARNING -->
+  <div class="my-6 rounded-xl border-2 border-danger/30 bg-danger-light p-5">
+    <div class="mb-3 flex items-center gap-2">
+      <span class="flex h-6 w-6 items-center justify-center rounded-full bg-danger text-white text-xs font-bold">!</span>
+      <span class="text-sm font-bold uppercase tracking-wide text-danger">Critical Legal Warning</span>
+    </div>
+    <div class="space-y-3 text-sm text-text">
+      <p>
+        <strong>Claude is not a lawyer.</strong> All legal output must be reviewed by qualified legal counsel before use. Never treat AI-generated legal analysis as legal advice.
+      </p>
+      <p>
+        <strong>Never paste confidential information into Claude:</strong> Client settlement details, privileged communications, names of parties in settlement negotiations, employee medical information, or any information covered by legal privilege. De-identify all case examples and use generic counterparties when possible.
+      </p>
+      <p>
+        <strong>Legal review is non-negotiable:</strong> Contract interpretations, policy language, compliance assessments, and regulatory analysis must all be reviewed and approved by your legal team before acting on them.
+      </p>
+    </div>
+  </div>
+
+  <!-- Back to Hub -->
+  <div class="mt-8 rounded-xl border border-border bg-background-alt p-5 text-center">
+    <p class="text-sm text-text-secondary">
+      Ready for more? Explore other departments or jump back to the main course.
+      <br />
+      <a href="/departments" class="font-medium text-purple hover:underline">All departments &rarr;</a>
+    </p>
+  </div>
+</MainLayout>
