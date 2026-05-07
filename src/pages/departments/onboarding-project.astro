@@ -1,0 +1,649 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import CopyBlock from '../../components/CopyBlock.astro';
+import BeginnerNote from '../../components/BeginnerNote.astro';
+
+---
+
+<MainLayout
+  title="Staff Onboarding Project Guide"
+  subtitle="Step-by-step: from static HTML to a full-stack onboarding app with Supabase and Google Sheets"
+>
+  <!-- Section 1: Project Overview -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Section 1: Project Overview</h2>
+    <p class="text-text-secondary mb-4">
+      You already have a working static HTML version of the staff onboarding pages. This guide walks you through upgrading it into a full-stack web application with a real database, authentication, and Google Sheets sync for managers.
+    </p>
+
+    <div class="space-y-3 mb-6">
+      <div class="flex gap-3 text-text-secondary">
+        <span class="text-purple font-bold shrink-0">→</span>
+        <span><strong>What we're building:</strong> A web interface for staff onboarding that replaces manual Google Sheets data entry. Staff fill out forms in the browser, data saves to Supabase (primary database) AND syncs to Google Sheets (for managers who still want spreadsheet access).</span>
+      </div>
+      <div class="flex gap-3 text-text-secondary">
+        <span class="text-purple font-bold shrink-0">→</span>
+        <span><strong>Frontend:</strong> Astro 5 (pages + routing) with React islands (interactive forms, checklists) and Tailwind CSS 4 (styling)</span>
+      </div>
+      <div class="flex gap-3 text-text-secondary">
+        <span class="text-purple font-bold shrink-0">→</span>
+        <span><strong>Backend:</strong> Supabase (auth + database + Row Level Security) with Google Sheets API (sync for managers)</span>
+      </div>
+      <div class="flex gap-3 text-text-secondary">
+        <span class="text-purple font-bold shrink-0">→</span>
+        <span><strong>Deployment:</strong> Netlify (hosting + serverless functions for Sheets sync)</span>
+      </div>
+    </div>
+
+    <div class="rounded-xl border border-border bg-text p-4">
+      <p class="text-xs font-semibold uppercase tracking-wide text-white/50 mb-2">Architecture</p>
+      <code class="block text-sm font-mono text-surface whitespace-pre leading-relaxed">Staff Browser → Astro/React Frontend → Supabase (primary DB + auth)
+                                        → Google Sheets API (sync for managers)</code>
+    </div>
+
+    <BeginnerNote title="Why two data stores?">
+      Supabase is the real database — it handles login, permissions, and stores all the data. Google Sheets is just a mirror so managers can open a spreadsheet and see progress without logging into the app. Supabase is the source of truth. The sheet is a convenience copy.
+    </BeginnerNote>
+  </div>
+
+  <!-- Section 2: Scaffold the Project -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Section 2: Scaffold the Project</h2>
+    <p class="text-text-secondary mb-6">
+      Create the Astro project from scratch with all the tools you need. Run these commands one at a time in your terminal.
+    </p>
+
+    <h3 class="font-bold text-lg text-text mb-3">Step 1: Create the Astro project</h3>
+    <CopyBlock
+      command="npm create astro@latest rebuild-onboarding -- --template minimal --typescript strict"
+      breakdown={[
+        { segment: "npm create astro@latest", explanation: "downloads and runs the Astro project generator" },
+        { segment: "rebuild-onboarding", explanation: "the folder name for your project" },
+        { segment: "--template minimal", explanation: "starts with the bare minimum — no demo content" },
+        { segment: "--typescript strict", explanation: "enables TypeScript with strict type checking" }
+      ]}
+    />
+
+    <h3 class="font-bold text-lg text-text mb-3 mt-6">Step 2: Add React and Tailwind</h3>
+    <CopyBlock
+      command="cd rebuild-onboarding && npx astro add react tailwind --yes"
+      breakdown={[
+        { segment: "cd rebuild-onboarding", explanation: "move into the project folder you just created" },
+        { segment: "npx astro add react tailwind", explanation: "installs React and Tailwind CSS integrations" },
+        { segment: "--yes", explanation: "auto-accept all prompts so it installs without asking questions" }
+      ]}
+    />
+
+    <h3 class="font-bold text-lg text-text mb-3 mt-6">Step 3: Install Supabase and Google APIs</h3>
+    <CopyBlock
+      command="npm install @supabase/supabase-js googleapis"
+      breakdown={[
+        { segment: "@supabase/supabase-js", explanation: "Supabase client library — connects your app to the database and auth" },
+        { segment: "googleapis", explanation: "Google APIs client — includes Google Sheets API for syncing data" }
+      ]}
+    />
+
+    <h3 class="font-bold text-lg text-text mb-3 mt-6">Step 4: Create the folder structure</h3>
+    <p class="text-text-secondary mb-3">Give this prompt to Claude Code inside your project folder:</p>
+    <CopyBlock
+      command={"Create the folder structure: src/layouts/MainLayout.astro, src/components/ (for React islands), src/pages/ (index, onboarding steps, admin), src/lib/supabase.ts, src/lib/google-sheets.ts, .env (add to .gitignore). Use Rebuild Relief brand colours (navy #001B51 backgrounds, Pacific Blue #47B1CC accents, Inter font)."}
+    />
+
+    <BeginnerNote>
+      This sets up the empty project. No content yet — just the skeleton. Astro handles routing by file name (src/pages/login.astro becomes /login), React handles interactive pieces like forms and checklists, and Tailwind handles all the styling.
+    </BeginnerNote>
+  </div>
+
+  <!-- Section 3: Set Up Supabase -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Section 3: Set Up Supabase (Full Walkthrough)</h2>
+    <p class="text-text-secondary mb-6">
+      Supabase is your database, authentication, and security layer. This section walks through every step — from creating the project to connecting it to your app.
+    </p>
+
+    <!-- 3a: Create the Supabase Project -->
+    <div class="rounded-xl border border-border bg-background-alt p-5 mb-6">
+      <h3 class="font-bold text-lg text-text mb-3">3a: Create the Supabase Project</h3>
+      <ol class="space-y-2 text-text-secondary text-sm">
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">1.</span>
+          <span>Go to <strong>supabase.com</strong> and sign in (or create an account)</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">2.</span>
+          <span>Click <strong>"New Project"</strong></span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">3.</span>
+          <span>Name it <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">rebuild-onboarding</code>, choose a strong database password (<strong>SAVE THIS</strong>), select your region (<code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">ap-southeast-2</code> for Australia)</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">4.</span>
+          <span>Wait for the project to provision (~2 minutes)</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">5.</span>
+          <span>Go to <strong>Settings → API</strong> → copy your <strong>Project URL</strong> and <strong>anon public key</strong></span>
+        </li>
+      </ol>
+
+      <BeginnerNote>
+        The Project URL is where your database lives. The anon key is a public key that lets your app talk to Supabase — it's safe to use in frontend code because RLS (Row Level Security) controls what data each user can actually access.
+      </BeginnerNote>
+    </div>
+
+    <!-- 3b: Create the Database Tables -->
+    <div class="rounded-xl border border-border bg-background-alt p-5 mb-6">
+      <h3 class="font-bold text-lg text-text mb-3">3b: Create the Database Tables</h3>
+      <p class="text-text-secondary mb-3">Go to the <strong>SQL Editor</strong> in your Supabase dashboard and run this:</p>
+
+      <CopyBlock command="Create these Supabase tables: 1. staff (id uuid PK, full_name, email unique, role check field_assessor/office_admin/claims_manager, manager_name, start_date, created_at). 2. onboarding_steps (id uuid PK, title, description, section, role_applicable text array, sort_order integer, created_at). 3. onboarding_progress (id uuid PK, staff_id FK to staff, step_id FK to onboarding_steps, completed boolean, completed_at timestamp, notes, unique on staff_id+step_id). Enable RLS on all three tables. Give me the full SQL to run in Supabase SQL Editor." />
+
+      <div class="mt-4 space-y-2">
+        <p class="text-sm text-text-secondary"><strong class="text-text">staff</strong> — Stores each staff member's name, email, role, manager, and start date. One row per person.</p>
+        <p class="text-sm text-text-secondary"><strong class="text-text">onboarding_steps</strong> — The template of all onboarding steps. Shared across all staff. Each step has a title, description, section grouping, which roles it applies to, and a sort order.</p>
+        <p class="text-sm text-text-secondary"><strong class="text-text">onboarding_progress</strong> — Tracks which staff member has completed which step. Links staff to steps with a completed flag and timestamp.</p>
+      </div>
+
+      <BeginnerNote>
+        Run this in the SQL Editor tab in your Supabase dashboard. It creates three tables: one for staff info, one for the onboarding steps template, and one to track each person's progress. The <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">references</code> keyword creates links between tables — so if you delete a staff member, their progress rows get deleted too (<code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">on delete cascade</code>).
+      </BeginnerNote>
+    </div>
+
+    <!-- 3c: Set Up Row Level Security -->
+    <div class="rounded-xl border border-border bg-background-alt p-5 mb-6">
+      <h3 class="font-bold text-lg text-text mb-3">3c: Set Up Row Level Security (RLS)</h3>
+      <p class="text-text-secondary mb-3">
+        Without RLS, anyone with the anon key could read all staff data. RLS means each staff member can only see their own onboarding progress. Run this in the SQL Editor:
+      </p>
+
+      <CopyBlock command="Write RLS policies for the onboarding tables: Staff can only read their own record (match email from JWT). Admin role can read all staff. Anyone can read onboarding_steps (they're templates). Staff can read, update, and insert their own onboarding_progress (match staff_id via email). Admin gets full access to all progress. Give me the full SQL." />
+
+      <BeginnerNote>
+        RLS is like a bouncer at each table. It checks WHO is asking and only lets them see THEIR data. Admin gets to see everything. Regular staff only see their own progress. This runs automatically on every database query — you don't need to add checks in your app code.
+      </BeginnerNote>
+    </div>
+
+    <!-- 3d: Set Up Supabase Auth -->
+    <div class="rounded-xl border border-border bg-background-alt p-5 mb-6">
+      <h3 class="font-bold text-lg text-text mb-3">3d: Set Up Supabase Auth</h3>
+      <ol class="space-y-2 text-text-secondary text-sm">
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">1.</span>
+          <span>In your Supabase dashboard, go to <strong>Authentication → Providers</strong></span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">2.</span>
+          <span>Enable <strong>Email</strong> and set <strong>"Confirm email" to OFF</strong> (this is an internal app — staff are pre-registered)</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">3.</span>
+          <span>Optionally: If your team uses Google Workspace, enable <strong>Google OAuth</strong> under Providers → Google</span>
+        </li>
+      </ol>
+
+      <BeginnerNote>
+        Auth = who can log in. For an internal onboarding app, email/password is simplest. Turn off email confirmation since you're adding staff manually — you don't want new hires waiting for a confirmation email on their first day.
+      </BeginnerNote>
+    </div>
+
+    <!-- 3e: Connect Supabase to Your App -->
+    <div class="rounded-xl border border-border bg-background-alt p-5 mb-6">
+      <h3 class="font-bold text-lg text-text mb-3">3e: Connect Supabase to Your App</h3>
+      <p class="text-text-secondary mb-3">Add your Supabase credentials to the <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">.env</code> file in your project root:</p>
+
+      <CopyBlock
+        command={"PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co\nPUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."}
+        breakdown={[
+          { segment: "PUBLIC_SUPABASE_URL", explanation: "your project's API URL — find it in Settings → API" },
+          { segment: "PUBLIC_SUPABASE_ANON_KEY", explanation: "your public anon key — safe for frontend use because RLS protects the data" }
+        ]}
+      />
+
+      <p class="text-text-secondary mb-3 mt-6">Create the Supabase client at <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">src/lib/supabase.ts</code>:</p>
+
+      <CopyBlock
+        command={"Create src/lib/supabase.ts — import createClient from @supabase/supabase-js, read PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY from import.meta.env, export a supabase client instance. This is the single connection file the whole app uses."}
+        breakdown={[
+          { segment: "import { createClient }", explanation: "imports the Supabase client constructor from the library you installed" },
+          { segment: "import.meta.env.PUBLIC_*", explanation: "reads values from your .env file — the PUBLIC_ prefix makes them available in frontend code" },
+          { segment: "export const supabase", explanation: "creates and exports the client so other files can import it" },
+          { segment: "createClient(url, key)", explanation: "connects to your specific Supabase project using the URL and anon key" }
+        ]}
+      />
+
+      <BeginnerNote>
+        This file creates the connection between your app and Supabase. Every time your app needs to read or write data, it uses this client. You'll import it like: <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">import &#123; supabase &#125; from '../lib/supabase'</code>.
+      </BeginnerNote>
+    </div>
+
+    <!-- 3f: Seed the Onboarding Steps -->
+    <div class="rounded-xl border border-border bg-background-alt p-5">
+      <h3 class="font-bold text-lg text-text mb-3">3f: Seed the Onboarding Steps</h3>
+      <p class="text-text-secondary mb-3">Run this in the SQL Editor to populate the onboarding checklist with Rebuild Relief-specific steps:</p>
+
+      <CopyBlock command="Write SQL to seed the onboarding_steps table with Rebuild Relief steps: HR Paperwork (sign contract, TFN declaration, superannuation, emergency contacts — all roles). IT Setup (Google Workspace all roles, Pipedrive for office_admin and claims_manager). Equipment (vehicle assignment, roof safety gear, iPad — field_assessor only). Team Intro (meet team, meet manager — all roles). Orientation (company overview — all roles). Training (claims process for claims_manager, field assessment for field_assessor, office systems for office_admin). Use the role_applicable text array to control which roles see which steps." />
+
+      <BeginnerNote>
+        This creates the actual checklist items. Notice how some steps only apply to certain roles — field assessors get vehicle and safety gear steps, claims managers get claims training, office admins get systems training. The <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">role_applicable</code> array controls who sees what.
+      </BeginnerNote>
+    </div>
+  </div>
+
+  <!-- Section 4: Set Up Google Cloud + Sheets API -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Section 4: Set Up Google Cloud + Sheets API (Full Walkthrough)</h2>
+    <p class="text-text-secondary mb-6">
+      Google Sheets API lets your app write data directly to a spreadsheet — so managers can see onboarding progress in the spreadsheet format they already know.
+    </p>
+
+    <!-- 4a: Create a Google Cloud Project -->
+    <div class="rounded-xl border border-border bg-background-alt p-5 mb-6">
+      <h3 class="font-bold text-lg text-text mb-3">4a: Create a Google Cloud Project</h3>
+      <ol class="space-y-2 text-text-secondary text-sm">
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">1.</span>
+          <span>Go to <strong>console.cloud.google.com</strong></span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">2.</span>
+          <span>Click the project dropdown (top left) → <strong>"New Project"</strong></span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">3.</span>
+          <span>Name it <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">rebuild-onboarding</code>, click Create</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">4.</span>
+          <span>Wait for it to create, then make sure it's selected in the dropdown</span>
+        </li>
+      </ol>
+
+      <BeginnerNote>
+        A Google Cloud "project" is just a container that groups your API usage together. It doesn't cost anything to create. You're not spinning up servers — just telling Google "I want to use your APIs."
+      </BeginnerNote>
+    </div>
+
+    <!-- 4b: Enable the Google Sheets API -->
+    <div class="rounded-xl border border-border bg-background-alt p-5 mb-6">
+      <h3 class="font-bold text-lg text-text mb-3">4b: Enable the Google Sheets API</h3>
+      <ol class="space-y-2 text-text-secondary text-sm">
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">1.</span>
+          <span>In the left sidebar, go to <strong>"APIs &amp; Services" → "Library"</strong></span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">2.</span>
+          <span>Search for <strong>"Google Sheets API"</strong></span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">3.</span>
+          <span>Click on it, then click <strong>"Enable"</strong></span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">4.</span>
+          <span>Wait for it to activate</span>
+        </li>
+      </ol>
+
+      <BeginnerNote>
+        This tells Google "yes, I want my project to be able to read and write Google Sheets." APIs are disabled by default — you opt in to only the ones you need.
+      </BeginnerNote>
+    </div>
+
+    <!-- 4c: Create a Service Account -->
+    <div class="rounded-xl border border-border bg-background-alt p-5 mb-6">
+      <h3 class="font-bold text-lg text-text mb-3">4c: Create a Service Account</h3>
+      <ol class="space-y-2 text-text-secondary text-sm">
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">1.</span>
+          <span>Go to <strong>"APIs &amp; Services" → "Credentials"</strong></span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">2.</span>
+          <span>Click <strong>"Create Credentials" → "Service Account"</strong></span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">3.</span>
+          <span>Name it <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">onboarding-sync</code> with description "Syncs onboarding data to Google Sheets"</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">4.</span>
+          <span>Skip the optional steps (roles, user access) — click Done</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">5.</span>
+          <span>Click on the service account you just created</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">6.</span>
+          <span>Go to the <strong>"Keys" tab → "Add Key" → "Create New Key" → choose JSON</strong> → click Create</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">7.</span>
+          <span>A JSON file downloads. <strong>THIS IS YOUR CREDENTIAL FILE. Keep it safe.</strong></span>
+        </li>
+      </ol>
+
+      <!-- Danger warning -->
+      <div class="my-4 rounded-xl border-2 border-danger/30 bg-danger-light p-4">
+        <div class="mb-2 flex items-center gap-2">
+          <span class="flex h-6 w-6 items-center justify-center rounded-full bg-danger text-white text-xs font-bold">!</span>
+          <span class="text-sm font-bold uppercase tracking-wide text-danger">Credential Security</span>
+        </div>
+        <p class="text-sm text-text">
+          <strong>This JSON file is a password.</strong> Never commit it to git. Never share it. Never paste it into Claude. Add it to .gitignore and .claudeignore immediately.
+        </p>
+      </div>
+
+      <CopyBlock
+        command={"echo \"service-account-key.json\" >> .gitignore && echo \"service-account-key.json\" >> .claudeignore"}
+        breakdown={[
+          { segment: ">> .gitignore", explanation: "tells git to never track this file" },
+          { segment: ">> .claudeignore", explanation: "tells Claude Code to never read this file" }
+        ]}
+      />
+
+      <BeginnerNote>
+        A service account is like a robot user that your app uses to talk to Google. It has its own email address and credentials, but it's not a real person. Your app logs in as this robot to read and write the spreadsheet.
+      </BeginnerNote>
+    </div>
+
+    <!-- 4d: Share Your Google Sheet with the Service Account -->
+    <div class="rounded-xl border border-border bg-background-alt p-5 mb-6">
+      <h3 class="font-bold text-lg text-text mb-3">4d: Share Your Google Sheet with the Service Account</h3>
+      <ol class="space-y-2 text-text-secondary text-sm">
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">1.</span>
+          <span>Open your onboarding Google Sheet (or create a new one)</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">2.</span>
+          <span>The service account has an email like <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">onboarding-sync@rebuild-onboarding.iam.gserviceaccount.com</code> — find it in the JSON file under <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">client_email</code></span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">3.</span>
+          <span>Click <strong>"Share"</strong> on the Google Sheet, paste the service account email, give it <strong>"Editor" access</strong></span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-purple font-bold shrink-0">4.</span>
+          <span>Copy the Sheet ID from the URL: <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">https://docs.google.com/spreadsheets/d/<strong>THIS_PART_IS_THE_ID</strong>/edit</code></span>
+        </li>
+      </ol>
+
+      <BeginnerNote>
+        You're giving your robot user permission to edit the spreadsheet. Without this step, the API calls will fail with a permission error. It's the same as sharing a sheet with a colleague — except the "colleague" is your app's service account.
+      </BeginnerNote>
+    </div>
+
+    <!-- 4e: Add Google credentials to your app -->
+    <div class="rounded-xl border border-border bg-background-alt p-5">
+      <h3 class="font-bold text-lg text-text mb-3">4e: Add Google Credentials to Your App</h3>
+      <p class="text-text-secondary mb-3">Add these to your <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">.env</code> file (after the Supabase lines):</p>
+
+      <CopyBlock
+        command={"GOOGLE_SERVICE_ACCOUNT_EMAIL=onboarding-sync@rebuild-onboarding.iam.gserviceaccount.com\nGOOGLE_PRIVATE_KEY=\"-----BEGIN PRIVATE KEY-----\\nYOUR_KEY_HERE\\n-----END PRIVATE KEY-----\\n\"\nGOOGLE_SHEET_ID=your_sheet_id_from_url"}
+        breakdown={[
+          { segment: "GOOGLE_SERVICE_ACCOUNT_EMAIL", explanation: "the robot user's email — copy from client_email in the JSON" },
+          { segment: "GOOGLE_PRIVATE_KEY", explanation: "the robot user's password — copy from private_key in the JSON. Keep the quotes." },
+          { segment: "GOOGLE_SHEET_ID", explanation: "the long string from your Google Sheet URL between /d/ and /edit" }
+        ]}
+      />
+
+      <p class="text-sm text-text-secondary mt-4 mb-3">
+        <strong class="text-text">Why extract email and private_key instead of using the whole JSON file?</strong> Smaller attack surface — environment variables are easier to manage securely than a whole credentials file. You only need two values from that JSON.
+      </p>
+
+      <p class="text-text-secondary mb-3 mt-6">Create the Google Sheets client at <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">src/lib/google-sheets.ts</code>:</p>
+
+      <CopyBlock
+        command="Create src/lib/google-sheets.ts — import google from googleapis, authenticate using GOOGLE_SERVICE_ACCOUNT_EMAIL and GOOGLE_PRIVATE_KEY from environment variables (replace escaped newlines in the private key). Create three exported functions: appendRow(sheetName, values) to add a row, getRows(sheetName) to read all rows, updateRow(sheetName, rowIndex, values) to update a specific row. Use GOOGLE_SHEET_ID from env vars."
+        breakdown={[
+          { segment: "google.auth.GoogleAuth", explanation: "authenticates using the service account credentials from .env" },
+          { segment: "replace(/\\\\n/g, '\\n')", explanation: "converts the escaped newlines in the env var back to real newlines" },
+          { segment: "appendRow()", explanation: "adds a new row to the bottom of a sheet — used when a new staff member starts onboarding" },
+          { segment: "getRows()", explanation: "reads all rows from a sheet — used to check if a staff member already has a row" },
+          { segment: "updateRow()", explanation: "updates a specific row by index — used when progress changes" }
+        ]}
+      />
+
+      <BeginnerNote>
+        This file is your app's connection to Google Sheets. It has three operations: add a row, read all rows, and update a specific row. That covers everything the onboarding app needs. The sheet name (like "Onboarding Progress") matches a tab name in your Google Sheet.
+      </BeginnerNote>
+    </div>
+  </div>
+
+  <!-- Section 5: Common Supabase Queries -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Section 5: Supabase Queries You'll Use</h2>
+    <p class="text-text-secondary mb-6">
+      These are the building blocks. Every feature in the onboarding app uses one of these queries. Copy them, modify them, combine them.
+    </p>
+
+    <h3 class="font-bold text-text mb-2">Fetch staff member by email</h3>
+    <CopyBlock
+      command={"const { data: staff } = await supabase\n  .from('staff')\n  .select('*')\n  .eq('email', userEmail)\n  .single();"}
+      breakdown={[
+        { segment: ".from('staff')", explanation: "query the staff table" },
+        { segment: ".select('*')", explanation: "get all columns" },
+        { segment: ".eq('email', userEmail)", explanation: "filter where email matches the logged-in user" },
+        { segment: ".single()", explanation: "expect exactly one result (not an array)" }
+      ]}
+    />
+
+    <h3 class="font-bold text-text mb-2 mt-6">Get onboarding steps for a specific role</h3>
+    <CopyBlock
+      command={"const { data: steps } = await supabase\n  .from('onboarding_steps')\n  .select('*')\n  .contains('role_applicable', [staffRole])\n  .order('sort_order');"}
+      breakdown={[
+        { segment: ".contains('role_applicable', [staffRole])", explanation: "filters steps where the role_applicable array includes this person's role" },
+        { segment: ".order('sort_order')", explanation: "returns steps in the correct order (1, 2, 3...)" }
+      ]}
+    />
+
+    <h3 class="font-bold text-text mb-2 mt-6">Get progress for a staff member</h3>
+    <CopyBlock
+      command={"const { data: progress } = await supabase\n  .from('onboarding_progress')\n  .select('*, onboarding_steps(*)')\n  .eq('staff_id', staffId);"}
+      breakdown={[
+        { segment: ".select('*, onboarding_steps(*)')", explanation: "gets progress rows AND joins the related step data (title, description, etc.)" },
+        { segment: ".eq('staff_id', staffId)", explanation: "only this person's progress" }
+      ]}
+    />
+
+    <h3 class="font-bold text-text mb-2 mt-6">Mark a step as complete</h3>
+    <CopyBlock
+      command={"const { error } = await supabase\n  .from('onboarding_progress')\n  .upsert({\n    staff_id: staffId,\n    step_id: stepId,\n    completed: true,\n    completed_at: new Date().toISOString(),\n  });"}
+      breakdown={[
+        { segment: ".upsert()", explanation: "insert if it doesn't exist, update if it does — avoids duplicate row errors" },
+        { segment: "completed: true", explanation: "marks the step as done" },
+        { segment: "completed_at: new Date().toISOString()", explanation: "records the exact timestamp of completion" }
+      ]}
+    />
+
+    <h3 class="font-bold text-text mb-2 mt-6">Admin — get all staff with completion percentage</h3>
+    <CopyBlock
+      command={"const { data } = await supabase\n  .from('staff')\n  .select('*, onboarding_progress(completed)');\n\n// Calculate completion percentage per staff member\nconst staffWithProgress = data?.map(person => ({\n  ...person,\n  completionRate: person.onboarding_progress.filter(p => p.completed).length\n    / person.onboarding_progress.length * 100\n}));"}
+      breakdown={[
+        { segment: ".select('*, onboarding_progress(completed)')", explanation: "gets all staff with their progress data in one query" },
+        { segment: "filter(p => p.completed).length", explanation: "counts how many steps are marked complete" },
+        { segment: "/ person.onboarding_progress.length * 100", explanation: "divides by total steps to get a percentage" }
+      ]}
+    />
+
+    <BeginnerNote>
+      These are the building blocks. Every feature in the onboarding app uses one of these queries. Copy them, modify them, combine them. The <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">supabase</code> object comes from the <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">src/lib/supabase.ts</code> file you created in Section 3e.
+    </BeginnerNote>
+  </div>
+
+  <!-- Section 6: Syncing Supabase ↔ Google Sheets -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Section 6: Syncing Supabase to Google Sheets</h2>
+    <p class="text-text-secondary mb-4">
+      The sync strategy is simple: <strong>Supabase is the source of truth, Google Sheets is a read-friendly mirror for managers.</strong> Every time a staff member updates their progress, the app writes to Supabase first, then syncs the latest state to the Google Sheet.
+    </p>
+    <p class="text-text-secondary mb-6">
+      Create this at <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">src/lib/sync.ts</code> — it reads from Supabase and writes to Google Sheets:
+    </p>
+
+    <CopyBlock
+      command={"import { appendRow, getRows, updateRow } from './google-sheets';\nimport { supabase } from './supabase';\n\nexport async function syncProgressToSheet(staffId: string) {\n  // Get staff info + their progress from Supabase\n  const { data: staff } = await supabase\n    .from('staff')\n    .select('full_name, email, role, start_date')\n    .eq('id', staffId)\n    .single();\n\n  const { data: progress } = await supabase\n    .from('onboarding_progress')\n    .select('*, onboarding_steps(title, section)')\n    .eq('staff_id', staffId);\n\n  if (!staff || !progress) return;\n\n  const completedSteps = progress.filter(p => p.completed).length;\n  const totalSteps = progress.length;\n  const completionPct = Math.round((completedSteps / totalSteps) * 100);\n\n  // Check if this staff member already has a row in the sheet\n  const existingRows = await getRows('Onboarding Progress');\n  const rowIndex = existingRows.findIndex(row => row[1] === staff.email);\n\n  const rowData = [\n    staff.full_name,\n    staff.email,\n    staff.role,\n    staff.start_date,\n    completedSteps + '/' + totalSteps,\n    completionPct + '%',\n    progress.filter(p => p.completed).map(p => p.onboarding_steps.title).join(', '),\n    new Date().toISOString(),\n  ];\n\n  if (rowIndex > 0) {\n    // Update existing row (rowIndex + 1 because Sheets is 1-indexed and row 1 is headers)\n    await updateRow('Onboarding Progress', rowIndex + 1, rowData);\n  } else {\n    // Add new row\n    await appendRow('Onboarding Progress', rowData);\n  }\n}"}
+      breakdown={[
+        { segment: "syncProgressToSheet(staffId)", explanation: "call this function whenever a checkbox is toggled" },
+        { segment: "supabase.from('staff')", explanation: "reads the staff member's info from the real database" },
+        { segment: "supabase.from('onboarding_progress')", explanation: "reads their checklist progress" },
+        { segment: "existingRows.findIndex()", explanation: "checks if this person already has a row in the Google Sheet" },
+        { segment: "rowIndex > 0 ? updateRow : appendRow", explanation: "updates existing row or adds a new one" }
+      ]}
+    />
+
+    <BeginnerNote>
+      Every time a staff member ticks a checkbox, this function updates both Supabase (the real database) AND the Google Sheet (so managers can see progress in their familiar spreadsheet). Supabase is the source of truth — the sheet is just a mirror. If the sheet ever gets out of sync, you can re-run this function for each staff member to fix it.
+    </BeginnerNote>
+  </div>
+
+  <!-- Section 7: Claude Prompts to Build Each Feature -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Section 7: Ask Claude to Build These Features</h2>
+    <p class="text-text-secondary mb-6">
+      Now that the foundation is in place (database, auth, Google Sheets connection), use these prompts to have Claude build each feature of the app. Give these to Claude Code one at a time inside your project folder.
+    </p>
+
+    <h3 class="font-bold text-text mb-2">The Onboarding Checklist (core feature)</h3>
+    <CopyBlock
+      command={"Read src/lib/supabase.ts and src/lib/google-sheets.ts. Create a React component at src/components/OnboardingChecklist.tsx that: fetches the current user's onboarding steps from Supabase (filtered by their role), displays them grouped by section, shows a checkbox for each step, and when a checkbox is toggled it updates Supabase and syncs to Google Sheets. Show a progress bar at the top. Use Tailwind with Rebuild Relief brand colours."}
+    />
+
+    <h3 class="font-bold text-text mb-2 mt-6">Login Page</h3>
+    <CopyBlock
+      command={"Create a login page at src/pages/login.astro with a React island login form. Use Supabase email/password auth. On successful login, redirect to /onboarding. On failure, show an error message. Style with Rebuild Relief navy background, white card, green submit button."}
+    />
+
+    <h3 class="font-bold text-text mb-2 mt-6">Admin Dashboard</h3>
+    <CopyBlock
+      command={"Create an admin dashboard at src/pages/admin.astro that shows all staff members in a table with: name, role, start date, completion percentage, and a progress bar. Query Supabase for all staff with their progress. Only accessible to admin users — redirect non-admins to /onboarding. Add sorting by name, role, or completion."}
+    />
+
+    <h3 class="font-bold text-text mb-2 mt-6">Google Sheets Sync Function</h3>
+    <CopyBlock
+      command={"Add a Netlify serverless function at netlify/functions/sync-sheet.ts that triggers whenever onboarding progress is updated. It should read the updated progress from Supabase and sync it to the Google Sheet. Use the service account credentials from environment variables."}
+    />
+
+    <h3 class="font-bold text-text mb-2 mt-6">Add New Staff (Admin Only)</h3>
+    <CopyBlock
+      command={"Create a new staff registration page at src/pages/admin/add-staff.astro (admin only). Form fields: full name, email, role (dropdown: Field Assessor, Office Admin, Claims Manager), manager name, start date. On submit: create the staff record in Supabase, generate their onboarding_progress rows for all applicable steps, send them a welcome email with login instructions, and sync to Google Sheets."}
+    />
+
+    <BeginnerNote>
+      Give these prompts to Claude one at a time. After each one, test the feature, commit to git, then move on. Don't try to build everything at once. Each prompt builds on the previous work — Claude reads the files that already exist and builds on top of them.
+    </BeginnerNote>
+  </div>
+
+  <!-- Section 8: Environment Variables for Netlify -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Section 8: Setting Up Netlify Environment Variables</h2>
+    <p class="text-text-secondary mb-6">
+      Your local <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">.env</code> file only works on your machine. For the deployed site on Netlify, you need to add the same variables in the Netlify dashboard.
+    </p>
+
+    <ol class="space-y-2 text-text-secondary text-sm mb-6">
+      <li class="flex gap-3">
+        <span class="text-purple font-bold shrink-0">1.</span>
+        <span>Go to your Netlify site → <strong>Site Settings → Environment Variables</strong></span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold shrink-0">2.</span>
+        <span>Click <strong>"Add a variable"</strong> for each one below</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="text-purple font-bold shrink-0">3.</span>
+        <span>Set the scope to <strong>"All scopes"</strong> (builds + functions + runtime)</span>
+      </li>
+    </ol>
+
+    <CopyBlock
+      command={"PUBLIC_SUPABASE_URL=https://your-project.supabase.co\nPUBLIC_SUPABASE_ANON_KEY=eyJ...\nGOOGLE_SERVICE_ACCOUNT_EMAIL=onboarding-sync@rebuild-onboarding.iam.gserviceaccount.com\nGOOGLE_PRIVATE_KEY=\"-----BEGIN PRIVATE KEY-----\\n...\\n-----END PRIVATE KEY-----\\n\"\nGOOGLE_SHEET_ID=1abc...xyz"}
+      breakdown={[
+        { segment: "PUBLIC_SUPABASE_URL", explanation: "your Supabase project URL" },
+        { segment: "PUBLIC_SUPABASE_ANON_KEY", explanation: "your Supabase anon key" },
+        { segment: "GOOGLE_SERVICE_ACCOUNT_EMAIL", explanation: "the service account email from the JSON file" },
+        { segment: "GOOGLE_PRIVATE_KEY", explanation: "the private key from the JSON file — include the quotes" },
+        { segment: "GOOGLE_SHEET_ID", explanation: "the Sheet ID from the Google Sheets URL" }
+      ]}
+    />
+
+    <BeginnerNote>
+      These are the same values from your .env file but set in Netlify so the deployed site can access them. Your local .env is for development, Netlify env vars are for production. Add them one at a time — copy-paste carefully, especially the private key.
+    </BeginnerNote>
+  </div>
+
+  <!-- Section 9: Testing the Full Flow -->
+  <div class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h2 class="text-2xl font-bold text-text mb-4">Section 9: Testing the Full Flow</h2>
+    <p class="text-text-secondary mb-6">
+      Before handing this to real staff, test every path. Here's your checklist:
+    </p>
+
+    <div class="space-y-3 mb-6">
+      <div class="flex gap-3 text-text-secondary">
+        <span class="text-purple font-bold shrink-0">1.</span>
+        <span><strong>Staff can log in</strong> with email/password</span>
+      </div>
+      <div class="flex gap-3 text-text-secondary">
+        <span class="text-purple font-bold shrink-0">2.</span>
+        <span><strong>Staff see only steps relevant to their role</strong> — a Field Assessor shouldn't see "Claims process training"</span>
+      </div>
+      <div class="flex gap-3 text-text-secondary">
+        <span class="text-purple font-bold shrink-0">3.</span>
+        <span><strong>Checking a box saves to Supabase immediately</strong> — refresh the page and the checkbox should still be checked</span>
+      </div>
+      <div class="flex gap-3 text-text-secondary">
+        <span class="text-purple font-bold shrink-0">4.</span>
+        <span><strong>Progress syncs to Google Sheets</strong> within a few seconds — open the sheet and verify the row updated</span>
+      </div>
+      <div class="flex gap-3 text-text-secondary">
+        <span class="text-purple font-bold shrink-0">5.</span>
+        <span><strong>Admin can see all staff</strong> and their progress percentages</span>
+      </div>
+      <div class="flex gap-3 text-text-secondary">
+        <span class="text-purple font-bold shrink-0">6.</span>
+        <span><strong>Admin can add new staff</strong> — and the new person gets the correct steps for their role</span>
+      </div>
+      <div class="flex gap-3 text-text-secondary">
+        <span class="text-purple font-bold shrink-0">7.</span>
+        <span><strong>New staff get the correct onboarding steps</strong> for their role automatically</span>
+      </div>
+      <div class="flex gap-3 text-text-secondary">
+        <span class="text-purple font-bold shrink-0">8.</span>
+        <span><strong>RLS prevents staff from seeing other people's data</strong> — try accessing another person's progress directly</span>
+      </div>
+    </div>
+
+    <p class="text-text-secondary mb-3">Give this prompt to Claude to run through the full test:</p>
+
+    <CopyBlock
+      command={"Test the entire onboarding flow: log in as a test Field Assessor, verify they only see field-relevant steps, complete 3 steps, check the progress updates in Supabase, verify the Google Sheet row updated. Then log in as admin and verify the admin dashboard shows the correct completion percentage."}
+    />
+
+    <BeginnerNote>
+      Testing is where most bugs surface. Create two test accounts before testing — one regular staff member (any role) and one admin. Go through the entire flow as each user. Check Supabase's Table Editor (in the dashboard) to verify data is being written correctly.
+    </BeginnerNote>
+  </div>
+
+  <!-- Footer -->
+  <div class="mt-8 rounded-xl border border-border bg-background-alt p-5 text-center">
+    <p class="text-sm text-text-secondary">
+      Back to the IT training page or the main course.
+      <br />
+      <a href="/departments/it-admin" class="font-medium text-purple hover:underline">IT &amp; Systems Admin Training &rarr;</a>
+      <span class="mx-2 text-text-muted">|</span>
+      <a href="/departments" class="font-medium text-purple hover:underline">All departments &rarr;</a>
+    </p>
+  </div>
+
+  <!-- Through-line callout -->
+  <div class="rounded-xl border-2 border-purple/30 bg-purple/5 p-5">
+    <p class="font-bold text-text mb-2">This is Elliot's through-line project for the first month</p>
+    <p class="text-sm text-text-secondary">
+      Each section above maps to a day in the 30-day roadmap on the IT training page. Build it one piece at a time — don't try to do everything at once. Section 2 is Day 6. Section 3 is Day 20. The sections in between (3-7) are Days 13-19. Section 8-9 are Days 20-25. Go at your own pace, commit to git after each feature, and ask Claude whenever you get stuck.
+    </p>
+  </div>
+</MainLayout>

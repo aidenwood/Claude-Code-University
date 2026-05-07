@@ -1,0 +1,258 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import CopyBlock from '../../components/CopyBlock.astro';
+import BeginnerNote from '../../components/BeginnerNote.astro';
+---
+
+<MainLayout title="Elliot's 30-Day Claude Code Roadmap" subtitle="IT Manager — from first terminal command to full-stack onboarding app">
+
+  <!-- Header -->
+  <section class="rounded-xl border-2 border-[#1a1a2e]/20 bg-surface p-6 md:p-8">
+    <div class="flex items-center gap-3 mb-2">
+      <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a1a2e] text-sm font-bold text-white">EL</span>
+      <div>
+        <h2 class="text-xl font-bold text-text">Your Personal Training Plan</h2>
+        <p class="text-sm text-text-muted">Daily tasks that build on each other. By day 25, you'll have shipped a real full-stack app.</p>
+      </div>
+    </div>
+    <p class="mt-3 text-text-secondary">
+      Your through-line project: upgrading the staff onboarding process from a static HTML site to a full-stack web app with Supabase (database + auth) and Google Sheets API (manager-friendly sync).
+    </p>
+    <div class="mt-4 rounded-xl border border-[#47B1CC]/20 bg-[#edf9fb] p-4">
+      <p class="text-xs font-semibold uppercase tracking-wide text-[#47B1CC]">Project guide</p>
+      <p class="mt-1 text-sm text-text-secondary">
+        The full technical walkthrough for the onboarding project (Supabase setup, Google Cloud, Sheets API, queries, sync) is here:
+        <a href="/departments/onboarding-project" class="font-semibold text-[#47B1CC] hover:underline">Staff Onboarding Project Guide &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Week 1: Foundations -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h3 class="font-bold text-lg text-text mb-3">Week 1: Foundations (Days 1-5)</h3>
+
+    <div class="space-y-3">
+      <div class="border-l-4 border-purple pl-4">
+        <p class="font-bold text-text"><span class="text-purple">Day 1</span> — Setup &amp; First Conversation</p>
+        <ul class="text-sm text-text-secondary mt-1 space-y-1">
+          <li>Complete Module 1 (dev environment setup: Homebrew, Node, Python, Git, GitHub Desktop, Claude Code)</li>
+          <li>Run <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">claude</code> in a test folder, ask it to create a hello world HTML file</li>
+          <li>Read Module 2 (Terminal Survival Kit) — learn <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">ls</code>, <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">cd</code>, <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">pwd</code>, <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">open .</code></li>
+        </ul>
+        <CopyBlock command="Create a simple HTML page that says 'Hello from Elliot' with a navy background, white text, and the Rebuild Relief brand colours" />
+      </div>
+
+      <div class="border-l-4 border-[#00D3DD] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#00D3DD]">Day 2</span> — Working With Projects &amp; CLAUDE.md</p>
+        <ul class="text-sm text-text-secondary mt-1 space-y-1">
+          <li>Read Module 3 (First Conversation) and Module 4 (Working With Projects)</li>
+          <li>Create a CLAUDE.md in a test project — write your tech stack and preferences</li>
+          <li>Practice pointing Claude at specific files</li>
+        </ul>
+        <CopyBlock command="Read this project and explain what files exist and what each one does" />
+      </div>
+
+      <div class="border-l-4 border-[#22c55e] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#22c55e]">Day 3</span> — Git &amp; GitHub Desktop</p>
+        <ul class="text-sm text-text-secondary mt-1 space-y-1">
+          <li>Read Module 7 (GitHub → Netlify Pipeline)</li>
+          <li>Create a GitHub repo via GitHub Desktop for the test project</li>
+          <li>Practice the commit → push cycle</li>
+          <li>Connect the repo to Netlify for auto-deploy</li>
+        </ul>
+        <CopyBlock command="git add . && git commit -m 'Add navigation bar' && git push" />
+      </div>
+
+      <div class="border-l-4 border-[#f59e0b] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#f59e0b]">Day 4</span> — Think Like a Developer</p>
+        <ul class="text-sm text-text-secondary mt-1 space-y-1">
+          <li>Read Module 5 (Think Like a Developer — This / Not That)</li>
+          <li>Practice specific prompts vs vague prompts</li>
+          <li>Read Module 9 (Security &amp; Privacy) — essential for IT</li>
+          <li>Set up a <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">.claudeignore</code> file</li>
+        </ul>
+        <CopyBlock command="Read the current index.html and add a responsive sidebar navigation. Match the existing CSS class patterns. Don't add external dependencies." />
+      </div>
+
+      <div class="border-l-4 border-[#f472b6] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#f472b6]">Day 5</span> — Start the Onboarding Project</p>
+        <ul class="text-sm text-text-secondary mt-1 space-y-1">
+          <li>Create a new repo: <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">rebuild-onboarding</code> via GitHub Desktop</li>
+          <li>Copy the existing static HTML onboarding files into the project</li>
+          <li>Ask Claude to analyze and propose a better structure</li>
+        </ul>
+        <CopyBlock command="Read all HTML files in this project. These are our current static staff onboarding pages. Analyze them and propose how to restructure this into a modern web app using Astro 5 with React islands, Tailwind CSS 4, Supabase for the database, and Google Sheets API for manager sync. Don't build yet — just give me the plan." />
+      </div>
+    </div>
+  </section>
+
+  <!-- Week 2: Building -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h3 class="font-bold text-lg text-text mb-3">Week 2: Building the App (Days 6-12)</h3>
+
+    <div class="space-y-3">
+      <div class="border-l-4 border-purple pl-4">
+        <p class="font-bold text-text"><span class="text-purple">Day 6</span> — Scaffold the Astro Project</p>
+        <ul class="text-sm text-text-secondary mt-1 space-y-1">
+          <li>Follow the <a href="/departments/onboarding-project" class="text-[#47B1CC] hover:underline">Project Guide</a> Section 2 — scaffold Astro + React + Tailwind</li>
+          <li>Install Supabase and Google APIs packages</li>
+        </ul>
+        <CopyBlock command="npm create astro@latest rebuild-onboarding -- --template minimal --typescript strict" />
+        <CopyBlock command="npm install @supabase/supabase-js googleapis" />
+      </div>
+
+      <div class="border-l-4 border-[#00D3DD] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#00D3DD]">Day 7</span> — Migrate Content</p>
+        <ul class="text-sm text-text-secondary mt-1 space-y-1">
+          <li>Have Claude read old static HTML and migrate into new Astro pages</li>
+        </ul>
+        <CopyBlock command="Read the old onboarding pages in old-site/ and migrate all content into the new Astro pages. Keep every piece of information — don't skip anything. Use the new layout and component structure." />
+      </div>
+
+      <div class="border-l-4 border-[#22c55e] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#22c55e]">Day 8</span> — Add Interactive Checklists</p>
+        <ul class="text-sm text-text-secondary mt-1 space-y-1">
+          <li>React island checklist component with localStorage (before we add Supabase)</li>
+          <li>Progress bar showing completion percentage</li>
+        </ul>
+        <CopyBlock command="Add a checkbox system to each onboarding step. When a staff member ticks a box, save their progress to localStorage. Show a progress bar at the top of each page showing how many steps are complete out of the total." />
+      </div>
+
+      <div class="border-l-4 border-[#f59e0b] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#f59e0b]">Day 9</span> — Multi-Page Onboarding Flow</p>
+        <CopyBlock command="Create a multi-step onboarding flow: 1. Welcome, 2. IT Setup (accounts, equipment, VPN), 3. HR Paperwork (tax, super, emergency contacts), 4. Team Introductions, 5. Tools Access, 6. Completion. Add prev/next navigation and a sidebar showing all sections with completion status." />
+      </div>
+
+      <div class="border-l-4 border-[#f472b6] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#f472b6]">Day 10</span> — Deploy &amp; Mobile Test</p>
+        <ul class="text-sm text-text-secondary mt-1 space-y-1">
+          <li>Push to GitHub → auto-deploys to Netlify</li>
+          <li>Test on phone and tablet — onboarding often happens on mobile</li>
+        </ul>
+        <CopyBlock command="Check all pages for mobile responsiveness. The onboarding app needs to work on phones and tablets. Fix any layout issues — test at 375px, 768px, and 1024px widths." />
+      </div>
+
+      <div class="border-l-4 border-purple pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-purple">Days 11-12</span> — Set Up Supabase</p>
+        <ul class="text-sm text-text-secondary mt-1 space-y-1">
+          <li>Follow the <a href="/departments/onboarding-project" class="text-[#47B1CC] hover:underline">Project Guide</a> Sections 3a-3f — create project, tables, RLS, auth, connect</li>
+          <li>Run the SQL to create staff, onboarding_steps, and onboarding_progress tables</li>
+          <li>Set up Row Level Security policies</li>
+          <li>Create <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">src/lib/supabase.ts</code> and connect your app</li>
+        </ul>
+        <CopyBlock command="Migrate the onboarding app from localStorage to Supabase. Use the tables and RLS policies from the project guide. Create src/lib/supabase.ts with the connection. Update the checklist component to read/write from Supabase instead of localStorage." />
+      </div>
+    </div>
+  </section>
+
+  <!-- Week 3: Power Features -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h3 class="font-bold text-lg text-text mb-3">Week 3: Power Features (Days 13-19)</h3>
+
+    <div class="space-y-3">
+      <div class="border-l-4 border-[#00D3DD] pl-4">
+        <p class="font-bold text-text"><span class="text-[#00D3DD]">Day 13</span> — Set Up Google Sheets API</p>
+        <ul class="text-sm text-text-secondary mt-1 space-y-1">
+          <li>Follow the <a href="/departments/onboarding-project" class="text-[#47B1CC] hover:underline">Project Guide</a> Sections 4a-4e — Google Cloud project, enable Sheets API, create service account, share sheet, connect</li>
+          <li>Create <code class="bg-text/10 px-1.5 py-0.5 rounded text-xs">src/lib/google-sheets.ts</code></li>
+        </ul>
+        <CopyBlock command="Create src/lib/google-sheets.ts following the project guide. Test it by appending a test row to the onboarding Google Sheet. Verify the row appears in the sheet." />
+      </div>
+
+      <div class="border-l-4 border-[#22c55e] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#22c55e]">Day 14</span> — Supabase ↔ Sheets Sync</p>
+        <ul class="text-sm text-text-secondary mt-1 space-y-1">
+          <li>Follow the <a href="/departments/onboarding-project" class="text-[#47B1CC] hover:underline">Project Guide</a> Section 6 — sync function</li>
+          <li>When a staff member completes a step, both Supabase AND the Google Sheet update</li>
+        </ul>
+        <CopyBlock command="Create a sync function that triggers whenever onboarding progress is updated. It should read the staff member's current progress from Supabase and update their row in the Google Sheet with: name, email, role, start date, completed steps count, completion percentage, and timestamp. Follow the syncProgressToSheet pattern from the project guide." />
+      </div>
+
+      <div class="border-l-4 border-[#f59e0b] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#f59e0b]">Day 15</span> — Admin Dashboard</p>
+        <CopyBlock command="Create an admin dashboard at /admin that shows all staff in a table with: name, role, start date, completion percentage, and a visual progress bar. Query Supabase for all staff with their progress. Only accessible to admin users — redirect non-admins to /onboarding. Add sorting by name, role, or completion." />
+      </div>
+
+      <div class="border-l-4 border-[#f472b6] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#f472b6]">Day 16</span> — Role-Based Onboarding Paths</p>
+        <CopyBlock command="Add role-based onboarding paths. Field Assessors get vehicle/equipment/safety sections. Office Admin gets systems training. Claims Managers get Pipedrive/CRM setup. The onboarding_steps table already has role_applicable — use it to filter steps per staff member's role." />
+      </div>
+
+      <div class="border-l-4 border-purple pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-purple">Day 17</span> — Add New Staff Form</p>
+        <CopyBlock command="Create an admin page at /admin/add-staff with a form: full name, email, role (dropdown), manager name, start date. On submit: create the staff record in Supabase, auto-generate their onboarding_progress rows for all applicable steps, and sync to Google Sheets." />
+      </div>
+
+      <div class="border-l-4 border-[#00D3DD] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#00D3DD]">Day 18</span> — Learn /plan, /loop, and Hooks</p>
+        <ul class="text-sm text-text-secondary mt-1 space-y-1">
+          <li>Read Module 8 (Claude Power Features)</li>
+          <li>Set up auto-formatting hooks</li>
+        </ul>
+        <CopyBlock command="Create a .claude/settings.json that auto-runs Prettier on every file Claude edits, and blocks dangerous commands like git push --force and rm -rf" />
+        <CopyBlock command="/loop Run the build, check for TypeScript errors or accessibility warnings, fix them, and keep going until the build is clean" />
+      </div>
+
+      <div class="border-l-4 border-[#22c55e] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#22c55e]">Day 19</span> — Polish &amp; Documentation</p>
+        <CopyBlock command="Review the entire onboarding app for consistency — same card styles, same spacing, same font sizes across all pages. Then generate a README.md explaining how to add new onboarding steps, how the role-based system works, how the Google Sheets sync works, and how to deploy updates." />
+      </div>
+    </div>
+  </section>
+
+  <!-- Week 4: Advanced -->
+  <section class="rounded-xl border border-border bg-surface p-6 md:p-8">
+    <h3 class="font-bold text-lg text-text mb-3">Week 4: Advanced &amp; Launch (Days 20-25)</h3>
+
+    <div class="space-y-3">
+      <div class="border-l-4 border-[#f59e0b] pl-4">
+        <p class="font-bold text-text"><span class="text-[#f59e0b]">Day 20</span> — Email Notifications</p>
+        <CopyBlock command="Add a Supabase Edge Function that sends an email notification to the new starter's manager when all onboarding steps are marked complete. Use Resend or the Supabase email integration." />
+      </div>
+
+      <div class="border-l-4 border-[#f472b6] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#f472b6]">Day 21</span> — Account Provisioning Script</p>
+        <CopyBlock command="Write a Python script that reads the staff table from Supabase, finds anyone starting in the next 7 days, and generates: 1. IT setup checklist per role, 2. Email templates for account creation requests (Google Workspace, Pipedrive, etc), 3. Summary for the IT team. Output to a new-starter-setup/ folder." />
+      </div>
+
+      <div class="border-l-4 border-purple pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-purple">Day 22</span> — IT Status Page (Side Project)</p>
+        <CopyBlock command="Create a new project: rebuild-status-page. An Astro site that pings a list of internal service URLs every 5 minutes (via Netlify scheduled functions), stores uptime data in Supabase, and displays a clean status dashboard. Green = up, Red = down, Yellow = slow." />
+      </div>
+
+      <div class="border-l-4 border-[#00D3DD] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#00D3DD]">Day 23</span> — Netlify Environment Variables</p>
+        <ul class="text-sm text-text-secondary mt-1 space-y-1">
+          <li>Follow the <a href="/departments/onboarding-project" class="text-[#47B1CC] hover:underline">Project Guide</a> Section 8</li>
+          <li>Set all env vars in Netlify dashboard for production deploy</li>
+          <li>Test the full flow on the live site</li>
+        </ul>
+      </div>
+
+      <div class="border-l-4 border-[#22c55e] pl-4 mt-3">
+        <p class="font-bold text-text"><span class="text-[#22c55e]">Days 24-25</span> — Full Testing &amp; Review</p>
+        <ul class="text-sm text-text-secondary mt-1 space-y-1">
+          <li>Follow the <a href="/departments/onboarding-project" class="text-[#47B1CC] hover:underline">Project Guide</a> Section 9 — full testing checklist</li>
+          <li>Plan month 2 improvements</li>
+        </ul>
+        <CopyBlock command="Read the entire rebuild-onboarding project and generate: 1. A feature summary of what exists, 2. A list of known issues or rough edges, 3. Recommended improvements for month 2, prioritized by impact. Output as ROADMAP.md" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary -->
+  <section class="rounded-xl border-2 border-purple/30 bg-purple-50 p-6 md:p-8">
+    <p class="font-bold text-text mb-2">What you'll have built by Day 25</p>
+    <ul class="text-sm text-text-secondary space-y-1">
+      <li>A fully functional staff onboarding web app with Supabase backend, Google Sheets sync, role-based paths, progress tracking, and admin dashboard</li>
+      <li>IT automation scripts for account provisioning and system health checks</li>
+      <li>An internal status page for service monitoring</li>
+      <li>Confidence to build any internal tool with Claude Code</li>
+    </ul>
+    <div class="mt-4 flex gap-3">
+      <a href="/departments/onboarding-project" class="rounded-lg bg-purple px-4 py-2 text-sm font-semibold text-white hover:bg-purple-dark transition-colors">Open Project Guide &rarr;</a>
+      <a href="/departments/it-admin" class="rounded-lg border border-border px-4 py-2 text-sm font-semibold text-text-secondary hover:border-purple transition-colors">IT Department Training</a>
+    </div>
+  </section>
+
+</MainLayout>
