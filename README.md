@@ -6,6 +6,18 @@ npm create astro@latest -- --template minimal
 
 > 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
+<!-- toc:start -->
+<details open>
+<summary><strong>Contents</strong></summary>
+
+- [🚀 Project Structure](#-project-structure)
+- [🧞 Commands](#-commands)
+- [👀 Want to learn more?](#-want-to-learn-more)
+
+</details>
+<!-- toc:end -->
+
+
 ## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
